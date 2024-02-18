@@ -11,15 +11,15 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
+
+      - name: Go to Dockerfile
+      -run: | 
+          cd .\frontend\
 
       - name: Remove old Docker container
         run: |
           docker rm -f react-server 
-      
-      - name : Go to Dockerfile
-      - run : |
-        cd .\frontend\
         
       - name: Build Docker image
         run: |

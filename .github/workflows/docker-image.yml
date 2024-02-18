@@ -16,7 +16,11 @@ jobs:
       - name: Remove old Docker container
         run: |
           docker rm -f react-server 
-
+      
+      - name : Go to Dockerfile
+      - run : |
+        cd .\frontend\
+        
       - name: Build Docker image
         run: |
           docker build -t react-image .

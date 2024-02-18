@@ -1,0 +1,26 @@
+name: Build and Deploy Docker Container React
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Remove old Docker container
+        run: |
+          docker rm -f react-server || true
+
+      - name: Build Docker image
+        run: |
+          docker build -t react-image .
+
+      - name: Run Docker container
+        run: |
+          docker run -d -p 3000:3000 --name react-server react-image

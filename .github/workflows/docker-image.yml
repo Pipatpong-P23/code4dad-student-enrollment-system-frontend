@@ -15,7 +15,7 @@ jobs:
 
       - name: Remove old Docker container
         run: |
-          docker rm -f react-server || true
+          docker rm -f react-server 
 
       - name: Build Docker image
         run: |

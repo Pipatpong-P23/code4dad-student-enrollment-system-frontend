@@ -13,9 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Go to Dockerfile
-      -run: | 
-          cd .\frontend\
+      - name: Go to frontend directory
+        run: |
+          cd frontend
 
       - name: Remove old Docker container
         run: |

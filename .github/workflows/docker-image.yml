@@ -13,10 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Go to frontend directory
-        run: |
-          cd frontend
-
       - name: Remove old Docker container
         run: |
           docker rm -f react-server 

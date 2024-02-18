@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY . /app
 
+WORKDIR /app/frontend
+
 RUN npm ci
 
 RUN npm run build 

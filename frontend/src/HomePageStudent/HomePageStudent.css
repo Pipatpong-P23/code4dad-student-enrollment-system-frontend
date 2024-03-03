@@ -1,5 +1,28 @@
-.navbar {
-    position: sticky;
-    top: 30px;
-    left: 30px;
+
+.backgroundhomepage {
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(51,0,101,1) 57%, rgba(128,0,255,1) 100%);
+}
+
+.container {
+    margin: 0 200px 0 200px;
+    padding: auto;
+}
+
+p {
+    margin-top: 40px;
+    color: azure;
+}
+
+.activebutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.interactbutton {
+    width: 100px;
+    margin: 0 30px;
+    padding: 10px;
+    border-radius: 100px;
 }

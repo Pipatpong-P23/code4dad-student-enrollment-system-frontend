@@ -50,7 +50,12 @@ function HomePageStudent() {
     <div className='backgroundhomepage'>
       <NavbarStudent />
       <div className='container'>
-        <DataTable columns={columns} data={data} />
+        <div className='topicenroll'>
+          <p className='entext'>หน้าเว็บสุดเท่</p>
+        </div>
+        <div className='table'>
+          <DataTable columns={columns} data={data}/>
+        </div>
         
         <div className='activebutton'>
           <button className='interactbutton'>Enroll</button>

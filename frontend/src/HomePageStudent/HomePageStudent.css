@@ -1,28 +1,53 @@
 
 .backgroundhomepage {
+    min-height: 100vh;
     background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(51,0,101,1) 57%, rgba(128,0,255,1) 100%);
+    overflow: hidden;
 }
 
 .container {
     margin: 0 200px 0 200px;
-    padding: auto;
 }
 
-p {
+.container .topicenroll {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+}
+
+.table {
+    margin-top: 60px ;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+.entext {
     margin-top: 40px;
     color: azure;
+    font-size: xx-large;
 }
 
 .activebutton {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px;
+    padding: 50px;
 }
 
 .interactbutton {
-    width: 100px;
+    width: 120px;
     margin: 0 30px;
-    padding: 10px;
+    padding: 15px;
     border-radius: 100px;
+    background-color: rgb(247, 247, 247);
+}
+
+.interactbutton:hover {
+    background-color: rgb(247, 247, 247);
+    color: black;
+    transform: translateY(-5px);
+    box-shadow: 0 0 10px black;
+    font-size: medium;
+    transition: 0.1s ease-in-out;
 }

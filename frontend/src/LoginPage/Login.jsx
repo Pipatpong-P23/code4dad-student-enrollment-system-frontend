@@ -28,7 +28,7 @@ function Login() {
               <FaUnlockAlt className='icon' />
           </div>
               
-          <button type="submit">Login</button>
+          <button type="submit" className='loginbutton'>Login</button>
         </form>
       </div>
 

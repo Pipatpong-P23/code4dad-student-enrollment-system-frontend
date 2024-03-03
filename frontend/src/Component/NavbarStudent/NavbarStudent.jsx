@@ -29,7 +29,7 @@ function NavbarStudent() {
                 </ul>
                 <ul id='navbar'>
                     <li> <a href='data'>66010572</a> </li>
-                    <li> <a href='logout'>Logout</a> </li>
+                    <li> <a href='/'>Logout</a> </li>
                 </ul>
             </div>
         </div>

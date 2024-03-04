@@ -1,0 +1,33 @@
+.dropfoot {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: azure;
+    width: 100%;
+    padding: 20px;
+    padding-top: 0px;
+}
+
+.dropfoot .inputcourse {
+    position: relative;
+    top: 18px;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 30px;
+}
+
+.dropfoot .changebutton {
+    padding: 9px 20px;
+    font-size: 16px; 
+    border-radius: 70px;
+    cursor: pointer;   
+    position: relative;
+    margin-left: 70px;
+    top: 19px;
+}
+
+.dropfooter .changebutton:hover {
+    background-color: red;
+    color: azure;
+}

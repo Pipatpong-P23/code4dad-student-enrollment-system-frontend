@@ -2,7 +2,7 @@
     display: inline-block;
     position: relative;
     top: 0;
-    left: 1200px;
+    left: 1100px;
     z-index: 1;
 }
 
@@ -61,6 +61,14 @@
     z-index: 1;
     opacity: 0.8;
     left: 150px;
+}
+
+.drop-1 a:hover {
+    background-color: rgb(217, 217, 217);
+}
+
+.drop-2 a:hover {
+    background-color: rgb(217, 217, 217);
 }
 
 .drop-container .drop-1:hover .semester-content {

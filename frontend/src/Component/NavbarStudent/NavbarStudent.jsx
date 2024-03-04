@@ -3,7 +3,7 @@ import "./NavbarStudent.css";
 import { FiMenu } from "react-icons/fi";
 import { GiSpellBook } from "react-icons/gi";
 
-function NavbarStudent() {
+function NavbarStudent({student_id}) {
     const [clicked, setClicked] = useState(false);
 
     return (
@@ -16,7 +16,7 @@ function NavbarStudent() {
                 <FiMenu />
             </a>
             <div className='logo'>
-                Code4Dad  <div className='Book'><GiSpellBook /></div>
+                <h4>Code4Dad</h4>  <div className='Book'><GiSpellBook /></div>
             </div>
 
             <div className='navbar'>
@@ -28,7 +28,7 @@ function NavbarStudent() {
                     <li> <a href='#'> Password</a></li>
                 </ul>
                 <ul id='navbar'>
-                    <li> <a href='data'>66010572</a> </li>
+                    <li> <a href='data'>{student_id}</a> </li>
                     <li> <a href='/'>Logout</a> </li>
                 </ul>
             </div>

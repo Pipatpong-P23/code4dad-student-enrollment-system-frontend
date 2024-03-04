@@ -8,6 +8,8 @@ import DropPage from './DropPage/DropPage.jsx'
 import ChangeSection from './ChangeSection/ChangeSection.jsx'
 import EnrollPage from './EnrollPage/EnrollPage.jsx'
 import LoginPage from './LoginPage/Login.jsx'
+import ScorePage from './ScorePage/ScorePage.jsx'
+import TranscriptPage from './Transcript/TranscriptPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,14 @@ const router = createBrowserRouter([
   {
     path: '/enroll',
     element: <EnrollPage/>
+  },
+  {
+    path: '/score',
+    element: <ScorePage/>
+  },
+  {
+    path: '/transcript',
+    element: <TranscriptPage/>
   }
 ])
 

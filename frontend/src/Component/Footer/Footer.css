@@ -8,7 +8,7 @@
     padding-top: 0px;
 }
 
-.footer .inputcourse {
+.footer input {
     position: relative;
     top: 18px;
     margin-bottom: 10px;
@@ -18,31 +18,32 @@
 }
 
 
-.footer .inputsec {
-    padding: 10px 10px;
-    font-size: 16px; 
-    /* background-color: azure;
-    border: 2px solid grey; */
+.footer .button {
+    display: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: azure;
+    border: 2px solid grey;
     border-radius: 70px;
     cursor: pointer;   
     position: relative;
-    margin-left: 70px;
+    margin-left: 40px;
     top: 19px;
 }
 
-/* .enroll-button {
+.enroll-button {
     position: relative;
     left: 950px;
     margin-right: 45px;
-} */
+}
 
-/* .footer button:hover {
+.footer button:hover {
     background-color: rgba(128,0,255,1);
     color: azure;
 }
 
 
 /* testเฉยๆ ถ้าของจริงให้เขียน js checkว่าถ้ารหัสวิชาครบ 904XXXXXX ให้แสดง sec ให้เลือก 3 sec */
-/* .footer:hover .button {
+.footer:hover .button {
     display: inline-block;
-} */ 
+}

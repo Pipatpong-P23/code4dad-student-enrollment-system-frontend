@@ -1,11 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import NavbarStudent from '../Component/NavbarStudent/NavbarStudent';
-import Footer from '../Component/Footer/Footer';
 import './HomePageStudent.css';
+import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
+import NavbarStudent from '../Component/NavbarStudent/NavbarStudent';
+import { getUsername } from '../Authentication';
 
 function HomePageStudent() {
+
+  const [data_student, setData_student] = useState('');
+  const student_id = getUsername();
+
+  useEffect(() => {
+    axios.get(`http://oop.okusann.online:8088/get_student_by_student_id/${student_id}`)
+      .then(res => {
+        console.log(res);
+        setData_student(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
   const columns = [
     {
       name: 'ID',
@@ -34,29 +49,21 @@ function HomePageStudent() {
     }
   ];
 
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    axios.get('https://gorest.co.in/public/v2/users')
-      .then(res => {
-        setData(res.data);
-        console.log('data', data , "res", res);
-      })
-      .catch(error => console.error(error));
-  }, []);
+  const [data_table, setData_table] = useState([]);
 
 
   return (
     <div className='backgroundhomepage'>
-      <NavbarStudent />
+      <NavbarStudent student_id={student_id}/>
       <div className='container'>
+
         <div className='topicenroll'>
-          <p className='entext'>หน้าเว็บสุดเท่</p>
+          <p className='entext'>EnrollmentSystem</p>
         </div>
         <div className='table'>
-          <DataTable columns={columns} data={data}/>
+          <DataTable columns={columns} data={data_table}/>
         </div>
-        
+
         <div className='activebutton'>
           <button className='interactbutton'>Enroll</button>
           <button className='interactbutton'>Change</button>

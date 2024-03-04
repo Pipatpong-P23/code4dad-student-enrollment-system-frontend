@@ -4,23 +4,17 @@ class MyToken {
     }
 
     get role() {
-        const decodedToken = this.decodedTokenRole;
+        const decodedToken = this.decodedToken;
         return decodedToken ? decodedToken.user_type : null;
     }
 
     get username() {
-        const decodedToken = this.decodedTokenUsername;
+        const decodedToken = this.decodedToken;
         return decodedToken ? decodedToken.username : null;
     }
 
-    get decodedTokenRole() {
-        console.log(this.decodeTokenPart(1));
+    get decodedToken() {
         return this.decodeTokenPart(1); 
-    }
-
-    get decodedTokenUsername() {
-        console.log(this.decodeTokenPart(1));
-        return this.decodeTokenPart(1);
     }
 
     decodeTokenPart(index) {
@@ -39,7 +33,6 @@ function getCookie(name) {
 export const getRole = () => {
     const tokenString = getCookie('token');
     const token = new MyToken(tokenString);
-    console.log(token.role);
     return token.role;
 };
 

@@ -36,18 +36,18 @@ function Login() {
     try{
       axios.post(URL, body, {headers: headers})
       .then((res => {
-        console.log(res);
         if(res.status == 200){
           const token = res.data;
-
           document.cookie = `token=${token}`;
           console.log('Login Success');
-          console.log(getRole());
           redirect(getRole());
-        }else{
-          console.log('Login Failed');
         }
       }))
+
+      .catch((error) => {
+        // Handle incorrect username or password
+        alert('Incorrect username or password');
+      });
 
     } catch (error) {
       console.log(error);

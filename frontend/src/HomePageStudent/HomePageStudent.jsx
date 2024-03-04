@@ -4,6 +4,7 @@ import DataTable from 'react-data-table-component';
 import axios from 'axios';
 import NavbarStudent from '../Component/NavbarStudent/NavbarStudent';
 import { getUsername } from '../Authentication';
+import DropdownDate from '../Component/DropdownDateOption/DropdownDate';
 
 function HomePageStudent() {
 
@@ -59,6 +60,9 @@ function HomePageStudent() {
 
         <div className='topicenroll'>
           <p className='entext'>EnrollmentSystem</p>
+        </div>
+        <div>
+        <DropdownDate/> <button className='view#dd'>view</button>
         </div>
         <div className='table'>
           <DataTable columns={columns} data={data_table}/>

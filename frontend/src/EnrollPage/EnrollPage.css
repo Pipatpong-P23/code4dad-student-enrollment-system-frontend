@@ -5,9 +5,26 @@
 }
 
 .container {
-    margin: 0 200px 0 200px;
+    margin: 100px 200px 0 200px;
 }
 
 p{
     color: azure;
+}
+
+.enrollfoot .enrollbutton {
+    position: relative;
+    left: 1720px;
+    top: 430px;
+    margin-right: 45px;
+    border-radius: 60px;
+    padding: 10px 20px;
+    background-color: azure;
+}
+
+.enrollbutton:hover {
+    background-color: rgb(218, 218, 218);
+    color: black;
+    transform: translateY(-5px);
+    box-shadow: 0 0 10px grey;
 }

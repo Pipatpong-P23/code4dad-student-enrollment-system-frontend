@@ -4,22 +4,39 @@
     overflow: hidden;
 }
 
-.container {
-    margin: 100px 200px 0 200px;
+.title {
+    color: azure;
+    font-size: 30px;
+    margin-top: 100px;
+    margin-left: 200px;
+
 }
+
+.chcontainer {
+    margin: 100px 200px 0 200px;
+    
+}
+
 
 p{
     color: azure;
 }
 
-.enrollfoot .changebutton {
-    position: relative;
-    left: 1720px;
-    top: 480px;
+.changefoot {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+}
+
+.changefoot .changebutton {
+    position: absolute;
+    left: 1700px;
+    top: 20px;
     margin-right: 45px;
     border-radius: 60px;
     padding: 10px 20px;
     background-color: azure;
+    z-index: 11;
 }
 
 .changebutton:hover {

@@ -1,23 +1,195 @@
-import React from 'react'
-import NavbarStudent from '../Component/NavbarStudent/NavbarStudent'
-import Footer from '../Component/Footer/Footer'
-import './ChangeSection.css'
+import React, { useState, useEffect } from 'react';
+import NavbarStudent from '../Component/NavbarStudent/NavbarStudent';
+import Footer from '../Component/Footer/Footer';
+import './ChangeSection.css';
+import DataTable from 'react-data-table-component';
+import axios from 'axios';
+import { getUsername } from '../Authentication';
 
 function ChangeSection() {
+  const [data_table, setData_table] = useState([]);
+  const [data_table_course, setData_table_course] = useState([]);
+
+  const student_id = getUsername();
+  const TOKEN = document.cookie.split('=')[1];
+  const current_semester = 1;
+  const current_year = 2024;
+
+  const [course_id, setCourse_id] = useState('');
+  const [section_number, setSection_number] = useState(0);
+  const [new_section_number, setNew_section_number] = useState(0);
+  
+  const columns_course = [
+    {
+      name: 'Course ID',
+      selector: row => row.course_id,
+      sortable: true,
+    },
+    {
+      name: 'Course Name',
+      selector: row => row.course_name,
+      sortable: true,
+    },
+    {
+      name: 'Section Number',
+      selector: row => row.section_number,
+      sortable: true,
+    },
+    {
+      name: 'Teacher',
+      selector: row => row.teacher,
+      sortable: true,
+    },
+    {
+      name: 'Number of Students',
+      selector: row => row.number_of_student,
+      sortable: true,
+    },
+    {
+      name: 'Location',
+      selector: row => row.location,
+      sortable: true,
+    },
+    {
+      name: 'Schedule',
+      selector: row => row.schedule,
+      sortable: true,
+    },
+    {
+      name: 'Semester',
+      selector: row => row.semester,
+      sortable: true,
+    },
+    {
+      name: 'Year',
+      selector: row => row.year,
+      sortable: true,
+    },
+  ];
+
+  const columns = [
+    {
+      name: 'Course ID',
+      selector: row => row.course_id,
+      sortable: true,
+    },
+    {
+      name: 'Course Name',
+      selector: row => row.course_name,
+      sortable: true,
+    },
+    {
+      name: 'Credit',
+      selector: row => row.credit,
+      sortable: true,
+    },
+    {
+      name: 'Section Number',
+      selector: row => row.section_number,
+      sortable: true,
+    },
+    {
+      name: 'Schedule',
+      selector: row => row.schedule,
+      sortable: true,
+    },
+  ];
+
+  if (!TOKEN) {
+    window.location.href = '/';
+  }
+
+  useEffect(() => {
+    axios.get(`http://oop.okusann.online:8088/get_all_section_by_semester_and_year/${current_semester}/${current_year}`)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(res);
+          setData_table_course(res.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        alert('Error Data Fetching');
+      });
+
+    axios.get(`http://oop.okusann.online:8088/get_student_enrolled_courses/${student_id}/${current_semester}/${current_year}`)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(res);
+          setData_table(res.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        alert('Error Data Fetching');
+      });
+  }, []);
+
+  const handleInputChange = (e) => {
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
+
+    if (name === 'course_id') {
+      setCourse_id(value);
+    } else if (name === 'section_number') {
+      setSection_number(value);
+    } else if (name === 'new_section_number') {
+      setNew_section_number(value);
+    }
+  };
+
+  const change = () => {
+    const headers = {
+      "TOKEN": TOKEN
+    };
+
+    const body = {
+      "student_id": student_id,
+      "course_id": course_id,
+      "old_section_number": section_number,
+      "new_section_number": new_section_number
+    };
+
+    axios.post('http://oop.okusann.online:8088/change_section', body, { headers: headers })
+      .then((res => {
+        console.log(res);
+        if (res.status === 200) {
+          alert('Change Section Success');
+        }
+      }))
+      .catch((error) => {
+        console.log(error);
+        alert('Error Data Fetching');
+      });
+
+  };
+
   return (
     <div className='backgroundchange'>
-      <NavbarStudent/>
-      <div className='container'>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates ullam fuga aut reprehenderit quis iusto dolores sapiente veritatis hic at deserunt quaerat ea blanditiis est ab quidem, in qui sit assumenda. Nesciunt ipsum omnis adipisci minima non nemo dolor dolorum voluptas! Dolore voluptas reprehenderit quaerat iste molestias aperiam, animi assumenda similique commodi modi harum, aliquid corrupti cupiditate ducimus aut. Provident qui eum dignissimos veniam ad voluptate corporis maiores reiciendis pariatur. Culpa saepe ut non dicta voluptate iure deserunt optio odit animi asperiores quisquam, sint pariatur veritatis, aliquam enim nihil at tenetur doloribus hic id! In explicabo corrupti totam! Impedit nostrum, tenetur omnis nesciunt dolores totam ea aperiam adipisci iste libero quas, cum fugiat ducimus porro provident est perspiciatis repudiandae mollitia quos consectetur. Assumenda debitis delectus vero aliquid, quis est ullam dolore iusto neque quaerat tempore vitae odio cumque velit ratione aut laborum nostrum. Delectus deserunt velit id harum voluptates? Perspiciatis excepturi repellendus dolorem cumque molestias illum ut sit vero at nostrum obcaecati, delectus tenetur tempore laudantium quas voluptates iure voluptatem maxime amet, quod in odio deleniti nobis. Sit, vel quo. Architecto adipisci odit est mollitia quis officiis. Velit reiciendis quasi accusantium cum quod, maxime vel dolore atque beatae recusandae similique soluta provident sint quas vero aperiam ipsum harum dolores odit voluptas neque odio consequatur. Optio explicabo saepe at hic impedit porro aperiam suscipit iusto corporis nobis illo magni quis quisquam in sint eius nostrum adipisci similique, ex cumque deserunt accusamus. Eum nihil, provident officiis impedit eaque nobis ea atque eos quis quod numquam amet magni debitis quo et nemo inventore fugiat harum aperiam laboriosam id quisquam excepturi placeat. Officiis esse animi quod tenetur adipisci doloribus eligendi laboriosam molestias vitae corrupti, explicabo placeat magnam quas sint deleniti earum debitis rerum iure. Nihil, magni veritatis illum provident assumenda sed earum architecto, fuga quos dolor hic! Aliquid tenetur quod dolor numquam repellendus! Dolore distinctio porro perferendis delectus libero tenetur reiciendis minima non molestiae, modi ex reprehenderit quo magnam accusamus assumenda, illum eos optio deleniti rem facilis quos id soluta aut architecto! Cum accusantium quisquam illum cumque deserunt tenetur, numquam eius rem, ad, sequi asperiores quas ipsa quae debitis deleniti? Inventore nobis placeat quaerat velit eius laudantium voluptates expedita eum, minima omnis tenetur explicabo ipsam temporibus nihil commodi? Magni, nobis voluptatum quidem laudantium aperiam, blanditiis expedita sit quibusdam sunt reiciendis nemo ipsum laboriosam illum tempora debitis maiores officiis eligendi quia ullam deserunt distinctio voluptatibus? Ut itaque laborum temporibus aperiam dignissimos deserunt ab nulla omnis iure ratione. Nam tempora eius facilis iste laboriosam vel suscipit adipisci saepe et repellat quam iusto fuga quo, ad aliquid recusandae sint qui, eaque cum cumque eum ea explicabo voluptates. Ut maiores, inventore laudantium ex nam deleniti! Vero ut accusamus aliquam nostrum doloribus consequatur consequuntur obcaecati esse, ab exercitationem ex error perspiciatis asperiores accusantium nisi incidunt natus assumenda omnis? Maxime laudantium veritatis ipsam eaque? Natus, ipsam. Reprehenderit tenetur, voluptas nostrum qui error ratione laboriosam aperiam quae sint explicabo, recusandae reiciendis! Totam neque porro distinctio a dolorem iusto ipsum omnis quia!</p>
-        
+      <NavbarStudent student_id={student_id} />
+      <div className='chcontainer'>
+        <div className='title'>Change Section</div>
+        <DataTable
+          className='changetable'
+          title='Course'
+          data={data_table_course}
+          columns={columns_course}
+        />
+        <DataTable
+          className='changetable'
+          title='Your Course'
+          data={data_table}
+          columns={columns}
+        />
       </div>
-      <div className='enrollfoot'>
-        <Footer/>  
-        <button className='changebutton'>Change</button>
+      <div className='changefoot'>
+        <Footer onInputChange={handleInputChange} />
+        <button className='changebutton' onClick={change}>Change</button>
       </div>
-      
+
     </div>
-  )
+  );
 }
 
-export default ChangeSection
+export default ChangeSection;

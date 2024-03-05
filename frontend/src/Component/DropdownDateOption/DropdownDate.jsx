@@ -1,26 +1,50 @@
-import React from 'react'
-import './DropdownDate.css'
+import React, { useState } from 'react';
+import './DropdownDate.css';
 
-function DropdownDate() {
+function DropdownDate({ onDateChange }) {
+  const [semester, setSemester] = useState("1"); 
+  const [year, setYear] = useState("2024"); 
+  const [semesterDropdownOpen, setSemesterDropdownOpen] = useState(false);
+  const [yearDropdownOpen, setYearDropdownOpen] = useState(false);
+
+  const toggleSemesterDropdown = () => setSemesterDropdownOpen(!semesterDropdownOpen);
+  const toggleYearDropdown = () => setYearDropdownOpen(!yearDropdownOpen);
+
+  const selectSemester = (selectedSemester) => {
+    setSemester(selectedSemester);
+    setSemesterDropdownOpen(false);
+    onDateChange(selectedSemester, year); 
+  };
+
+  const selectYear = (selectedYear) => {
+    setYear(selectedYear);
+    setYearDropdownOpen(false);
+    onDateChange(semester, selectedYear);
+  };
+
   return (
     <div className='drop-container'>
         <div className='drop-1'>
-            <button className='drop-semester'>Semester</button>
-            <div className='semester-content'>
-                <a href=''>1</a>
-                <a href=''>2</a>
-            </div>
+            <button className='drop-semester' onClick={toggleSemesterDropdown}>Semester {semester}</button>
+            {semesterDropdownOpen && (
+              <div className='semester-content'>
+                  <a href="#" onClick={(e) => {e.preventDefault(); selectSemester('1');}}>1</a>
+                  <a href="#" onClick={(e) => {e.preventDefault(); selectSemester('2');}}>2</a>
+              </div>
+            )}
         </div>
         <div className='drop-2'>
-            <button className='drop-year'>Year</button>
-            <div className='year-content'>
-                <a href=''>2566</a>
-                <a href=''>2565</a>
-                <a href=''>2564</a>
-            </div>
+            <button className='drop-year' onClick={toggleYearDropdown}>Year {year}</button>
+            {yearDropdownOpen && (
+              <div className='year-content'>
+                  <a href="#" onClick={(e) => {e.preventDefault(); selectYear('2024');}}>2024</a>
+                  <a href="#" onClick={(e) => {e.preventDefault(); selectYear('2023');}}>2023</a>
+                  <a href="#" onClick={(e) => {e.preventDefault(); selectYear('2022');}}>2022</a>
+              </div>
+            )}
         </div>
     </div>
-  )
+  );
 }
 
-export default DropdownDate
+export default DropdownDate;

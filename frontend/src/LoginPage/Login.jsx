@@ -44,13 +44,11 @@ function Login() {
           console.log('Login Success');
           console.log(getRole());
           redirect(getRole());
-        }else{
-          console.log('Login Failed');
         }
       }))
 
     } catch (error) {
-      console.log(error);
+      alert('Login Failed');
       console.log('Login Failed')
     }
 

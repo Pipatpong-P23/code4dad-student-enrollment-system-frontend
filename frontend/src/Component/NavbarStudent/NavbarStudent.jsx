@@ -21,12 +21,12 @@ function NavbarStudent({student_id}) {
 
             <div className='navbar'>
                 <ul id='drop' className={clicked ? "active" : ""}>
-                    <li><a href="#">Homepage</a></li>
-                    <li> <a href='#'> Enroll</a></li>
-                    <li> <a href='#'> Change</a></li>
-                    <li> <a href='#'> Drop</a></li>
-                    <li> <a href='#'> Score</a></li>
-                    <li> <a href='#'> Transcript</a></li>
+                    <li><a href="/homepagestudent">Homepage</a></li>
+                    <li> <a href='/enroll'> Enroll</a></li>
+                    <li> <a href='/change'> Change</a></li>
+                    <li> <a href='/drop'> Drop</a></li>
+                    <li> <a href='/score'> Score</a></li>
+                    <li> <a href='/transcript'> Transcript</a></li>
                 </ul>
                 <ul id='navbar'>
                     <li> <a href='data'>{student_id}</a> </li>

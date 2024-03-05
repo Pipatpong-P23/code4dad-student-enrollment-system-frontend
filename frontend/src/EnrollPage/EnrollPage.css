@@ -12,10 +12,13 @@ p{
     color: azure;
 }
 
+.DataTable{
+    position:fixed
+}
 .enrollfoot .enrollbutton {
-    position: relative;
-    left: 1720px;
-    top: 430px;
+    position: fixed;
+    left: 1350px;
+    bottom: 15px;
     margin-right: 45px;
     border-radius: 60px;
     padding: 10px 20px;

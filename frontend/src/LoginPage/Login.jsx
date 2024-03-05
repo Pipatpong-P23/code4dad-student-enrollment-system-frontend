@@ -39,7 +39,6 @@ function Login() {
         console.log(res);
         if(res.status == 200){
           const token = res.data;
-
           document.cookie = `token=${token}`;
           console.log('Login Success');
           console.log(getRole());

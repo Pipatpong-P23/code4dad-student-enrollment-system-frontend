@@ -12,6 +12,8 @@ function DropPage() {
   const current_year = 2024;
   const [section_number, setSection_number] = useState(0);
   const [course_id, setCourse_id] = useState('');
+  const [selectedRows, setSelectedRows] = useState([]);
+
   const TOKEN = document.cookie.split('=')[1];
 
   const columns = [
@@ -41,6 +43,10 @@ function DropPage() {
       sortable: true,
     },
   ];
+
+  if (!TOKEN) {
+    window.location.href = '/';
+  }
 
   useEffect(() => {
     axios.get(`http://oop.okusann.online:8088/get_student_enrolled_courses/${student_id}/${current_semester}/${current_year}`)
@@ -75,28 +81,48 @@ function DropPage() {
 
     console.log(body);
     
-    axios.post(URL, body, { headers: headers })
-      .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
+    try{
+      async function drop() {
+        const response = await axios.post(URL, body, {headers: headers});
+        if (response.status === 200) {
           alert('Drop Success');
+          window.location.reload();
         }
-      })
-      .catch((error) => {
-        console.error('Error dropping course:', error);
-        alert('Drop Failed');
-      });
+      } 
+      drop();
+    }
+    catch (error) {
+      console.error('Error:', error);
+      alert('Drop Failed');
+    }
   };
 
   const handleCourseIdChange = (event) => {
     setCourse_id(event.target.value);
   };
 
+  const handleInputChangeTable = (rows) => {
+    setSelectedRows(rows.selectedRows);
+    if (rows.selectedRows.length > 0) {
+      setCourse_id(rows.selectedRows[0].course_id);
+      setSection_number(rows.selectedRows[0].section_number);
+    }
+  }
+
+
   return (
     <div className='backgroundchange'>
       <NavbarStudent student_id={student_id} />
       <div className='container'>
-        <DataTable title='Your Course' columns={columns} data={data_table} />
+        <DataTable 
+        title='Your Course' 
+        columns={columns} 
+        data={data_table} 
+        selectableRows
+        selectableRowsSingle
+        onSelectedRowsChange={handleInputChangeTable}
+        clearSelectedRows={true}
+        />
       </div>
       <div className='dropfoot'>
         <footer className='dropfooter'>

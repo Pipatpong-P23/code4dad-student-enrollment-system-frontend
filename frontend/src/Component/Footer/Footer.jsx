@@ -1,19 +1,25 @@
-// Footer.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Footer.css';
 
-function Footer({ onInputChange }) {
+function Footer({ onInputChange, course_id, section_id }) {
   const [courseId, setCourseId] = useState('');
   const [sectionId, setSectionId] = useState('');
 
+  useEffect(() => {
+    setCourseId(course_id);
+    setSectionId(section_id);
+  }, [course_id, section_id]);
+
   const handleCourseIdChange = (event) => {
-    setCourseId(event.target.value);
-    onInputChange('courseId', event.target.value);
+    const { value } = event.target;
+    setCourseId(value);
+    onInputChange('courseId', value);
   };
 
   const handleSectionIdChange = (event) => {
-    setSectionId(event.target.value);
-    onInputChange('sectionId', event.target.value);
+    const { value } = event.target;
+    setSectionId(value);
+    onInputChange('sectionId', value);
   };
 
   return (

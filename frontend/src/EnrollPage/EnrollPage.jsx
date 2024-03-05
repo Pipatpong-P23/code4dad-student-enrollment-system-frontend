@@ -9,12 +9,14 @@ import { getUsername } from '../Authentication';
 import './EnrollPage.css';
 
 function EnrollPage() {
-  const [selectedDate, setSelectedDate] = useState({ semester: '1', year: '2024' });
   const [data_table, setData_table] = useState([]);
   const student_id = getUsername();
   const [course_id, setCourse_id] = useState('');
   const [section_number, setSection_number] = useState(0);
-
+  const current_semester = 1;
+  const current_year = 2024;
+  const [selected, setSelected] = useState({});
+  const [value, setValue] = useState({ courseId: '', sectionId: '' });
   const TOKEN = document.cookie.split('=')[1];
 
   const columns = [
@@ -65,70 +67,86 @@ function EnrollPage() {
     },
   ];
 
-  useEffect(() => {
-    axios.get(`http://oop.okusann.online:8088/get_all_section_by_semester_and_year/${selectedDate.semester}/${selectedDate.year}`)
-      .then((res) => {
-        if (res.status === 200) {
-          console.log(res);
-          setData_table(res.data);
-        }
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-        alert('Error fetching data. Please try again later.');
-      });
-  }, [selectedDate]);
-
-
-  const enroll = (course, section) => {
- 
-    const headers = { "TOKEN": TOKEN };
-
-    const body = {
-      "student_id": student_id,
-      "course_id": course,
-      "section_number": section
-    };
-    console.log(body);
-
-
-    try {
-      axios.post('http://oop.okusann.online:8088/enroll', body, { headers: headers })
-        .then((res => {
-          console.log(res);
-          if (res.status === 200) {
-            console.log('Enroll Success');
-            alert('Enroll Success');
-          }
-        }))
-    } catch {
-      alert('Enroll Failed');
-      console.log('Enroll Failed')
-    }
+  if (!TOKEN) {
+    window.location.href = '/';
   }
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data_api = await axios.get(`http://oop.okusann.online:8088/get_all_section_by_semester_and_year/${current_semester}/${current_year}`);
+        if (data_api.status === 200) {
+          setData_table(data_api.data);
+        } 
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        alert(error.response.data.detail);
+      }
+    }
+    fetchData();  
+  }, []);
+
+  const enroll = () => {
+    const headers = {
+      "TOKEN": TOKEN
+    }
+    
+    const body = {
+      "student_id": student_id,
+      "course_id": course_id,
+      "section_number": section_number
+    }
+    async function PostData() {
+      try {
+        const data_api = await axios.post('http://oop.okusann.online:8088/enroll', body, {headers: headers});
+        if (data_api.status === 200) {
+          alert('Enroll Success');
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        alert(error.response.data.detail);
+      }
+    }
+    PostData();
+  }
+  
   const handleInputChange = (inputType, value) => {
     if (inputType === 'courseId') {
       setCourse_id(value);
     } else if (inputType === 'sectionId') {
       setSection_number(value);
-      console.log(value);
     }
   };
 
+  const handleInputChangeTable = (rows) => {
+    setSelected(rows.selectedRows);
+    if (rows.selectedRows.length === 1) {
+      const { course_id, section_number } = rows.selectedRows[0];
+      setCourse_id(course_id);
+      setSection_number(section_number);
+      setValue({ courseId: course_id, sectionId: section_number });
+      console.log(course_id, section_number)
+    } 
+  }
+
   return (
     <div className='backgroundenroll'>
-      <NavbarStudent />
+      <NavbarStudent student_id={student_id}/>
       <Dropdown />
-      <DropdownDate className="dropdowndate_enroll" onDateChange={setSelectedDate} />
-      <div className='button view'>
-        view
-      </div>
       <div className='container'>
-        <DataTable className='DataTable' title="Course" columns={columns} data={data_table} />
+        <DataTable
+          className='DataTable'
+          title="Course" 
+          columns={columns} 
+          data={data_table}
+          selectableRows
+          selectableRowsSingle
+          onSelectedRowsChange={handleInputChangeTable}
+          clearSelectedRows={true}
+        />
       </div>
-      <Footer onInputChange={handleInputChange} />
-      <button className='enrollbutton' onClick={() => enroll(course_id, section_number)}>Enroll</button>
+      <Footer onInputChange={handleInputChange} course_id={course_id} section_id={section_number} />
+      <button className='enrollbutton' onClick={enroll}>Enroll</button>
     </div>
   );
 }

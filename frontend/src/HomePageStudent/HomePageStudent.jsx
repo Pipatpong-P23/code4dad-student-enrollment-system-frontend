@@ -10,8 +10,8 @@ function HomePageStudent() {
   const [selectedDate, setSelectedDate] = useState({ semester: '1', year: '2024' });
   const [data_table, setData_table] = useState([]);
   const student_id = getUsername();
-
   const [click_view, setClick_view] = useState(false);
+  const TOKEN = document.cookie.split('=')[1];
 
   const handleDateChange = (semester, year) => {
     setSelectedDate({ semester, year });
@@ -45,22 +45,27 @@ function HomePageStudent() {
     },
   ];
 
+  if (!TOKEN) {
+    window.location.href = '/';
+  }
+
   useEffect(() => {
-    console.log(student_id, selectedDate.semester, selectedDate.year);
-    if (click_view) {
-      axios.get(`http://oop.okusann.online:8088/get_student_enrolled_courses/${student_id}/${selectedDate.semester}/${selectedDate.year}`)
-        .then((res) => {
-          if( res.status === 200 ){
-            console.log(res);
-            setData_table(res.data);
-          }
-        })
-        .catch((error) => {
-          alert('Error Data Fetching');
-        });
+    async function fetchData() {
+      try {
+        const data_api = await axios.get(`http://oop.okusann.online:8088/get_student_enrolled_courses/${student_id}/${selectedDate.semester}/${selectedDate.year}`);
+        if (data_api.status === 200) {
+          setData_table(data_api.data);
+        } else {
+          alert(error.response.data.detail);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        alert(error.response.data.detail);
+      }
     }
-  }, [click_view]);
-  
+    fetchData();
+  }, [click_view]);    
+
   const redirect_to_enroll = () => {
     window.location.href = '/enroll';
   };
@@ -83,7 +88,13 @@ function HomePageStudent() {
           <button className='viewdd' onClick={() => setClick_view(!click_view)}>view</button>
         </div>
         <div className='table'>
-          <DataTable title="Class Schedule" columns={columns} data={data_table} />
+          <DataTable
+           title="Class Schedule" 
+           columns={columns} 
+           data={data_table}
+           className="customHighlight"
+           highlightOnHover
+           />
         </div>
         <div className='activebutton'>
           <button className='interactbutton' onClick={redirect_to_enroll}>Enroll</button>

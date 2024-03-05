@@ -18,7 +18,7 @@ function ChangeSection() {
   const [course_id, setCourse_id] = useState('');
   const [section_number, setSection_number] = useState(0);
   const [new_section_number, setNew_section_number] = useState(0);
-
+  
   const columns_course = [
     {
       name: 'Course ID',
@@ -94,6 +94,10 @@ function ChangeSection() {
       sortable: true,
     },
   ];
+
+  if (!TOKEN) {
+    window.location.href = '/';
+  }
 
   useEffect(() => {
     axios.get(`http://oop.okusann.online:8088/get_all_section_by_semester_and_year/${current_semester}/${current_year}`)

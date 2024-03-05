@@ -6,6 +6,11 @@ import { GiSpellBook } from "react-icons/gi";
 function NavbarStudent({student_id}) {
     const [clicked, setClicked] = useState(false);
 
+    function logout(){
+        document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        window.location.href = '/';
+    }
+
     return (
         <div className='nav'>
             <a
@@ -30,7 +35,7 @@ function NavbarStudent({student_id}) {
                 </ul>
                 <ul id='navbar'>
                     <li> <a href='data'>{student_id}</a> </li>
-                    <li> <a href='/'>Logout</a> </li>
+                    <li> <a onClick={logout}>Logout</a> </li>
                 </ul>
             </div>
         </div>

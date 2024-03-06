@@ -22,16 +22,11 @@ p{
     color: azure;
 }
 
-.changefoot {
-    position: sticky;
-    bottom: 0;
-    left: 0;
-}
 
-.changefoot .changebutton {
-    position: absolute;
-    left: 1700px;
-    top: 20px;
+.enrollfoot .changebutton {
+    position: fixed;
+    left: 1350px;
+    bottom: 15px;
     margin-right: 45px;
     border-radius: 60px;
     padding: 10px 20px;

@@ -16,9 +16,15 @@
     width: auto;
 }
 
+.container .dropdd {
+    display: flex-end;
+    justify-content: center;
+    align-items: center;
+}
+
 .viewdd {
     position: relative;
-    right: -1150px;
+    right: -775px;
     padding: 10px 15px;
     border-radius: 100px;
     margin-left: 20px;

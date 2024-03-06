@@ -83,9 +83,12 @@ function HomePageStudent() {
         <div className='topicenroll'>
           <p className='entext'>EnrollmentSystem</p>
         </div>
-        <div>
+
+        <div className='dropdd'>
           <DropdownDate onDateChange={handleDateChange} />
           <button className='viewdd' onClick={() => setClick_view(!click_view)}>view</button>
+        <div>
+
         </div>
         <div className='table'>
           <DataTable

@@ -10,6 +10,9 @@ function TranscriptPage() {
             <div className='topictrans'>
                 <p className='entext'>Transcript</p>
             </div>
+            <div className='transtable'>
+              
+            </div>
 
         </div>
 

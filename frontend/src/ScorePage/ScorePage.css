@@ -4,8 +4,8 @@
     overflow: hidden;
 }
 
-.scorecontainer {
-    margin: 100px 200px 0 200px;
+.container {
+    margin: 100px 200px 100px 200px;
 }
 
 .viewsc {
@@ -17,10 +17,16 @@
 }
 
 .scorecontainer .topicscore {
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
     width: auto;
+}
+
+.sctext {
+    margin-top: 40px;
+    color: azure;
+    font-size: xx-large;
 }
 
 .scoretable {

@@ -4,13 +4,24 @@
     overflow: hidden;
 }
 
-.container {
-    margin: 100px 200px 0 200px;
+.title {
+    color: azure;
+    font-size: 30px;
+    margin-top: 100px;
+    margin-left: 200px;
+
 }
+
+.chcontainer {
+    margin: 100px 200px 0 200px;
+    
+}
+
 
 p{
     color: azure;
 }
+
 
 .enrollfoot .changebutton {
     position: fixed;
@@ -20,6 +31,7 @@ p{
     border-radius: 60px;
     padding: 10px 20px;
     background-color: azure;
+    z-index: 11;
 }
 
 .changebutton:hover {

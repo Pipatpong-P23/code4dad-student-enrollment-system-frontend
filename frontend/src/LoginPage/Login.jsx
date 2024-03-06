@@ -39,18 +39,15 @@ function Login() {
         console.log(res);
         if(res.status == 200){
           const token = res.data;
-
           document.cookie = `token=${token}`;
           console.log('Login Success');
           console.log(getRole());
           redirect(getRole());
-        }else{
-          console.log('Login Failed');
         }
       }))
 
     } catch (error) {
-      console.log(error);
+      alert('Login Failed');
       console.log('Login Failed')
     }
 

@@ -12,6 +12,9 @@ p{
     color: azure;
 }
 
+.DataTable{
+    position:fixed
+}
 .enrollfoot .enrollbutton {
     position: fixed;
     left: 1350px;

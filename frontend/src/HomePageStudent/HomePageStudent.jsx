@@ -87,18 +87,18 @@ function HomePageStudent() {
         <div className='dropdd'>
           <DropdownDate onDateChange={handleDateChange} />
           <button className='viewdd' onClick={() => setClick_view(!click_view)}>view</button>
-        <div>
-
         </div>
+
         <div className='table'>
           <DataTable
-           title="Class Schedule" 
-           columns={columns} 
-           data={data_table}
-           className="customHighlight"
-           highlightOnHover
-           />
+            title="Class Schedule" 
+            columns={columns} 
+            data={data_table}
+            className="customHighlight"
+            highlightOnHover
+          />
         </div>
+
         <div className='activebutton'>
           <button className='interactbutton' onClick={redirect_to_enroll}>Enroll</button>
           <button className='interactbutton' onClick={redirect_to_change}>Change</button>

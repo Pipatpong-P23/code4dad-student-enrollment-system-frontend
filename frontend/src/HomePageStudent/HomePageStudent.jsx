@@ -45,6 +45,20 @@ function HomePageStudent() {
     },
   ];
 
+  const customStyles = {
+    headCells: {
+      style: {
+        backgroundColor: 'violet',
+        color: 'white',
+      },
+    },
+    rows: {
+      style: {
+        color: 'black',
+      },
+    },
+  };
+
   if (!TOKEN) {
     window.location.href = '/';
   }
@@ -91,9 +105,14 @@ function HomePageStudent() {
 
         <div className='table'>
           <DataTable
-            title="Class Schedule" 
+            title={
+              <h3 className= 'titletable' style={{ color: 'black' }}>
+                Class Schedule
+              </h3>
+            } 
             columns={columns} 
             data={data_table}
+            customStyles={customStyles}
             className="customHighlight"
             highlightOnHover
           />

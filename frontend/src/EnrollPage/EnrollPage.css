@@ -15,10 +15,16 @@ p{
 .DataTable{
     position:fixed
 }
+
+.enrollfoot {
+    position: relative;
+    bottom: -39px;
+}
+
 .enrollfoot .enrollbutton {
-    position: fixed;
+    position: sticky;
     left: 1350px;
-    bottom: 15px;
+    bottom: 13px;
     margin-right: 45px;
     border-radius: 60px;
     padding: 10px 20px;

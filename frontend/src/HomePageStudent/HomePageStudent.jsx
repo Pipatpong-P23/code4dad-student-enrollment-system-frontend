@@ -61,7 +61,7 @@ function HomePageStudent() {
         <div className='topicenroll'>
           <p className='entext'>EnrollmentSystem</p>
         </div>
-        <div>
+        <div className='dropdd'>
           <DropdownDate/> <button className='viewdd'>view</button>
         </div>
         <div className='table'>

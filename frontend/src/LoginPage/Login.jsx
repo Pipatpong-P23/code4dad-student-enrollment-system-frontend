@@ -44,7 +44,11 @@ function Login() {
           console.log(getRole());
           redirect(getRole());
         }
-      }))
+        
+      })).catch((error) => {
+        alert('Login Failed');
+        console.log('Login Failed');
+      });
 
     } catch (error) {
       alert('Login Failed');

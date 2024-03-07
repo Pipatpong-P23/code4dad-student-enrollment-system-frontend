@@ -44,6 +44,27 @@ function DropPage() {
     },
   ];
 
+  const customStyles = {
+    headCells: {
+      style: {
+        backgroundColor: 'violet',
+        color: 'white',
+      },
+    },
+    rows: {
+      style: {
+        color: 'black',
+      },
+    },
+    selectableRows: {
+      style: {
+        backgroundColor: 'pink',
+        color: 'pink'
+      },
+    },
+  }
+  
+
   if (!TOKEN) {
     window.location.href = '/';
   }
@@ -107,22 +128,24 @@ function DropPage() {
       setCourse_id(rows.selectedRows[0].course_id);
       setSection_number(rows.selectedRows[0].section_number);
     }
-  }
-
+  };
 
   return (
     <div className='backgroundchange'>
       <NavbarStudent student_id={student_id} />
       <div className='container'>
-        <DataTable 
-        title='Your Course' 
-        columns={columns} 
-        data={data_table} 
-        selectableRows
-        selectableRowsSingle
-        onSelectedRowsChange={handleInputChangeTable}
-        clearSelectedRows={true}
+        <div className='table'>
+          <DataTable 
+          title='Your Course' 
+          columns={columns} 
+          data={data_table} 
+          selectableRows={customStyles}
+          selectableRowsSingle
+          onSelectedRowsChange={handleInputChangeTable}
+          clearSelectedRows={true}
+          // customStyles={customStyles}
         />
+        </div>
       </div>
       <div className='dropfoot'>
         <footer className='dropfooter'>

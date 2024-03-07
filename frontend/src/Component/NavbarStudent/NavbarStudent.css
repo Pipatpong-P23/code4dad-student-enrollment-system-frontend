@@ -13,6 +13,13 @@
     color: black;
     margin : 10px
 }
+
+.logo:hover{
+    color: rgba(128,0,255,1);
+    font-size: 27px;
+    cursor: pointer;
+}
+
 .Book {
     font-size: 33px;
     position: relative;
@@ -56,6 +63,7 @@
 #navbar li a:hover{
     color: rgba(128,0,255,1);
     font-size: 1.4rem;
+    cursor: pointer;
 }
 
 #navbar li a:hover::after {
@@ -116,6 +124,7 @@
 #dd:hover { /* Remove the space here */
     color: rgba(128,0,255,1);
     font-size: 30px;
+    cursor: pointer;
 }
 
 #dd:hover::after { /* Remove the space here */

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./NavbarStudent.css";
 import { FiMenu } from "react-icons/fi";
 import { GiSpellBook } from "react-icons/gi";
+import HomePageStudent from '../../HomePageStudent/HomePageStudent';
 
 function NavbarStudent({student_id}) {
     const [clicked, setClicked] = useState(false);
@@ -9,6 +10,10 @@ function NavbarStudent({student_id}) {
     function logout(){
         document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         window.location.href = '/';
+    }
+
+    function HomePageStudent(){
+        window.location.href = '/homepagestudent';
     }
 
     return (
@@ -21,7 +26,7 @@ function NavbarStudent({student_id}) {
                 <FiMenu />
             </a>
             <div className='logo'>
-                <h4>Code4Dad</h4>  <div className='Book'><GiSpellBook /></div>
+                <h4><a onClick={HomePageStudent}>Code4Dad</a></h4>  <div className='Book'><GiSpellBook /></div>
             </div>
 
             <div className='navbar'>

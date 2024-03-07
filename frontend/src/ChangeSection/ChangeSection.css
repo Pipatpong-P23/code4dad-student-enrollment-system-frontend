@@ -12,16 +12,14 @@
 
 }
 
-.chcontainer {
+.container {
     margin: 100px 200px 0 200px;
     
 }
 
-
 p{
     color: azure;
 }
-
 
 .enrollfoot .changebutton {
     position: fixed;
@@ -40,3 +38,4 @@ p{
     transform: translateY(-5px);
     box-shadow: 0 0 10px grey;
 }
+

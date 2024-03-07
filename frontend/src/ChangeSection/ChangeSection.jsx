@@ -168,24 +168,31 @@ function ChangeSection() {
   return (
     <div className='backgroundchange'>
       <NavbarStudent student_id={student_id} />
-      <div className='chcontainer'>
-        <div className='title'>Change Section</div>
-        <DataTable
-          className='changetable'
-          title='Course'
-          data={data_table_course}
-          columns={columns_course}
-        />
-        <DataTable
-          className='changetable'
-          title='Your Course'
-          data={data_table}
-          columns={columns}
-        />
+      <div className='container'>
+        <div className='topicenroll'>
+          <p className='entext'>Change Section</p>
+        </div>
+
+        <div className='table'>
+          <DataTable
+            className='changetable'
+            title='Course'
+            data={data_table_course}
+            columns={columns_course}
+          />
+          <DataTable
+            className='changetable'
+            title='Your Course'
+            data={data_table}
+            columns={columns}
+          />
+        </div>
+
       </div>
-      <div className='changefoot'>
+
+      <div className='enrollfoot'>
         <Footer onInputChange={handleInputChange} />
-        <button className='changebutton' onClick={change}>Change</button>
+        <button className='enrollbutton' onClick={change}>Change</button>
       </div>
 
     </div>

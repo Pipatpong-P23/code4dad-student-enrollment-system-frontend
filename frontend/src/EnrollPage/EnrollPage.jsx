@@ -67,6 +67,26 @@ function EnrollPage() {
     },
   ];
 
+  const customStyles = {
+    headCells: {
+      style: {
+        backgroundColor: 'violet',
+        color: 'white',
+      },
+    },
+    rows: {
+      style: {
+        color: 'black',
+      },
+    },
+    selectableRows: {
+      style: {
+        backgroundColor: 'pink',
+        color: 'pink'
+      },
+    },
+  }
+
   if (!TOKEN) {
     window.location.href = '/';
   }
@@ -134,19 +154,27 @@ function EnrollPage() {
       <NavbarStudent student_id={student_id}/>
       <Dropdown />
       <div className='container'>
-        <DataTable
-          className='DataTable'
-          title="Course" 
-          columns={columns} 
-          data={data_table}
-          selectableRows
-          selectableRowsSingle
-          onSelectedRowsChange={handleInputChangeTable}
-          clearSelectedRows={true}
-        />
+
+        <div className='table'>
+          <DataTable
+            className='DataTable'
+            title={<h3>Course</h3>} 
+            columns={columns} 
+            data={data_table}
+            selectableRows
+            selectableRowsSingle
+            onSelectedRowsChange={handleInputChangeTable}
+            clearSelectedRows={true}
+            // customStyles={customStyles}
+          />
+        </div>
+          
       </div>
-      <Footer onInputChange={handleInputChange} course_id={course_id} section_id={section_number} />
-      <button className='enrollbutton' onClick={enroll}>Enroll</button>
+      <div className='enrollfoot'>
+        <Footer onInputChange={handleInputChange} course_id={course_id} section_id={section_number} />
+        <button className='enrollbutton' onClick={enroll}>Enroll</button>
+
+      </div>
     </div>
   );
 }

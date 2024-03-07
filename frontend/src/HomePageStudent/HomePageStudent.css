@@ -20,11 +20,12 @@
     display: flex-end;
     justify-content: center;
     align-items: center;
+    z-index: 3;
 }
 
 .viewdd {
     position: relative;
-    right: -775px;
+    right: -725px;
     padding: 10px 15px;
     border-radius: 100px;
     margin-left: 20px;

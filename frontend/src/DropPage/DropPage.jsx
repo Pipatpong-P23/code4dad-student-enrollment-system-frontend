@@ -139,7 +139,7 @@ function DropPage() {
       alert('Please select a course');
       return;
     }
-    if (window.confirm('Are you sure to drop this course?')) {
+    if (window.confirm('Are you sure to drop in course ' + course_id + '?')) {
       drop();
     }
   }

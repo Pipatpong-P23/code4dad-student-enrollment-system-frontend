@@ -7,19 +7,21 @@ import axios from 'axios';
 import { getUsername } from '../Authentication';
 
 function ChangeSection() {
-  const [data_table, setData_table] = useState([]);
-  const [data_table_course, setData_table_course] = useState([]);
-
   const student_id = getUsername();
-  const TOKEN = document.cookie.split('=')[1];
   const current_semester = 1;
   const current_year = 2024;
-
   const [course_id, setCourse_id] = useState('');
-  const [section_number, setSection_number] = useState(0);
-  const [new_section_number, setNew_section_number] = useState(0);
+  const [old_section, setOld_section] = useState(0);
+  const [new_section, setNew_section] = useState(0);
   
-  const columns_course = [
+  const [sectionCourses, setSectionCourses] = useState([]);
+  const [enrolledCourses, setEnrolledCourses] = useState([]);
+
+  const [isTableSectionActive, setIsTableSectionActive] = useState(false);
+
+  const TOKEN = document.cookie.split('=')[1];
+
+  const columns_section =[
     {
       name: 'Course ID',
       selector: row => row.course_id,
@@ -51,23 +53,17 @@ function ChangeSection() {
       sortable: true,
     },
     {
-      name: 'Schedule',
+      name: 'Datetime',
       selector: row => row.schedule,
       sortable: true,
     },
     {
-      name: 'Semester',
-      selector: row => row.semester,
-      sortable: true,
-    },
-    {
-      name: 'Year',
-      selector: row => row.year,
-      sortable: true,
-    },
-  ];
+      name: 'Change Section',
+      cell: row => <button onClick={() => changeSection(row.section_number)}>Change</button>,
+    }
+  ]
 
-  const columns = [
+  const columns_enrolled = [
     {
       name: 'Course ID',
       selector: row => row.course_id,
@@ -89,81 +85,90 @@ function ChangeSection() {
       sortable: true,
     },
     {
-      name: 'Schedule',
+      name: 'Datetime',
       selector: row => row.schedule,
       sortable: true,
     },
   ];
 
-  if (!TOKEN) {
-    window.location.href = '/';
-  }
-
-  useEffect(() => {
-    axios.get(`http://oop.okusann.online:8088/get_all_section_by_semester_and_year/${current_semester}/${current_year}`)
-      .then((res) => {
-        if (res.status === 200) {
-          console.log(res);
-          setData_table_course(res.data);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        alert('Error Data Fetching');
-      });
-
-    axios.get(`http://oop.okusann.online:8088/get_student_enrolled_courses/${student_id}/${current_semester}/${current_year}`)
-      .then((res) => {
-        if (res.status === 200) {
-          console.log(res);
-          setData_table(res.data);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        alert('Error Data Fetching');
-      });
-  }, []);
-
-  const handleInputChange = (e) => {
-    const target = e.target;
-    const value = target.value;
-    const name = target.name;
-
-    if (name === 'course_id') {
-      setCourse_id(value);
-    } else if (name === 'section_number') {
-      setSection_number(value);
-    } else if (name === 'new_section_number') {
-      setNew_section_number(value);
+  const getsectiondata = async (courseID) => {
+  
+    const URL = `http://oop.okusann.online:8088/get_all_sections_by_course_id/${courseID}`;
+    try {
+      const response = await axios.get(URL);
+      if (response.status === 200) {
+        console.log(response);
+        setSectionCourses(response.data);
+        setIsTableSectionActive(true);
+      }
+    } catch (error) {
+      console.error('Error fetching section courses:', error);
+      setIsTableSectionActive(false);
+      alert('Cannot get section courses');
     }
   };
 
-  const change = () => {
+  
+  
+  useEffect(() => {
+    const URL = `http://oop.okusann.online:8088/get_student_enrolled_courses/${student_id}/${current_semester}/${current_year}`;
+    async function getEnrollCourse() {
+      try {
+        const response = await axios.get(URL);
+        if (response.status === 200) {
+          setEnrolledCourses(response.data); 
+        }
+      } catch (error) {
+        alert('Cannot get enrolled courses');
+      }
+    }
+    getEnrollCourse();
+  }, []);
+
+  const handleInputChangeTable = (rows) => {
+    console.log("hello kuy")
+    if (rows.selectedCount == 1) {
+      const selected = rows.selectedRows[0];
+      setOld_section(selected.section_number);
+      setCourse_id(selected.course_id);
+      getsectiondata(selected.course_id);
+    }
+    else{
+      setIsTableSectionActive(false);
+    }
+  }
+
+  const handleCourseIdChange = (event) => {
+    const {value} = event.target;
+    setCourse_id(value);
+    if (course_id.length == 8) {getsectiondata(value);}
+    else{setIsTableSectionActive(false);}
+  };
+
+  async function changeSection(new_section){
+    const URL = `http://oop.okusann.online:8088/change_section`;
     const headers = {
-      "TOKEN": TOKEN
-    };
+      "TOKEN" : TOKEN
+    }
+    console.log(student_id, course_id, old_section, new_section)
 
     const body = {
       "student_id": student_id,
       "course_id": course_id,
-      "old_section_number": section_number,
-      "new_section_number": new_section_number
-    };
-
-    axios.post('http://oop.okusann.online:8088/change_section', body, { headers: headers })
-      .then((res => {
-        console.log(res);
-        if (res.status === 200) {
-          alert('Change Section Success');
-        }
-      }))
-      .catch((error) => {
-        console.log(error);
-        alert('Error Data Fetching');
-      });
-
-  };
+      "old_section_number": old_section,
+      "new_section_number": new_section
+    }
+    try {
+      const response = await axios.post(URL, body, {headers: headers});
+      if (response.status === 200) {
+        alert('Change Section Success');
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+      alert(error.response.data.detail);
+    }
+  }
 
   return (
     <div className='backgroundchange'>
@@ -172,29 +177,35 @@ function ChangeSection() {
         <div className='topicenroll'>
           <p className='entext'>Change Section</p>
         </div>
-
-        <div className='table'>
-          <DataTable
-            className='changetable'
-            title='Course'
-            data={data_table_course}
-            columns={columns_course}
-          />
-          <DataTable
-            className='changetable'
-            title='Your Course'
-            data={data_table}
-            columns={columns}
+        <div className='enrolltable'>
+          <DataTable 
+            name='my section enrolled'
+            data={enrolledCourses} 
+            columns={columns_enrolled}
+            selectableRows
+            selectableRowsSingle 
+            onSelectedRowsChange={handleInputChangeTable}
+            clearSelectedRows={true}
           />
         </div>
+        <div className='sectionchangetable'>
+          { isTableSectionActive && <DataTable
+          name = 'section to change'
+          data={sectionCourses}
+          columns={columns_section}
 
+          />}
+        </div>
       </div>
 
       <div className='enrollfoot'>
-        <Footer onInputChange={handleInputChange} />
-        <button className='enrollbutton' onClick={change}>Change</button>
+        <footer className='FooterChangePage'> 
+          <input type="text" placeholder='course id' className='inputcourse' 
+                  value={course_id} onChange={handleCourseIdChange} 
+                  />
+        </footer>
+        <button className='enrollbutton'>Change</button>
       </div>
-
     </div>
   );
 }

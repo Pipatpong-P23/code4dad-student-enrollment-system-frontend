@@ -90,9 +90,13 @@ function DropPage() {
       'TOKEN': TOKEN,
     };
 
+    if (selectedRows.length === 0) {
+      alert('Please select a course');
+      return;
+    }
+
     const selectedSectionNumber = data_table.find((row) => row.course_id === course_id).section_number;
     setSection_number(selectedSectionNumber);
-
 
     const body = {
       'student_id': student_id,
@@ -130,6 +134,17 @@ function DropPage() {
     }
   };
 
+  const SureToDrop = () => {
+    if (selectedRows.length === 0) {
+      alert('Please select a course');
+      return;
+    }
+    if (window.confirm('Are you sure to drop this course?')) {
+      drop();
+    }
+  }
+
+
   return (
     <div className='backgroundchange'>
       <NavbarStudent student_id={student_id} />
@@ -156,7 +171,7 @@ function DropPage() {
             value={course_id}
             onChange={handleCourseIdChange}
           />
-          <button className='changebutton' onClick={drop}>Drop</button>
+          <button className='changebutton' onClick={SureToDrop}>Drop</button>
         </footer>
       </div>
     </div>

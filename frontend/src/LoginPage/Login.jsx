@@ -14,11 +14,11 @@ function Login() {
 
   const redirect = (role) => {
     if(role === 'student'){
-      window.location.href = '/HomePageStudent';
+      window.location.href = '/homepagestudent';
     }else if(role === 'teacher'){
-      window.location.href = '/HomePageTeacher';
+      window.location.href = '/homepageteacher';
     }else if(role === 'admin'){
-      window.location.href = '/HomePageAdmin';
+      window.location.href = '/homepageadmin';
     }
   }
 

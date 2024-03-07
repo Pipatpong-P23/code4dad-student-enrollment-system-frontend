@@ -39,7 +39,7 @@ function NavbarStudent({student_id}) {
                     <li> <a href='/transcript'> Transcript</a></li>
                 </ul>
                 <ul id='navbar'>
-                    <li> <a href='data'>{student_id}</a> </li>
+                    <li> <a href=''>{student_id}</a> </li>
                     <li> <a onClick={logout}>Logout</a> </li>
                 </ul>
             </div>

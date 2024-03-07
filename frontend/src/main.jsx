@@ -10,6 +10,11 @@ import EnrollPage from './EnrollPage/EnrollPage.jsx'
 import LoginPage from './LoginPage/Login.jsx'
 import ScorePage from './ScorePage/ScorePage.jsx'
 import TranscriptPage from './Transcript/TranscriptPage.jsx'
+import HomePageTeacher from './HomePageTeacher/HomePageTeacher.jsx'
+import AssignGrade from './AssignGradePage/AssignGrade.jsx'
+import AddCourse from './AddCoursePage/AddCourse.jsx'
+import AddSection from './AddSectionPage/AddSection.jsx'
+import ViewStudent from './ViewStudentPage/ViewStudent.jsx'
 
 const router = createBrowserRouter([
   {
@@ -39,7 +44,27 @@ const router = createBrowserRouter([
   {
     path: '/transcript',
     element: <TranscriptPage/>
-  }
+  },
+  {
+    path: '/homepageteacher',
+    element: <HomePageTeacher/>
+  },
+  {
+    path: '/assign grade',
+    element: <AssignGrade/>
+  },
+  {
+    path: '/add course',
+    element: <AddCourse/>
+  },
+  {
+    path: '/add section',
+    element: <AddSection/>
+  },
+  {
+    path: '/view student',
+    element: <ViewStudent/>
+  },
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(

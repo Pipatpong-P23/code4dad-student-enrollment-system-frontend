@@ -57,7 +57,7 @@
     font-size: 1.3rem;
     font-weight: 600;
     color: black;
-    transition: 0.1s ease-in-out;
+    transition: 0.01s ease-in-out;
 }
 
 #navbar li a:hover{

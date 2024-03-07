@@ -48,7 +48,7 @@ function HomePageStudent() {
   const customStyles = {
     headCells: {
       style: {
-        backgroundColor: 'violet',
+        backgroundColor: 'darkviolet',
         color: 'white',
       },
     },

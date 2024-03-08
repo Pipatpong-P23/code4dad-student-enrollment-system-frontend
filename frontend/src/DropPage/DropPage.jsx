@@ -149,9 +149,13 @@ function DropPage() {
     <div className='backgroundchange'>
       <NavbarStudent student_id={student_id} />
       <div className='container'>
+
+        <div className='topic'>
+          <h3>Your Course</h3>
+        </div>
+
         <div className='table'>
           <DataTable 
-          title='Your Course' 
           columns={columns} 
           data={data_table} 
           selectableRows={customStyles}

@@ -95,7 +95,7 @@ function HomePageStudent() {
       <NavbarStudent student_id={student_id} />
       <div className='container'>
         <div className='topicenroll'>
-          <p className='entext'>EnrollmentSystem</p>
+          <h1 className='entext'>EnrollmentSystem</h1>
         </div>
 
         <div className='dropdd'>
@@ -103,13 +103,12 @@ function HomePageStudent() {
           <button className='viewdd' onClick={() => setClick_view(!click_view)}>view</button>
         </div>
 
+        <div className='topic'>
+          <h3>Class Schedule</h3>
+        </div>
+
         <div className='table'>
           <DataTable
-            title={
-              <h3 className= 'titletable' style={{ color: 'black' }}>
-                Class Schedule
-              </h3>
-            } 
             columns={columns} 
             data={data_table}
             customStyles={customStyles}

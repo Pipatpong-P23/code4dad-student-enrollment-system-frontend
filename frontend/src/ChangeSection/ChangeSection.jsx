@@ -174,8 +174,8 @@ function ChangeSection() {
     <div className='backgroundchange'>
       <NavbarStudent student_id={student_id} />
       <div className='container'>
-        <div className='topicenroll'>
-          <p className='entext'>Change Section</p>
+        <div className='topic'>
+          <h3>Change Section</h3>
         </div>
         <div className='enrolltable'>
           <DataTable 
@@ -198,13 +198,13 @@ function ChangeSection() {
         </div>
       </div>
 
+{/* -----------------ไม่ใช้---------------- */}
       <div className='enrollfoot'>
         <footer className='FooterChangePage'> 
-          <input type="text" placeholder='course id' className='inputcourse' 
+          <input type="text" placeholder='course id' className='inputnoused' 
                   value={course_id} onChange={handleCourseIdChange} 
                   />
         </footer>
-        <button className='enrollbutton'>Change</button>
       </div>
     </div>
   );

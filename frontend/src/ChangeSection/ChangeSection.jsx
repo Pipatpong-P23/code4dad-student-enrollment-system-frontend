@@ -59,7 +59,7 @@ function ChangeSection() {
     },
     {
       name: 'Change Section',
-      cell: row => <button onClick={() => changeSection(row.section_number)}>Change</button>,
+      cell: row => <button className = "btnc" onClick={() => changeSection(row.section_number)}>Change</button>,
     }
   ]
 

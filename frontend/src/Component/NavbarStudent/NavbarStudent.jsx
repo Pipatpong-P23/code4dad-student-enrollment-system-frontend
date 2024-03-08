@@ -26,7 +26,7 @@ function NavbarStudent({student_id}) {
                 <FiMenu />
             </a>
             <div className='logo'>
-                <h4><a onClick={HomePageStudent}>Code4Dad</a></h4>  <div className='Book'><GiSpellBook /></div>
+                <h4><a className='code44dad' onClick={HomePageStudent}>Code4Dad</a></h4>  <div className='Book'><GiSpellBook /></div>
             </div>
 
             <div className='navbar'>

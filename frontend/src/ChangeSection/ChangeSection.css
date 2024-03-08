@@ -4,6 +4,7 @@
     overflow: hidden;
 }
 
+
 .title {
     color: azure;
     font-size: 30px;
@@ -17,6 +18,10 @@
     
 }
 
+.btnc {
+    background-color: chartreuse;
+    font-size: 20px;
+}
 p{
     color: azure;
 }

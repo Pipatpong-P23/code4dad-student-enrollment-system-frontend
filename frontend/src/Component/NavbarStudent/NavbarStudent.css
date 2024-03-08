@@ -5,13 +5,22 @@
     font-family: sans-serif;
 }
 
+
+.code44dad {
+    position: fixed;
+    top: 15px;
+    left: 5% ;
+    margin : 10px;
+
+}
+
 .logo{
-    position: relative;
-    top: -15px;
-    left: -29% ;
+    position: fixed;
+    top: 27px;
+    left: 5% ;
+    margin : 10px;
     font-size: 27px;
     color: black;
-    margin : 10px
 }
 
 .logo:hover{

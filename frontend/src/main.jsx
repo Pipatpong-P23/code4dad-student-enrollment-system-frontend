@@ -14,7 +14,7 @@ import HomePageTeacher from './HomePageTeacher/HomePageTeacher.jsx'
 import AssignGrade from './AssignGradePage/AssignGrade.jsx'
 import AddCourse from './AddCoursePage/AddCourse.jsx'
 import AddSection from './AddSectionPage/AddSection.jsx'
-import ViewStudent from './ViewStudentPage/ViewStudent.jsx'
+import DetailSection from './DetailSection/DetailSection.jsx'
 
 const router = createBrowserRouter([
   {
@@ -62,9 +62,9 @@ const router = createBrowserRouter([
     element: <AddSection/>
   },
   {
-    path: '/view student',
-    element: <ViewStudent/>
-  },
+    path: '/detail section',
+    element: <DetailSection/>
+  }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(

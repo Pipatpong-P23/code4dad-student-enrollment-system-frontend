@@ -47,7 +47,8 @@ function NavbarTeacher({teacher_id}) {
                 <FiMenu />
             </a>
             <div className='logo'>
-                <h4><a onClick={HomePageTeacher}>Code4Dad</a></h4>  <div className='Book'><GiSpellBook /></div>
+                <h4><a className='code4dad' onClick={HomePageTeacher}>Code4Dad</a></h4>  
+                <div className='Book'><GiSpellBook /></div>
             </div>
 
             <div className='navbar'>

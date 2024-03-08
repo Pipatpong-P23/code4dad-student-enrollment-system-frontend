@@ -1,10 +1,14 @@
 .dropdowndate {
     margin-top: 9%;
     position: absolute;
- 
     transition: 0.2s;
 }
 .dropdowndate:hover{
     transition: 0.2s;
     font-size: 15px;
+}
+
+.viewbutton {
+    font-size: 15px;
+    margin-top: 90%;
 }

@@ -1,0 +1,30 @@
+.ButtonAssign{
+    position: relative;
+    margin-top : 100px;
+}
+
+.TableStudent{
+    position: relative;
+    margin-top : 100px;
+}
+
+.ButtonDone{
+    position: relative;
+    margin-left: 1500px;
+}
+
+.inputscore{
+    width: 35px;
+    height: 20px;
+    margin-left: 10px;
+    text-align: center;
+    align-items: center;
+}
+
+.inputgrade{
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    margin-left: 0px;
+    align-items: center;
+}

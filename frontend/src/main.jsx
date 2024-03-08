@@ -11,7 +11,6 @@ import LoginPage from './LoginPage/Login.jsx'
 import ScorePage from './ScorePage/ScorePage.jsx'
 import TranscriptPage from './Transcript/TranscriptPage.jsx'
 import HomePageTeacher from './HomePageTeacher/HomePageTeacher.jsx'
-import AssignGrade from './AssignGradePage/AssignGrade.jsx'
 import AddCourse from './AddCoursePage/AddCourse.jsx'
 import AddSection from './AddSectionPage/AddSection.jsx'
 import DetailSection from './DetailSection/DetailSection.jsx'
@@ -48,10 +47,6 @@ const router = createBrowserRouter([
   {
     path: '/homepageteacher',
     element: <HomePageTeacher/>
-  },
-  {
-    path: '/assign grade',
-    element: <AssignGrade/>
   },
   {
     path: '/add course',

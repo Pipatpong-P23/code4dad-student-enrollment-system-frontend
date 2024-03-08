@@ -12,7 +12,7 @@ function EnrollPage() {
   const [data_table, setData_table] = useState([]);
   const student_id = getUsername();
   const [course_id, setCourse_id] = useState('');
-  const [section_number, setSection_number] = useState(0);
+  const [section_number, setSection_number] = useState();
   const current_semester = 1;
   const current_year = 2024;
   const [selected, setSelected] = useState({});
@@ -53,16 +53,6 @@ function EnrollPage() {
     {
       name: 'Schedule',
       selector: row => row.schedule,
-      sortable: true,
-    },
-    {
-      name: 'Semester',
-      selector: row => row.semester,
-      sortable: true,
-    },
-    {
-      name: 'Year',
-      selector: row => row.year,
       sortable: true,
     },
   ];

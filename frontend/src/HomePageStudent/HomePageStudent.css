@@ -1,27 +1,27 @@
 
-.backgroundhomepage {
+.bgstd {
     min-height: 100vh;
     background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(51,0,101,1) 57%, rgba(128,0,255,1) 100%);
     overflow: hidden;
 }
 
-.container {
-    margin: 100px 200px 0 200px;
+.stdcontainer {
+    margin: 100px 200px 100px 200px;
 }
 
-.container .topicenroll {
+.stdcontainer .stdtopic {
     display: flex;
     justify-content: center;
 }
 
-.container .dropdd {
+.stdcontainer .stddropdd {
     margin-top: 15px;
     display: flex-end;
     justify-content: center;
     z-index: 3;
 }
 
-.viewdd {
+.stdviewdd {
     position: relative;
     right: -725px;
     padding: 10px 15px;
@@ -29,7 +29,7 @@
     margin-left: 20px;
 }
 
-.viewdd:hover {
+.stdviewdd:hover {
     background-color: rgb(200, 200, 200);
     color: black;
     transform: translateY(-2px);
@@ -39,33 +39,33 @@
 
 }
 
-.topic {
+.stdheadtb {
     color: azure;
     display: flex;
     justify-content: flex-start;
     margin: 15px;
 }
 
-.table {
+.stdtable {
     margin-top: 5px ;
     border: 2px solid black;
     border-radius: 15px;
 }
 
-.entext {
+.stdtext {
     margin-top: 20px;
     color: azure;
     font-size: xx-large;
 }
 
-.activebutton {
+.stdbtn {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 50px;
 }
 
-.interactbutton {
+.stdinteracbtn {
     width: 120px;
     font-size: 1em;
     margin: 0 30px;
@@ -74,7 +74,7 @@
     background-color: rgb(247, 247, 247);
 }
 
-.interactbutton:hover {
+.stdinteracbtn:hover {
     background-color: rgb(247, 247, 247);
     color: black;
     transform: translateY(-5px);

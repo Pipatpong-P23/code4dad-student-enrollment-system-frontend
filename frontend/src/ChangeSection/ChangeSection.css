@@ -1,8 +1,3 @@
-.backgroundchange {
-    min-height: 100vh;
-    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(51,0,101,1) 57%, rgba(128,0,255,1) 100%);
-    overflow: hidden;
-}
 
 
 .title {
@@ -13,7 +8,7 @@
 
 }
 
-.container {
+.stdchcontainer {
     margin: 100px 200px 0 200px;
     
 }
@@ -56,10 +51,10 @@
     display: none;
 }
 
-.enrolltable {
+.chtable {
     border-radius:15px 15px 0 0;
 }
 
-.sectionchangetable {
+.sectionchtable {
     border-radius: 0 0 15px 15px;
 }

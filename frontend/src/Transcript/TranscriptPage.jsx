@@ -53,14 +53,14 @@ function TranscriptPage() {
   }, []); // Empty dependency array to fetch data only once on component mount
 
   return (
-    <div className='backgroundtrans'>
+    <div className='bgstd'>
       <NavbarStudent />
       <div className='transcontainer'>
         <div className='topictrans'>
           {data_table.map((transcript, index) => (
             <div key={index}>
               <h3>{`semester : ${transcript.semester}, year : ${transcript.year} `}</h3>
-              <div className="table">
+              <div className="stdtable">
                 <DataTable
                   columns={columns}
                   data={transcript.enrollments}

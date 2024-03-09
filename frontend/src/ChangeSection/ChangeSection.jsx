@@ -171,13 +171,14 @@ function ChangeSection() {
   }
 
   return (
-    <div className='backgroundchange'>
+    <div className='bgstd'>
       <NavbarStudent student_id={student_id} />
-      <div className='container'>
-        <div className='topic'>
+      <div className='stdchcontainer'>
+        <div className='stdheadtb'>
           <h3>Change Section</h3>
         </div>
-        <div className='enrolltable'>
+
+        <div className='chtable'>
           <DataTable 
             name='my section enrolled'
             data={enrolledCourses} 
@@ -188,7 +189,7 @@ function ChangeSection() {
             clearSelectedRows={true}
           />
         </div>
-        <div className='sectionchangetable'>
+        <div className='sectionchtable'>
           { isTableSectionActive && <DataTable
           name = 'section to change'
           data={sectionCourses}

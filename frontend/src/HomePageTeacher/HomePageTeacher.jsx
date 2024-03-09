@@ -52,7 +52,7 @@ function HomePageTeacher() {
         },
         {
             name : 'Detail',
-            cell : row => <button onClick={() => { window.location.href = '/detail section'}}>detail</button>
+            cell : row => <button className='detailbtn' onClick={() => { window.location.href = '/detail section'}}>detail</button>
         }
     ]
 
@@ -82,22 +82,29 @@ function HomePageTeacher() {
     }, [isview]);
 
     return (
-        <div>
+        <div className='bgtc'>
             <NavbarTeacher teacher_id={teacher_name} />
-            <div className='dropdowndate'>
-                <DropdownDate  onDateChange={handleDateChange}/>
-                <button className =' viewbutton' onClick={view_section}> view </button>
-            </div>
-            <div className="sectiontable">
-                <DataTable
-                name = "Section Table"
-                columns = {columns_section}
-                data = {dataSection}
-                />
-            </div>
-            <div className="button">
-                <button onClick={ () => { window.location.href = '/add section'}}> Add Section </button>
-                <button onClick={ () => { window.location.href = '/add course'}}> Add Course </button>
+            <div className='tccontainer'>
+                <div className='tcdropdd'>
+                    <DropdownDate  onDateChange={handleDateChange}/>
+                    <button className ='tcviewbutton' onClick={view_section}>view</button>
+                </div>
+             
+                <div className='tctopic'>
+                    <h3>Class Schedule</h3>
+                </div> 
+
+                <div className="tctable">
+                    <DataTable
+                    name = "Section Table"
+                    columns = {columns_section}
+                    data = {dataSection}
+                    />
+                </div>
+                <div className="tcbtn">
+                    <button className='tcbtn-1' onClick={ () => { window.location.href = '/add section'}}> <p>Add Section</p></button>
+                    <button className='tcbtn-1' onClick={ () => { window.location.href = '/add course'}}> <p>Add Course</p></button>
+                </div>
             </div>
         </div>
     )

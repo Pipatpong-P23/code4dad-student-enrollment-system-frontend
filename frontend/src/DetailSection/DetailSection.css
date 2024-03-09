@@ -1,0 +1,58 @@
+.ButtonAssign{
+    position: relative;
+    margin-top : 100px;
+}
+
+.tctable-stdlist{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top : 100px; */
+    width: 80%;
+    position: relative;
+    left: 160px;
+    margin-top: 5px ;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+.tcbtn-done{
+    position: relative;
+    top: -10px;
+    margin: 30px 25px;
+}
+
+.inputscore{
+    width: 35px;
+    height: 20px;
+    margin-left: 10px;
+    text-align: center;
+    align-items: center;
+}
+
+.inputgrade{
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    margin-left: 0px;
+    align-items: center;
+}
+
+.tcbtn-2 {
+    padding: 10px 15px;
+    border-radius: 100px;
+    background-color: rgb(247, 247, 247);
+    font-size: 1em;
+    z-index: 10;
+}
+
+.tcbtn-2:hover {
+    background-color: rgb(247, 247, 247);
+    color: black;
+    transform: translateY(-5px);
+    box-shadow: 0 0 10px black;
+    /* font-size: medium; */
+    font-size: 1em;
+    font-weight: 600;
+    transition: 0.1s ease-in-out;
+}

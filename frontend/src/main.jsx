@@ -11,10 +11,11 @@ import LoginPage from './LoginPage/Login.jsx'
 import ScorePage from './ScorePage/ScorePage.jsx'
 import TranscriptPage from './Transcript/TranscriptPage.jsx'
 import HomePageTeacher from './HomePageTeacher/HomePageTeacher.jsx'
-import AssignGrade from './AssignGradePage/AssignGrade.jsx'
 import AddCourse from './AddCoursePage/AddCourse.jsx'
 import AddSection from './AddSectionPage/AddSection.jsx'
 import DetailSection from './DetailSection/DetailSection.jsx'
+import HomePageAdmin from './HomePageAdmin/HomePageAdmin.jsx'
+import AddUser from './AddUserPage/AddUser.jsx'
 
 const router = createBrowserRouter([
   {
@@ -50,10 +51,6 @@ const router = createBrowserRouter([
     element: <HomePageTeacher/>
   },
   {
-    path: '/assign grade',
-    element: <AssignGrade/>
-  },
-  {
     path: '/add course',
     element: <AddCourse/>
   },
@@ -64,6 +61,14 @@ const router = createBrowserRouter([
   {
     path: '/detail section',
     element: <DetailSection/>
+  },
+  {
+    path : '/homepageadmin',
+    element : <HomePageAdmin/>
+  },
+  {
+    path : '/add user',
+    element : <AddUser/>
   }
 ])
 

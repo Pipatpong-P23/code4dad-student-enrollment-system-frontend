@@ -8,9 +8,11 @@ function ScorePage() {
     <div className='backgroundscore'>
       <NavbarStudent/>
       <div className='container'>
+
         <div className='topicenroll'>
-          <p className='sctext'>Score Information</p>
+          <h1 className='entext'>Score Information</h1>
         </div>
+
         <div>
             <DropdownDate/> <button className='viewdd'>view</button>
         </div>

@@ -60,10 +60,12 @@ function TranscriptPage() {
           {data_table.map((transcript, index) => (
             <div key={index}>
               <h3>{`semester : ${transcript.semester}, year : ${transcript.year} `}</h3>
-              <DataTable
-                columns={columns}
-                data={transcript.enrollments}
-              />
+              <div className="table">
+                <DataTable
+                  columns={columns}
+                  data={transcript.enrollments}
+                />                
+              </div>
             </div>
           ))}
         </div>

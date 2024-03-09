@@ -144,11 +144,13 @@ function EnrollPage() {
       <NavbarStudent student_id={student_id}/>
       <Dropdown />
       <div className='container'>
+        <div className='topic'>
+          <h3>Course</h3>
+        </div>
 
         <div className='table'>
           <DataTable
             className='DataTable'
-            title={<h3>Course</h3>} 
             columns={columns} 
             data={data_table}
             selectableRows

@@ -5,7 +5,6 @@
     font-family: sans-serif;
 }
 
-
 .code4dad{
     position: fixed;
     top: 15px;
@@ -162,7 +161,7 @@
         background: azure;
         box-shadow: 0 40px 60px rgba(0,0,0,0.1);
         padding: 40px 0 0 10px ;
-        transition: 0.5s;
+        transition: 0.2s;
         top : 115px
     }
     #drop li {
@@ -175,11 +174,11 @@
         font-size: 1.3rem;
         color: black;
         text-decoration: none;
-        transition: 0.4s;
+        transition: 0.2s;
         margin-top: 0px;
     }
     #drop.active {
         left: 73.5rem; 
-        transition: 0.5s;
+        transition: 0.2s;
     }
 }

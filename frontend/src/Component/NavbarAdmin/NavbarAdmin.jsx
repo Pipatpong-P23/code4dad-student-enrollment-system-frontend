@@ -31,11 +31,7 @@ function NavbarAdmin({admin_id}) {
             <div className='navbar'>
                 <ul id='drop' className={clicked ? "active" : ""}>
                     <li><a href="/homepagestudent">Homepage</a></li>
-                    <li> <a href='/enroll'> Enroll</a></li>
-                    <li> <a href='/change'> Change</a></li>
-                    <li> <a href='/drop'> Drop</a></li>
-                    <li> <a href='/score'> Score</a></li>
-                    <li> <a href='/transcript'> Transcript</a></li>
+                    <li> <a href='/add user'>Add User</a></li>
                 </ul>
                 <ul id='navbar'>
                     <li> <a href=''>{admin_id}</a> </li>

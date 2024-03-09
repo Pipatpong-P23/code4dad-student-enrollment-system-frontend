@@ -15,6 +15,7 @@ import AddCourse from './AddCoursePage/AddCourse.jsx'
 import AddSection from './AddSectionPage/AddSection.jsx'
 import DetailSection from './DetailSection/DetailSection.jsx'
 import HomePageAdmin from './HomePageAdmin/HomePageAdmin.jsx'
+import AddUser from './AddUserPage/AddUser.jsx'
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
   {
     path : '/homepageadmin',
     element : <HomePageAdmin/>
+  },
+  {
+    path : '/add user',
+    element : <AddUser/>
   }
 ])
 

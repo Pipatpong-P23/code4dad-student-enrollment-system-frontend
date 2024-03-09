@@ -1,13 +1,12 @@
 import React from 'react'
-import NavbarTeacher from '../Component/NavbarTeacher/NavbarTeacher'
+import NavbarAdmin from '../Component/NavbarAdmin/NavbarAdmin'; 
 import { getUsername } from '../Authentication'
 
 function AddCourse() {
-    const teacher_name = getUsername();
-
+  
   return (
     <div>
-      <NavbarTeacher teacher_id={teacher_name} />
+      <NavbarAdmin admin_id={'Admin'} />
     </div>
   )
 }

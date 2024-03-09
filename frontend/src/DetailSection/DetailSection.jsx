@@ -84,6 +84,7 @@ function DetailSection() {
   const clickAssignGrade = () => {
     setIsAssignGrade(!isAssignGrade);
     setIsAssignScore(false);
+
   }
 
   const clickAssignScore = () => {

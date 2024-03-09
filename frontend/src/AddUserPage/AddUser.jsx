@@ -3,11 +3,14 @@ import NavbarAdmin from '../Component/NavbarAdmin/NavbarAdmin';
 import DataTable from 'react-data-table-component';
 import './AddUser.css';
 import axios from 'axios';
+import { getUsername } from '../Authentication';
 
 function AddUser() {
   const [isTableStudent, setIsTableStudent] = useState(true);
   const [isTableTeacher, setIsTableTeacher] = useState(false);
   const [TableUSer, setTableUser] = useState('Add Student');
+  const admin_id = getUsername();
+  const TOKEN = document.cookie.split('=')[1];
 
   const [dataInputStudent, setDataInputStudent] = useState({
     'Student ID': '',
@@ -103,7 +106,9 @@ function AddUser() {
     async function add_student() {
       console.log('xxsssxxx' , detail)
       try{
-        const headers = {};
+        const headers = {
+          "TOKEN" : TOKEN
+        };
         const body = {
           "student_id": detail["Student ID"] , 
           "password": detail[ "Password"] ,
@@ -130,7 +135,9 @@ function AddUser() {
   const addTeacher = (detail) => {
     async function add_teacher() {
       try{
-        const headers = {};
+        const headers = {
+          "TOKEN" : TOKEN
+        };
         const body = {
           "teacher_id": detail["Teacher ID"],
           "password": detail["Password"] ,
@@ -167,7 +174,7 @@ function AddUser() {
 
   return (
     <div>
-      <NavbarAdmin admin_id={'Admin'} />
+      <NavbarAdmin admin_id={admin_id} />
       <div className='title_table'>
         <h1>{TableUSer}</h1>
       </div>

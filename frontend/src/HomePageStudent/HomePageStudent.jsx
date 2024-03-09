@@ -91,23 +91,23 @@ function HomePageStudent() {
   };
 
   return (
-    <div className='backgroundhomepage'>
+    <div className='bgstd'>
       <NavbarStudent student_id={student_id} />
-      <div className='container'>
-        <div className='topicenroll'>
-          <h1 className='entext'>EnrollmentSystem</h1>
+      <div className='stdcontainer'>
+        <div className='stdtopic'>
+          <h1 className='stdtext'>EnrollmentSystem</h1>
         </div>
 
-        <div className='dropdd'>
+        <div className='stddropdd'>
           <DropdownDate onDateChange={handleDateChange} />
-          <button className='viewdd' onClick={() => setClick_view(!click_view)}>view</button>
+          <button className='stdviewdd' onClick={() => setClick_view(!click_view)}>view</button>
         </div>
 
-        <div className='topic'>
+        <div className='stdheadtb'>
           <h3>Class Schedule</h3>
         </div>
 
-        <div className='table'>
+        <div className='stdtable'>
           <DataTable
             columns={columns} 
             data={data_table}
@@ -117,10 +117,10 @@ function HomePageStudent() {
           />
         </div>
 
-        <div className='activebutton'>
-          <button className='interactbutton' onClick={redirect_to_enroll}>Enroll</button>
-          <button className='interactbutton' onClick={redirect_to_change}>Change</button>
-          <button className='interactbutton' onClick={redirect_to_drop}>Drop</button>
+        <div className='stdbtn'>
+          <button className='stdinteracbtn' onClick={redirect_to_enroll}>Enroll</button>
+          <button className='stdinteracbtn' onClick={redirect_to_change}>Change</button>
+          <button className='stdinteracbtn' onClick={redirect_to_drop}>Drop</button>
         </div>
       </div>
     </div>

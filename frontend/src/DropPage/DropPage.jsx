@@ -146,15 +146,15 @@ function DropPage() {
 
 
   return (
-    <div className='backgroundchange'>
+    <div className='bgstd'>
       <NavbarStudent student_id={student_id} />
-      <div className='container'>
+      <div className='stdcontainer'>
 
-        <div className='topic'>
+        <div className='stdheadtb'>
           <h3>Your Course</h3>
         </div>
 
-        <div className='table'>
+        <div className='stdtable'>
           <DataTable 
           columns={columns} 
           data={data_table} 
@@ -166,8 +166,9 @@ function DropPage() {
         />
         </div>
       </div>
-      <div className='dropfoot'>
-        <footer className='dropfooter'>
+
+      <div className='dropft'>
+        <footer className='dpfter'>
           <input
             type='text'
             placeholder='Course ID'
@@ -175,7 +176,7 @@ function DropPage() {
             value={course_id}
             onChange={handleCourseIdChange}
           />
-          <button className='changebutton' onClick={SureToDrop}>Drop</button>
+          <button className='dpbtn' onClick={SureToDrop}>Drop</button>
         </footer>
       </div>
     </div>

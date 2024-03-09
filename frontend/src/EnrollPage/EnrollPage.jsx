@@ -140,15 +140,15 @@ function EnrollPage() {
   }
 
   return (
-    <div className='backgroundenroll'>
+    <div className='bgstd'>
       <NavbarStudent student_id={student_id}/>
       <Dropdown />
-      <div className='container'>
-        <div className='topic'>
+      <div className='stdcontainer'>
+        <div className='stdheadtb'>
           <h3>Course</h3>
         </div>
 
-        <div className='table'>
+        <div className='stdtable'>
           <DataTable
             className='DataTable'
             columns={columns} 
@@ -164,7 +164,7 @@ function EnrollPage() {
       </div>
       <div className='enrollfoot'>
         <Footer onInputChange={handleInputChange} course_id={course_id} section_id={section_number} />
-        <button className='enrollbutton' onClick={enroll}>Enroll</button>
+        <button className='enrollbtn' onClick={enroll}>Enroll</button>
 
       </div>
     </div>

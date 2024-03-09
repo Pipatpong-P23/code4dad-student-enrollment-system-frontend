@@ -1,9 +1,5 @@
-.container {
-    margin: 100px 200px 100px 200px;
 
-}
-
-.dropfoot {
+.dropft {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -13,7 +9,7 @@
     padding-top: 0px;
 }
 
-.dropfoot .inputcourse {
+.dropft .inputcourse {
     position: relative;
     top: 18px;
     margin-bottom: 10px;
@@ -22,7 +18,7 @@
     border-radius: 30px;
 }
 
-.dropfoot .changebutton {
+.dropft .dpbtn {
     padding: 9px 20px;
     font-size: 16px; 
     border-radius: 70px;
@@ -35,8 +31,10 @@
 
 }
 
-.dropfooter .changebutton:hover {
+.dpfter .dpbtn:hover {
     background-color: rgb(255, 0, 0);
     color: azure;
+    transform: translateY(-5px);
+
     /* font-size: 20px; */
 }

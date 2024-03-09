@@ -11,8 +11,6 @@ function Login() {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  // const date = new Date();
-  // console.log("date", date);
 
   const redirect = (role) => {
     if(role === 'student'){

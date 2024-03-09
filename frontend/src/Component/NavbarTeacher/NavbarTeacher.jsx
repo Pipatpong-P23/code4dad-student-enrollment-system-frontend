@@ -54,9 +54,6 @@ function NavbarTeacher({teacher_id}) {
             <div className='navbar'>
                 <ul id='drop' className={clicked ? "active" : ""}>
                     <li><a href="/homepageteacher">Homepage</a></li> 
-                    <li> <a href='/add course'>Add Course</a></li>
-                    <li> <a href='/add section'>Add Section</a></li>
-                    <li> <a href='/add '>Add Pre-requisite Course</a></li>
                 </ul>
                 <ul id='navbar'>
                     <li> <a href=''>{teacher_name}</a> </li>

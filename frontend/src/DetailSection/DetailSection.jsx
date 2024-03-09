@@ -132,21 +132,27 @@ function DetailSection() {
   };
 
   return (
-    <div>
+    <div className='bgtc'>
       <NavbarTeacher teacher_id={teacher_id} />
-      <div className='TableStudent'>
-        <DataTable
-          name='student list in section'
-          columns={columns}
-          data={test_data}
-        />
-      </div>
-      <div className='ButtonAssign'>
-        <button onClick={() => clickAssignGrade() }>Assign Grade</button>
-        <button onClick={() => clickAssignScore() }>Assign Score</button>
-      </div>
-      <div className='ButtonDone'>
-        { (isAssignGrade || isAssignScore) && <button onClick={clickDone}> Done </button>}
+      <div className="tccontainer">
+
+        <div className='tctable-stdlist'>
+          <DataTable
+            name='student list in section'
+            columns={columns}
+            data={test_data}
+          />
+        </div>
+        <div className="tcbtn">
+          <div>
+            <button className='tcbtn-1' onClick={() => clickAssignGrade() }>Assign Grade</button>
+            <button className='tcbtn-1' onClick={() => clickAssignScore() }>Assign Score</button>
+          </div>
+          <div className='tcbtn-done'>
+            { (isAssignGrade || isAssignScore) && <button className='tcbtn-2' onClick={clickDone}>Done</button>}
+          </div>
+        </div>
+
       </div>
     </div>
   );

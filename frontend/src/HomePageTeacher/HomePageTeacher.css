@@ -4,19 +4,23 @@
     overflow: hidden;
 }
 
-.dropdowndate {
+.tccontainer {
+    margin: 100px 200px 0 200px;
+}
+
+.tcdropdd {
     display: flex-end;
     margin-bottom: 20px;
     margin-top: 15px;
 }
 
-.dropdowndate .viewbutton {
+.tcdropdd .tcviewbutton {
     border-radius: 100px;
     padding: 10px 15px;
     margin-left: 40px;
 }
 
-.viewbutton:hover {
+.tcviewbutton:hover {
     background-color: rgb(247, 247, 247);
     color: black;
     transform: translateY(-2px);
@@ -27,18 +31,27 @@
     transition: 0.1s ease-in-out;
 }
 
-.sectiontable {
+.tctopic {
+    color: azure;
+    display: flex;
+    justify-content: flex-start;
+    margin: 15px;
+}
+
+.tctable {
+    margin-top: 5px ;
+    border: 2px solid black;
     border-radius: 15px;
 }
 
-.btn {
+.tcbtn {
     display: flex;
     justify-content: center;
     align-items: flex-end;
     padding: 20px;
 }
 
-.btn-1 {
+.tcbtn-1 {
     width: 120px;
     margin: 30px 25px;
     padding: 10px 25px;
@@ -48,7 +61,7 @@
 
 }
 
-.btn-1:hover {
+.tcbtn-1:hover {
     background-color: rgb(247, 247, 247);
     color: black;
     transform: translateY(-5px);
@@ -69,4 +82,5 @@
     transform: translateY(-2px);
     box-shadow: 0 0 5px grey;
     transition: 0.1s ease-in-out;
+    background-color: rgb(200, 200, 200);
 }

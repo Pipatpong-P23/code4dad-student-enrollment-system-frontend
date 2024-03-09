@@ -84,26 +84,26 @@ function HomePageTeacher() {
     return (
         <div className='bgtc'>
             <NavbarTeacher teacher_id={teacher_name} />
-            <div className='container'>
-                <div className='dropdowndate'>
+            <div className='tccontainer'>
+                <div className='tcdropdd'>
                     <DropdownDate  onDateChange={handleDateChange}/>
-                    <button className ='viewbutton' onClick={view_section}>view</button>
+                    <button className ='tcviewbutton' onClick={view_section}>view</button>
                 </div>
              
-                <div className='topic'>
+                <div className='tctopic'>
                     <h3>Class Schedule</h3>
                 </div> 
 
-                <div className="table">
+                <div className="tctable">
                     <DataTable
                     name = "Section Table"
                     columns = {columns_section}
                     data = {dataSection}
                     />
                 </div>
-                <div className="btn">
-                    <button className='btn-1' onClick={ () => { window.location.href = '/add section'}}> <p>Add Section</p></button>
-                    <button className='btn-1' onClick={ () => { window.location.href = '/add course'}}> <p>Add Course</p></button>
+                <div className="tcbtn">
+                    <button className='tcbtn-1' onClick={ () => { window.location.href = '/add section'}}> <p>Add Section</p></button>
+                    <button className='tcbtn-1' onClick={ () => { window.location.href = '/add course'}}> <p>Add Course</p></button>
                 </div>
             </div>
         </div>

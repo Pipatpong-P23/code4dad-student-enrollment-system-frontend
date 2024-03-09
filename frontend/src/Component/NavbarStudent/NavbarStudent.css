@@ -145,7 +145,7 @@
     left: 20px;
 }
 
-@media screen and (max-width: 440px){
+@media screen and (max-width: 1200px){
     .Book{
         display: none;
     }

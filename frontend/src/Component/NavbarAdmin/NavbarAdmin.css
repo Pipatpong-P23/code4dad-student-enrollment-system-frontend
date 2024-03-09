@@ -6,30 +6,33 @@
 }
 
 
-.code4dad{
+.code44dad {
     position: fixed;
     top: 15px;
     left: 5% ;
     margin : 10px;
+
 }
 
 .logo{
     position: fixed;
-    top: 47px;
+    top: 27px;
     left: 5% ;
     margin : 10px;
+    font-size: 27px;
+    color: black;
 }
 
-.logo:hover {
+.logo:hover{
     color: rgba(128,0,255,1);
-    transition: 0.2s;
+    font-size: 27px;
     cursor: pointer;
 }
 
 .Book {
     font-size: 33px;
     position: fixed;
-    margin: -37px 140px  ;
+    margin: -19px 140px;
 }
 .nav {
     display: flex;
@@ -63,7 +66,7 @@
     font-size: 1.3rem;
     font-weight: 600;
     color: black;
-    transition: 0.1s ease-in-out;
+    transition: 0.01s ease-in-out;
 }
 
 #navbar li a:hover{
@@ -175,8 +178,9 @@
         font-size: 1.3rem;
         color: black;
         text-decoration: none;
-        transition: 0.4s;
+        transition: 0.5s;
         margin-top: 0px;
+
     }
     #drop.active {
         left: 73.5rem; 

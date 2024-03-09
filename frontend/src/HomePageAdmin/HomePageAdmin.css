@@ -5,3 +5,83 @@
     margin-bottom: 20px;
     text-align: center;
 }
+
+.bgAd {
+    min-height: 100vh;
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(51,0,101,1) 57%, rgba(128,0,255,1) 100%);
+    overflow: hidden;
+}
+
+.Adcontainer {
+    margin: 100px 200px 0px 200px;
+}
+
+.Adtopic {
+    display: flex;
+    justify-content: center;
+}
+
+.Adtext {
+    margin-top: 50px;
+    color: azure;
+    font-size: xx-large;
+}
+
+.Adbtn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+
+}
+
+.Adbtninteract-AU {
+    padding: 20px 310px;
+    border: 2px solid black;
+    border-radius: 100px;
+    margin: 15px;
+    font-size: 1.2em;
+}
+
+.Adbtninteract-AU:hover {
+    padding: 20px 330px;
+    box-shadow: 7px 7px 15px rgb(0, 0, 0);
+    transition: 0.3s ease-in-out;
+    font-size: 1.3em;
+    font-weight: 600;
+
+}
+
+.Adbtninteract-CC {
+    padding: 20px 290px;
+    border: 2px solid black;
+    border-radius: 100px;
+    margin: 15px;
+    font-size: 1.2em;
+}
+
+.Adbtninteract-CC:hover {
+    padding: 20px 310px;
+    box-shadow: 7px 7px 15px rgb(0, 0, 0);
+    transition: 0.3s ease-in-out;
+    font-size: 1.3em;
+    font-weight: 600;
+
+}
+
+.Adbtninteract-ATS {
+    padding: 20px 250px;
+    border: 2px solid black;
+    border-radius: 100px;
+    margin: 15px;
+    font-size: 1.2em;
+}
+
+.Adbtninteract-ATS:hover {
+    padding: 20px 270px;
+    box-shadow: 7px 7px 15px rgb(0, 0, 0);
+    transition: 0.3s ease-in-out;
+    font-size: 1.3em;
+    font-weight: 600;
+}

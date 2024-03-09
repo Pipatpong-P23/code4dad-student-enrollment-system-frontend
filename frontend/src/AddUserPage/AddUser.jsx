@@ -166,42 +166,48 @@ function AddUser() {
   }
 
   return (
-    <div>
+    <div className='bgAd'>
       <NavbarAdmin admin_id={'Admin'} />
-      <div className='title_table'>
-        <h1>{TableUSer}</h1>
-      </div>
+      <div className="Adcontainer">
 
-      <div className='btn_done'>
-        <button className='button_admin' onClick={clickDone}>Done</button>
-      </div>
+        <div className='Addtopic'>
+          <h1 className='Addtext'>{TableUSer}</h1>
+        </div>
 
-      <div className='TableTable'> 
-      {
-        isTableStudent &&
-        <DataTable
-          name='Student'
-          columns={columns_student}
-          data={dataTableStudent}
-        />
-      }
-      {
-        isTableTeacher &&
-        <DataTable
-          name='Teacher'
-          columns={columns_teacher}
-          data={dataTableTeacher}
-        />
-      }
+        <div className='btn-add-user'>
+          <button className='btn-Add' onClick={show_table_student}>
+            Add Student
+          </button>
+          <button className='btn-Add' onClick={show_table_teacher}>
+            Add Teacher
+          </button>
+        </div>
+
+        <div className='Adtable'> 
+        {
+          isTableStudent &&
+          <DataTable
+            name='Student'
+            columns={columns_student}
+            data={dataTableStudent}
+          />
+        }
+        {
+          isTableTeacher &&
+          <DataTable
+            name='Teacher'
+            columns={columns_teacher}
+            data={dataTableTeacher}
+          />
+        }
+        </div>
+
+        <div className='btn-done'>
+          <button className='btn-admin' onClick={clickDone}>Done</button>
+        </div>
+
       </div>
-      <div className='btn-add-user'>
-        <button className='buttonadmin' onClick={show_table_student}>
-          Add Student
-        </button>
-        <button className='buttonadmin' onClick={show_table_teacher}>
-          Add Teacher
-        </button>
-      </div>
+      
     </div>
   );
 }

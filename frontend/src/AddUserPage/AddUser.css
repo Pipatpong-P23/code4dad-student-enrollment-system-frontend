@@ -1,23 +1,61 @@
-.btn-add-user{
+.Addtopic {
+    display: flex;
+    justify-content: center;
+}
+
+.Addtext {
     margin-top: 20px;
+    color: azure;
+    font-size: xx-large;
 }
 
-.tableinputdata{
-    margin-top: 200px;
-    margin-bottom: 20px;
+.Adtable {
+    border: 2px solid black;
+    border-radius: 15px;
+    margin-top: 5px ;
+
 }
 
-.TableTable{
-    margin-top: 200px;
-    margin-bottom: 20px;
+.btn-add-user {
+     display: flex;
+     justify-content: center;
 }
 
-.title_table{
-    position: relative;
-    margin-top: 100px;
-    margin-bottom: 20px;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
+.btn-Add {
+    font-size: 0.9em;
+    margin: 20px 25px;
+    padding: 10px 200px;
+    border-radius: 100px;
+    background-color: rgb(247, 247, 247);
+}
 
+.btn-Add:hover {
+    transform: scaleX(1.1);
+    box-shadow: 7px 7px 15px rgb(0, 0, 0);
+    transition: 0.2s ease-in-out;
+    /* font-weight: 600; */
+    font-size: 0.9em;
+
+}
+
+.btn-done {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-admin {
+    font-size: 1em;
+    margin: 20px 25px;
+    padding: 10px 120px;
+    border-radius: 100px;
+    background-color: rgb(247, 247, 247);
+}
+
+.btn-admin:hover {
+    transform: scaleX(1.1);
+    box-shadow: 2px 3px 15px rgb(0, 0, 0);
+    transition: 0.2s ease-in-out;
+    /* font-weight: 600; */
+    font-size: 1em;
 }

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import "./NavbarStudent.css";
+import "./NavbarAdmin.css";
 import { FiMenu } from "react-icons/fi";
 import { GiSpellBook } from "react-icons/gi";
 
-function NavbarStudent({student_id}) {
+function NavbarAdmin({admin_id}) {
     const [clicked, setClicked] = useState(false);
 
     function logout(){
@@ -11,8 +11,8 @@ function NavbarStudent({student_id}) {
         window.location.href = '/';
     }
 
-    function HomePageStudent(){
-        window.location.href = '/homepagestudent';
+    function HomePageAdmin(){
+        window.location.href = '/homepageadmin';
     }
 
     return (
@@ -25,20 +25,16 @@ function NavbarStudent({student_id}) {
                 <FiMenu />
             </a>
             <div className='logo'>
-                <h4><a className='code44dad' onClick={HomePageStudent}>Code4Dad</a></h4>  <div className='Book'><GiSpellBook /></div>
+                <h4><a className='code44dad' onClick={HomePageAdmin}>Code4Dad</a></h4>  <div className='Book'><GiSpellBook /></div>
             </div>
 
             <div className='navbar'>
                 <ul id='drop' className={clicked ? "active" : ""}>
                     <li><a href="/homepagestudent">Homepage</a></li>
-                    <li> <a href='/enroll'> Enroll</a></li>
-                    <li> <a href='/change'> Change</a></li>
-                    <li> <a href='/drop'> Drop</a></li>
-                    <li> <a href='/score'> Score</a></li>
-                    <li> <a href='/transcript'> Transcript</a></li>
+                    <li> <a href='/add user'>Add User</a></li>
                 </ul>
                 <ul id='navbar'>
-                    <li> <a href=''>{student_id}</a> </li>
+                    <li> <a href=''>{admin_id}</a> </li>
                     <li> <a onClick={logout}>Logout</a> </li>
                 </ul>
             </div>
@@ -46,4 +42,4 @@ function NavbarStudent({student_id}) {
     );
 }
 
-export default NavbarStudent;
+export default NavbarAdmin;

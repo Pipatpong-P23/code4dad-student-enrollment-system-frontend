@@ -31,8 +31,8 @@
 
 .Book {
     font-size: 33px;
-    position: relative;
-    margin: -37px 140px  ;
+    position: fixed;
+    margin: -19px 140px;
 }
 .nav {
     display: flex;

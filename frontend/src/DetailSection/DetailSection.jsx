@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './DetailSection.css';
 import NavbarTeacher from '../Component/NavbarTeacher/NavbarTeacher';
-import { getUsername } from '../Authentication';
+import { getUsername, getRole, Logout} from '../Authentication';
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
 

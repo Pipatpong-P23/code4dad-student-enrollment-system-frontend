@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import './DropPage.css';
 import NavbarStudent from '../Component/NavbarStudent/NavbarStudent';
-import { getUsername } from '../Authentication';
+import { getUsername, getRole, Logout } from '../Authentication';
 import axios from 'axios';
 import DataTable from 'react-data-table-component';
 
 function DropPage() {
+  if (getRole() != 'student') {
+    Logout();
+  }
+  
   const student_id = getUsername();
   const [data_table, setData_table] = useState([]);
   const current_semester = 1;

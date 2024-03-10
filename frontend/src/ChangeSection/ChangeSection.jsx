@@ -4,9 +4,13 @@ import Footer from '../Component/Footer/Footer';
 import './ChangeSection.css';
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
-import { getUsername } from '../Authentication';
+import { getUsername, getRole, Logout } from '../Authentication';
 
 function ChangeSection() {
+  if (getRole() != 'student') {
+    Logout();
+  }
+  
   const student_id = getUsername();
   const current_semester = 1;
   const current_year = 2024;

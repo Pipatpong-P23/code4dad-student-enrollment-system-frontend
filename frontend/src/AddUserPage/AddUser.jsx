@@ -3,9 +3,13 @@ import NavbarAdmin from '../Component/NavbarAdmin/NavbarAdmin';
 import DataTable from 'react-data-table-component';
 import './AddUser.css';
 import axios from 'axios';
-import { getUsername } from '../Authentication';
+import { getUsername, getRole, Logout } from '../Authentication';
 
 function AddUser() {
+  if (getRole() != 'admin') {
+    Logout();
+  }
+  
   const [isTableStudent, setIsTableStudent] = useState(true);
   const [isTableTeacher, setIsTableTeacher] = useState(false);
   const [TableUSer, setTableUser] = useState('Add Student');

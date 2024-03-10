@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
 import NavbarStudent from '../Component/NavbarStudent/NavbarStudent';
-import { getUsername } from '../Authentication';
+import { getUsername, getRole, Logout } from '../Authentication';
 import DropdownDate from '../Component/DropdownDateOption/DropdownDate';
 import './HomePageStudent.css';
 
 function HomePageStudent() {
+  if (getRole() != 'student') {
+    Logout();
+  }
   const [selectedDate, setSelectedDate] = useState({ semester: '1', year: '2024' });
   const [data_table, setData_table] = useState([]);
   const student_id = getUsername();

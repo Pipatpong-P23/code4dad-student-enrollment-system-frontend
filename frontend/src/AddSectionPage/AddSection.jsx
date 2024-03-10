@@ -1,11 +1,15 @@
 import React , {useState, useEffect} from 'react'
 import NavbarAdmin from '../Component/NavbarAdmin/NavbarAdmin'
-import { getUsername } from '../Authentication'
+import { getUsername, getRole, Logout } from '../Authentication'
 import axios from 'axios'
 import './AddSection.css'
 import DataTable from 'react-data-table-component'
 
 function AddSection() {
+    if (getRole() != 'admin') {
+        Logout();
+    }
+    
     const admin_id = getUsername();
     const TOKEN = document.cookie.split('=')[1];
 

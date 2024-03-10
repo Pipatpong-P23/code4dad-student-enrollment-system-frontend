@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import NavbarStudent from '../Component/NavbarStudent/NavbarStudent';
-import { getUsername } from '../Authentication';
+import { getUsername, Logout, getRole} from '../Authentication';
 import axios from 'axios';
 import './TranscriptPage.css';
 
 function TranscriptPage() {
+  if (getRole() != 'student') {
+    Logout();
+  }
   const student_id = getUsername();
   const TOKEN = document.cookie.split('=')[1];
 

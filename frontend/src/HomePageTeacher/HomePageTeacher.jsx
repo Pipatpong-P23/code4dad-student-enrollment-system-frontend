@@ -1,12 +1,16 @@
 import React , {useState , useEffect} from 'react'
 import NavbarTeacher from '../Component/NavbarTeacher/NavbarTeacher'
-import { getUsername } from '../Authentication'
+import { getUsername, Logout, getRole  } from '../Authentication'
 import axios from 'axios'
 import DataTable from 'react-data-table-component'
 import DropdownDate from '../Component/DropdownDateOption/DropdownDate'
 import './HomePageTeacher.css'
 
 function HomePageTeacher() {
+    if (getRole() != 'teacher') {
+        Logout();
+    }
+
     const teacher_name = getUsername();
     const [selectedDate, setSelectedDate] = useState({ semester: '1', year: '2024' });
     const [isview, setIsview] = useState(false);
@@ -104,10 +108,6 @@ function HomePageTeacher() {
                     columns = {columns_section}
                     data = {dataSection}
                     />
-                </div>
-                <div className="tcbtn">
-                    <button className='tcbtn-1' onClick={ () => { window.location.href = '/add section'}}> <p>Add Section</p></button>
-                    <button className='tcbtn-1' onClick={ () => { window.location.href = '/add course'}}> <p>Add Course</p></button>
                 </div>
             </div>
         </div>

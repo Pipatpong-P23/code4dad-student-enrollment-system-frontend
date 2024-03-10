@@ -5,10 +5,13 @@ import Dropdown from './Dropdown/Dropdown';
 import DropdownDate from '../Component/DropdownDateOption/DropdownDate';
 import axios from 'axios';
 import Footer from '../Component/Footer/Footer';
-import { getUsername } from '../Authentication';
+import { getUsername, getRole, Logout } from '../Authentication';
 import './EnrollPage.css';
 
 function EnrollPage() {
+  if (getRole() != 'student') {
+    Logout();
+  }
   const [data_table, setData_table] = useState([]);
   const student_id = getUsername();
   const [course_id, setCourse_id] = useState('');

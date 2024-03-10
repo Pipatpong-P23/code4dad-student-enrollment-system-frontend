@@ -1,11 +1,16 @@
 import React from 'react'
 import NavbarAdmin from '../Component/NavbarAdmin/NavbarAdmin'
 import './HomePageAdmin.css'
+import { getUsername, getRole, Logout } from '../Authentication'
 
 function HomePageAdmin() {
+  if (getRole() != 'admin') {
+    Logout();
+  }
+  const AdminId = getUsername();
   return (
     <div className='bgAd'>
-      <NavbarAdmin admin_id='Admin'/>
+      <NavbarAdmin admin_id= {AdminId}/>
         <div className="Adcontainer">
 
           <div className='Adtopic'>

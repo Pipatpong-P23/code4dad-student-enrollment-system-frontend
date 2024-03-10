@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import NavbarAdmin from '../Component/NavbarAdmin/NavbarAdmin'; 
-import { getUsername } from '../Authentication';
+import { getUsername, getRole, Logout } from '../Authentication';
 import axios from 'axios';
 import './AddCourse.css';
 import DataTable from 'react-data-table-component';
 
 function AddCourse() {
-
+  if (getRole() != 'admin') {
+    Logout();
+  }
   const [dataInput, setDataInput] = useState({
     'Course ID': '',
     'Course Name': '',

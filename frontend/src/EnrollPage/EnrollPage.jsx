@@ -167,7 +167,7 @@ function EnrollPage() {
         </div>
 
         <div className='stdtable'>
-          <input type="text" placeholder='Search by anything...' value={searchText} onChange={handleSearch}/>
+          <input className='searchbar' type="text" placeholder='Search by anything...' value={searchText} onChange={handleSearch}/>
           <DataTable
             className='DataTable'
             columns={columns} 

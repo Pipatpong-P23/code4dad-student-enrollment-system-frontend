@@ -4,6 +4,7 @@ import NavbarAdmin from '../Component/NavbarAdmin/NavbarAdmin'
 import axios from 'axios'
 import { getUsername, getRole, Logout } from '../Authentication'
 import DataTable from 'react-data-table-component'
+import { IoMdSearch } from "react-icons/io";
 
 function DetailStudent() {
     if (getRole() != 'admin') {
@@ -82,7 +83,7 @@ function DetailStudent() {
         },
         {
             name : 'Delete',
-            cell : row => <button onClick={ () => handleDelete(row.student_id) }>Delete</button>
+            cell : row => <button className='btn-delete' onClick={ () => handleDelete(row.student_id) }>Delete</button>
         }
     ]
 
@@ -102,36 +103,41 @@ function DetailStudent() {
     }
 
     return (
-    <div>
+    <div className='bgAd'>
         <NavbarAdmin admin_id={adminID}/>
-        <div className="options">
-        <select value={selectedFaculty} onChange={e => setSelectedFaculty(e.target.value)}>
-            <option value="">Select Faculty</option>
-            {FacultyOption.map((faculty, index) => (
-            <option key={index} value={faculty}>{faculty}</option>
-            ))}
-        </select>
-        <select value={selectedMajor} onChange={e => setSelectedMajor(e.target.value)} disabled={!selectedFaculty}>
-            <option value="">Select Major</option>
-            {selectedFaculty && MajorOption
-            .filter(({faculty}) => faculty === selectedFaculty)[0]
-            .major.map((major, index) => (
-            <option key={index} value={major}>{major}</option>
-            ))}
-        </select>
+        <div className="Adcontainer">
+
+            <div className="options">
+                <select value={selectedFaculty} onChange={e => setSelectedFaculty(e.target.value)}>
+                    <option className='op-sl' value="">Select Faculty</option>
+                    {FacultyOption.map((faculty, index) => (
+                    <option key={index} value={faculty}>{faculty}</option>
+                    ))}
+                </select>
+                <select value={selectedMajor} onChange={e => setSelectedMajor(e.target.value)} disabled={!selectedFaculty}>
+                    <option className='op-sl' value="">Select Major</option>
+                    {selectedFaculty && MajorOption
+                    .filter(({faculty}) => faculty === selectedFaculty)[0]
+                    .major.map((major, index) => (
+                    <option key={index} value={major}>{major}</option>
+                    ))}
+                </select>
         
-        <div className="btnfilter">
-            <button onClick={ getStudentList }>view</button>
+                <div>
+                    <button className='btnfilter' onClick={ getStudentList }><IoMdSearch/></button>
+                </div>
+
+            </div>
+
+            <div className="Adtable">
+                <DataTable
+                name = "Student Data"
+                columns={columns}
+                data={data_student}
+                />
+            </div>
         </div>
 
-        </div>
-        <div className="TableStudentdata">
-            <DataTable
-            name = "Student Data"
-            columns={columns}
-            data={data_student}
-            />
-        </div>
     </div>
      )
 }

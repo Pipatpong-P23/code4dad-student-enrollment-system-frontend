@@ -29,3 +29,10 @@
     box-shadow: 0 0 10px grey;
     transition: 0.1s ease-in-out;
 }
+
+.searchbar {
+    position: relative;
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+}

@@ -1,4 +1,5 @@
 import React , {useState , useEffect} from 'react'
+import { IoMdSearch } from "react-icons/io";
 import NavbarTeacher from '../Component/NavbarTeacher/NavbarTeacher'
 import { getUsername, Logout, getRole  } from '../Authentication'
 import axios from 'axios'
@@ -95,7 +96,7 @@ function HomePageTeacher() {
             <div className='tccontainer'>
                 <div className='tcdropdd'>
                     <DropdownDate  onDateChange={handleDateChange}/>
-                    <button className ='tcviewbutton' onClick={view_section}>view</button>
+                    <button className ='tcviewbutton' onClick={view_section}><IoMdSearch/></button>
                 </div>
              
                 <div className='tctopic'>

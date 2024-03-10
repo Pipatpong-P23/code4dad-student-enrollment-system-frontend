@@ -101,18 +101,23 @@ function AddSection() {
     }
 
     return (
-        <div>
+        <div className='bgAd'>
             <NavbarAdmin admin_id={admin_id} />
-            <div className="tableinputsection">
-                <DataTable
-                name = "Table for input section"
-                columns = {coulums}
-                data = {dataTable}
-                />
+            <div className="Adcontainer">
+                
+                <div className="Adtable">
+                    <DataTable
+                    name = "Table for input section"
+                    columns = {coulums}
+                    data = {dataTable}
+                    />
+                </div>
+
+                <div className="Adbtn">
+                    <button className='Adbtn-done' onClick={ () => handleDone() }>Done</button>
+                </div>
             </div>
-            <div className="btndone">
-                <button onClick={ () => handleDone() }>Done</button>
-            </div>
+
         </div>
     )
 }

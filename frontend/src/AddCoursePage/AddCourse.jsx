@@ -53,7 +53,7 @@ function AddCourse() {
               value={dataInput['Course Type']}
             >
               {courseTypeOptions.map((type) => (
-                <option key={type} value={type}>{type}</option>
+                <option className='opselect' key={type} value={type}>{type}</option>
               ))}
             </select>
           );
@@ -65,7 +65,7 @@ function AddCourse() {
               value={dataInput['Grading Type']}
             >
               {gradingTypeOptions.map((type) => (
-                <option key={type} value={type}>{type}</option>
+                <option className='opselect' key={type} value={type}>{type}</option>
               ))}
             </select>
           );
@@ -126,18 +126,23 @@ function AddCourse() {
   }
 
   return (
-    <div>
+    <div className='bgAd'>
       <NavbarAdmin admin_id={admin_id} />
-      <div className='TableAddCourse'>
-        <DataTable
-          name='Add Course Table'
-          columns={columns}
-          data={dataTable}
-          noHeader
-          persistTableHead
-        />
+      <div className='Adcontainer'>
+
+        <div className="Adtable">
+          <DataTable
+            name='Add Course Table'
+            columns={columns}
+            data={dataTable}
+            noHeader
+            persistTableHead
+          />
+        </div>
+        <div className='Adbtn'>
+          <button className='Adbtn-done' onClick={addCourse}>Done</button>
+        </div>
       </div>
-      <button onClick={addCourse}> Done </button>
     </div>
   );
 }

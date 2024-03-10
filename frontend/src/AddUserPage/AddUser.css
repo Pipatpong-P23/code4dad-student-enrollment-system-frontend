@@ -35,7 +35,6 @@
     transition: 0.2s ease-in-out;
     /* font-weight: 600; */
     font-size: 0.9em;
-
 }
 
 .btn-done {
@@ -56,6 +55,11 @@
     transform: scaleX(1.1);
     box-shadow: 2px 3px 15px rgb(0, 0, 0);
     transition: 0.2s ease-in-out;
-    /* font-weight: 600; */
     font-size: 1em;
+}
+
+.inputdata {
+    border-radius: 100px;
+    padding: 5px 10px;
+    margin: 10px 20px;
 }

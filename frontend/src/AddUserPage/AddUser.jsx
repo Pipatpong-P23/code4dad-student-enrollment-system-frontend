@@ -60,7 +60,18 @@ function AddUser() {
     },
     {
       name: 'Input Data',
-      cell: row => <input type='text' className='inputdata' onChange={ (e) => handleInputChangeStudent(row.Data, e.target.value )} />,
+      cell: row => {
+        if (row.Data === 'Email') {
+          return (
+            <input placeholder='Ex.ppohZa@kmitl.ac.th' type='text' className='inputdata' onChange={ (e) => handleInputChangeStudent(row.Data, e.target.value )} />
+          )
+        }
+        else {
+          return (
+            <input type='text' className='inputdata' onChange={ (e) => handleInputChangeStudent(row.Data, e.target.value )} />
+          )
+        }
+      }
     },
   ];
 
@@ -71,7 +82,19 @@ function AddUser() {
     },
     {
       name: 'Input Data',
-      cell: row => <input type='text' className='inputdata' onChange={ (e) => handleInputChangeTeacher(row.Data, e.target.value )} />,
+      cell: row => {
+        if (row.Data === 'Email') {
+          return (
+            <input placeholder='Ex.SakchailuvCal@kmitl.ac.th' type='text' className='inputdata' onChange={ (e) => handleInputChangeTeacher(row.Data, e.target.value )} />
+          )
+        }
+        else {
+          return (
+            <input type='text' className='inputdata' onChange={ (e) => handleInputChangeTeacher(row.Data, e.target.value )} />
+            
+          )
+        }
+      }
     }
   ];
 

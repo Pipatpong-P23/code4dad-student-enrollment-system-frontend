@@ -16,6 +16,7 @@ import AddSection from './AddSectionPage/AddSection.jsx'
 import DetailSection from './DetailSection/DetailSection.jsx'
 import HomePageAdmin from './HomePageAdmin/HomePageAdmin.jsx'
 import AddUser from './AddUserPage/AddUser.jsx'
+import DetailStudent from './DetailStudentPage/DetailStudent.jsx'
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,11 @@ const router = createBrowserRouter([
   {
     path : '/add user',
     element : <AddUser/>
+  },
+  {
+    path : '/detail student',
+    element : <DetailStudent/>
+  
   }
 ])
 

@@ -11,7 +11,7 @@ function HomePageTeacher() {
     const [selectedDate, setSelectedDate] = useState({ semester: '1', year: '2024' });
     const [isview, setIsview] = useState(false);
     const [dataSection , setDataSection] = useState([]);
-
+    
     const handleDateChange = (semester, year) => {
         setSelectedDate({ semester, year });
     };
@@ -52,9 +52,13 @@ function HomePageTeacher() {
         },
         {
             name : 'Detail',
-            cell : row => <button className='detailbtn' onClick={() => { window.location.href = '/detail section'}}>detail</button>
+            cell : row => <button className='detailbtn' onClick={() => ClickDetail(row.course_id, row.section_number)}>detail</button>
         }
     ]
+
+    const ClickDetail = (course_id, section_number) => {
+        window.location.href = `/detail section?courseId=${course_id}&sectionNumber=${section_number}`;
+    }
 
     useEffect(() => {
         async function get_all_section() {

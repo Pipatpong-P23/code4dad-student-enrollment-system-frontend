@@ -18,6 +18,8 @@ function EnrollPage() {
   const [selected, setSelected] = useState({});
   const [value, setValue] = useState({ courseId: '', sectionId: '' });
   const TOKEN = document.cookie.split('=')[1];
+  const [searchText, setSearchText] = useState('');
+  const [realData, setRealData] = useState([]);
 
   const columns = [
     {
@@ -87,6 +89,7 @@ function EnrollPage() {
         const data_api = await axios.get(`http://oop.okusann.online:8088/get_all_section_by_semester_and_year/${current_semester}/${current_year}`);
         if (data_api.status === 200) {
           setData_table(data_api.data);
+          setRealData(data_api.data);
         } 
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -128,6 +131,16 @@ function EnrollPage() {
     }
   };
 
+  const handleSearch = (e) => {
+    setSearchText(e.target.value);
+
+    const filteredData = realData.filter(item => {
+      return item.schedule.toString().toLowerCase().includes(e.target.value.toLowerCase());
+    });
+
+    setData_table(filteredData);
+  };
+
   const handleInputChangeTable = (rows) => {
     setSelected(rows.selectedRows);
     if (rows.selectedRows.length === 1) {
@@ -149,6 +162,7 @@ function EnrollPage() {
         </div>
 
         <div className='stdtable'>
+          <input type="text" placeholder='Search by day...' value={searchText} onChange={handleSearch}/>
           <DataTable
             className='DataTable'
             columns={columns} 

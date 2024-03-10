@@ -1,26 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './DetailSection.css';
 import NavbarTeacher from '../Component/NavbarTeacher/NavbarTeacher';
 import { getUsername } from '../Authentication';
 import DataTable from 'react-data-table-component';
+import axios from 'axios';
 
 function DetailSection() {
   const teacher_id = getUsername();
   const [isAssignGrade, setIsAssignGrade] = useState(false);
   const [isAssignScore, setIsAssignScore] = useState(false);
-
   const [dataStudentList, setDataStudentList] = useState([]);
   const [score, setScore] = useState({ part1: 0, part2: 0, part3: 0, part4: 0 });
   const [grade, setGrade] = useState('');
 
-  const test_data = [
-    { name: 'A', student_id: '10111', faculty: 'IT', major: 'CS' },
-    { name: 'B', student_id: '22022', faculty: 'IT', major: 'CS' },
-    { name: 'C', student_id: '30003', faculty: 'IT', major: 'CS' },
-    { name: 'D', student_id: '44440', faculty: 'IT', major: 'CS' },
-    { name: 'E', student_id: '50505', faculty: 'IT', major: 'CS' },
-    { name: 'F', student_id: '66000', faculty: 'IT', major: 'CS' },
-  ];
+  const CourseID = new URLSearchParams(window.location.search).get('courseId');
+  const SectionNumber = new URLSearchParams(window.location.search).get('sectionNumber');
+
+  useEffect(() => {
+    console.log(CourseID, SectionNumber);
+    async function getDataStudentList() {
+      try {
+        const response = await axios.get(`http://oop.okusann.online:8088/get_detail_student_in_section/${CourseID}/${SectionNumber}`);
+        if (response.status === 200) {
+          console.log(response.data);
+          setDataStudentList(response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getDataStudentList();
+  }, []);
 
   let columns = [
     {
@@ -75,10 +85,28 @@ function DetailSection() {
   }
 
   if (isAssignGrade) {
-    columns.push({
+    columns.push(
+      {
+        name : 'Score Part 1',
+        selector: row => row.score_1,
+      },
+      {
+        name : 'Score Part 2',
+        selector: row => row.score_2,
+      },
+      {
+        name : 'Score Part 3',
+        selector: row => row.score_3,
+      },
+      {
+        name : 'Score Part 4',
+        selector: row => row.score_4,
+      },
+      {
       name: 'Grade',
       cell: row => <input type='text' className='inputgrade' onChange={(e) => handleGradeChange(row.student_id, e.target.value) }/>,
-    });
+      }
+    );
   }
 
   const clickAssignGrade = () => {
@@ -141,7 +169,7 @@ function DetailSection() {
           <DataTable
             name='student list in section'
             columns={columns}
-            data={test_data}
+            data={dataStudentList}
           />
         </div>
         <div className="tcbtn">

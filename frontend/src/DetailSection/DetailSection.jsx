@@ -15,12 +15,14 @@ function DetailSection() {
 
   const CourseID = new URLSearchParams(window.location.search).get('courseId');
   const SectionNumber = new URLSearchParams(window.location.search).get('sectionNumber');
+  const Semester = new URLSearchParams(window.location.search).get('semester');
+  const Year = new URLSearchParams(window.location.search).get('year');
 
   useEffect(() => {
     console.log(CourseID, SectionNumber);
     async function getDataStudentList() {
       try {
-        const response = await axios.get(`http://oop.okusann.online:8088/get_detail_student_in_section/${CourseID}/${SectionNumber}`);
+        const response = await axios.get(`http://oop.okusann.online:8088/get_detail_student_in_section/${CourseID}/${SectionNumber}/${Semester}/${Year}`);
         if (response.status === 200) {
           console.log(response.data);
           setDataStudentList(response.data);

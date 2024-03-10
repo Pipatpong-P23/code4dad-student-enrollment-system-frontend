@@ -61,7 +61,7 @@ function HomePageTeacher() {
     ]
 
     const ClickDetail = (course_id, section_number) => {
-        window.location.href = `/detail section?courseId=${course_id}&sectionNumber=${section_number}`;
+        window.location.href = `/detail section?courseId=${course_id}&sectionNumber=${section_number}&semester=${selectedDate.semester}&year=${selectedDate.year}`;
     }
 
     useEffect(() => {
@@ -75,14 +75,14 @@ function HomePageTeacher() {
                         setDataSection(response.data);
                     }
                     else if (response.data.length == 0){
-                        alert("No data found");
+                        alert("data not found");
                     }
                 }
                 else{
                     alert("Something went wrong");
                 }
                 }catch (error) {
-                    alert("No data found");
+                    console.log("Error", error);
                     return 
         }
     }

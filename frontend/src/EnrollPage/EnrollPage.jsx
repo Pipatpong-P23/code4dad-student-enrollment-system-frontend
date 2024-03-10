@@ -138,7 +138,9 @@ function EnrollPage() {
     setSearchText(e.target.value);
 
     const filteredData = realData.filter(item => {
-      return item.schedule.toString().toLowerCase().includes(e.target.value.toLowerCase());
+      return Object.keys(item).some(key =>
+        item[key].toString().toLowerCase().includes(e.target.value.toLowerCase())
+      );
     });
 
     setData_table(filteredData);
@@ -165,7 +167,7 @@ function EnrollPage() {
         </div>
 
         <div className='stdtable'>
-          <input type="text" placeholder='Search by day...' value={searchText} onChange={handleSearch}/>
+          <input type="text" placeholder='Search by anything...' value={searchText} onChange={handleSearch}/>
           <DataTable
             className='DataTable'
             columns={columns} 

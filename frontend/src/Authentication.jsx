@@ -14,12 +14,12 @@ class MyToken {
     }
 
     get decodedTokenRole() {
-        console.log(this.decodeTokenPart(1));
+        // console.log(this.decodeTokenPart(1));
         return this.decodeTokenPart(1); 
     }
 
     get decodedTokenUsername() {
-        console.log(this.decodeTokenPart(1));
+        // console.log(this.decodeTokenPart(1));
         return this.decodeTokenPart(1);
     }
 
@@ -42,7 +42,6 @@ function getCookie(name) {
 export const getRole = () => {
     const tokenString = getCookie('token');
     const token = new MyToken(tokenString);
-    console.log(token.role);
     return token.role;
 };
 

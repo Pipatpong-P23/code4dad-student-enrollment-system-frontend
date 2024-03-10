@@ -67,7 +67,6 @@
     transition: 0.3s ease-in-out;
     font-size: 1.3em;
     font-weight: 600;
-
 }
 
 .Adbtninteract-ATS {
@@ -80,6 +79,22 @@
 
 .Adbtninteract-ATS:hover {
     padding: 20px 270px;
+    box-shadow: 7px 7px 15px rgb(0, 0, 0);
+    transition: 0.3s ease-in-out;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.Adbtninteract-DS {
+    padding: 20px 310px;
+    border: 2px solid black;
+    border-radius: 100px;
+    margin: 15px;
+    font-size: 1.2em;
+}
+
+.Adbtninteract-DS:hover {
+    padding: 20px 330px;
     box-shadow: 7px 7px 15px rgb(0, 0, 0);
     transition: 0.3s ease-in-out;
     font-size: 1.3em;

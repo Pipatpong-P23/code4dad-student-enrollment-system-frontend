@@ -1,3 +1,32 @@
 .options{
-    margin: 200px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 35px 0;
+}
+
+.options .op-sl {
+    padding: 10px 20px;
+    border: 2px solid black;
+    border-radius: 100px;
+    margin-right: 100px;
+}
+
+.btnfilter {
+    border-radius: 100%;
+    padding: 8px 10px;
+    margin-left: 30px;
+}
+
+.btn-delete {
+    border-radius: 100px;
+    padding: 5px 8px;
+    border: 1px solid black;
+}
+
+.btn-delete:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 5px grey;
+    transition: 0.1s ease-in-out;
+    background-color: rgb(200, 200, 200);
 }

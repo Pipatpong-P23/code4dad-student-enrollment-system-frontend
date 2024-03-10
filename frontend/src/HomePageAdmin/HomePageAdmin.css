@@ -86,7 +86,7 @@
 }
 
 .Adbtninteract-DS {
-    padding: 20px 310px;
+    padding: 20px 290px;
     border: 2px solid black;
     border-radius: 100px;
     margin: 15px;
@@ -94,9 +94,9 @@
 }
 
 .Adbtninteract-DS:hover {
-    padding: 20px 330px;
+    padding: 20px 310px;
     box-shadow: 7px 7px 15px rgb(0, 0, 0);
     transition: 0.3s ease-in-out;
-    font-size: 1.3em;
+    font-size: 1.2em;
     font-weight: 600;
 }

@@ -1,4 +1,12 @@
-.TableAddCourse{
-    margin-top: 150px;
 
+.Adbtn-done {
+    padding: 10px 15px;
+    border: 2px solid black;
+    border-radius: 100px;
+}
+
+.Adbtn-done:hover {
+    transform: translateY(-5px);
+    box-shadow: 2px 3px 15px rgb(0, 0, 0);
+    transition: 0.2s ease-in-out;
 }

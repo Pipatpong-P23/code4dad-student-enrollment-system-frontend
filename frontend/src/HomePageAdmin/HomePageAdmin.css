@@ -47,8 +47,8 @@
 .Adbtninteract-AU:hover {
     padding: 20px 330px;
     box-shadow: 7px 7px 15px rgb(0, 0, 0);
-    transition: 0.3s ease-in-out;
-    font-size: 1.3em;
+    transition: 0.3s ease;
+    font-size: 1.2em;
     font-weight: 600;
 
 }
@@ -64,8 +64,8 @@
 .Adbtninteract-CC:hover {
     padding: 20px 310px;
     box-shadow: 7px 7px 15px rgb(0, 0, 0);
-    transition: 0.3s ease-in-out;
-    font-size: 1.3em;
+    transition: 0.3s ease;
+    font-size: 1.2em;
     font-weight: 600;
 
 }
@@ -81,7 +81,7 @@
 .Adbtninteract-ATS:hover {
     padding: 20px 270px;
     box-shadow: 7px 7px 15px rgb(0, 0, 0);
-    transition: 0.3s ease-in-out;
-    font-size: 1.3em;
+    transition: 0.3s ease;
+    font-size: 1.2em;
     font-weight: 600;
 }

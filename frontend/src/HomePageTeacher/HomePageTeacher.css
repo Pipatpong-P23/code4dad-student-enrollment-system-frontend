@@ -15,8 +15,8 @@
 }
 
 .tcdropdd .tcviewbutton {
-    border-radius: 100px;
-    padding: 10px 15px;
+    border-radius: 100%;
+    padding: 10px 12px;
     margin-left: 40px;
 }
 

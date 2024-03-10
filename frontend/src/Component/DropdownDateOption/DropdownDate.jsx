@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { IoMdArrowDropdown } from "react-icons/io";
 import './DropdownDate.css';
 
 function DropdownDate({ onDateChange }) {
@@ -25,7 +26,7 @@ function DropdownDate({ onDateChange }) {
   return (
     <div className='drop-container'>
         <div className='drop-1'>
-            <button className='drop-semester' onClick={toggleSemesterDropdown}>Semester {semester}</button>
+            <button className='drop-semester' onClick={toggleSemesterDropdown}><IoMdArrowDropdown/>Semester {semester}</button>
             {semesterDropdownOpen && (
               <div className='semester-content'>
                   <a href="#" onClick={(e) => {e.preventDefault(); selectSemester('1');}}>1</a>
@@ -34,7 +35,7 @@ function DropdownDate({ onDateChange }) {
             )}
         </div>
         <div className='drop-2'>
-            <button className='drop-year' onClick={toggleYearDropdown}>Year {year}</button>
+            <button className='drop-year' onClick={toggleYearDropdown}><IoMdArrowDropdown/>Year {year}</button>
             {yearDropdownOpen && (
               <div className='year-content'>
                   <a href="#" onClick={(e) => {e.preventDefault(); selectYear('2024');}}>2024</a>

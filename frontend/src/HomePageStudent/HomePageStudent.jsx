@@ -43,6 +43,10 @@ function HomePageStudent() {
       sortable: true,
     },
     {
+      name : 'Location',
+      selector: row => row.location,
+    },
+    {
       name: 'Schedule',
       selector: row => row.schedule,
       sortable: true,

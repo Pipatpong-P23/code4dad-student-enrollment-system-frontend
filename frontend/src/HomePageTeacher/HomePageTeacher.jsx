@@ -58,12 +58,12 @@ function HomePageTeacher() {
         },
         {
             name : 'Detail',
-            cell : row => <button className='detailbtn' onClick={() => ClickDetail(row.course_id, row.section_number)}>detail</button>
+            cell : row => <button className='detailbtn' onClick={() => ClickDetail(row.course_id, row.section_number, row.grading_type)}>detail</button>
         }
     ]
 
-    const ClickDetail = (course_id, section_number) => {
-        window.location.href = `/detail section?courseId=${course_id}&sectionNumber=${section_number}&semester=${selectedDate.semester}&year=${selectedDate.year}`;
+    const ClickDetail = (course_id, section_number, grade_type) => {
+        window.location.href = `/detail section?courseId=${course_id}&sectionNumber=${section_number}&semester=${selectedDate.semester}&year=${selectedDate.year}&gradeType=${grade_type}`;
     }
 
     useEffect(() => {
@@ -71,7 +71,7 @@ function HomePageTeacher() {
             try{
                 const response = await axios.get(`http://oop.okusann.online:8088/get_all_sections_taught_by_teacher_id/${teacher_name}/${selectedDate.semester}/${selectedDate.year}`);
                 if (response.status == 200) {
-                    console.log("OK", response.data);
+                    console.log("OoK", response.data);
                     if (response.data.length > 0) {
                         console.log(response.data);
                         setDataSection(response.data);

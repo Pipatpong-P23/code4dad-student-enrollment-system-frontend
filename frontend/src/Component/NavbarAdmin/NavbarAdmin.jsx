@@ -34,6 +34,7 @@ function NavbarAdmin({admin_id}) {
                     <li> <a href='/add user'>Add User</a></li>
                     <li> <a href='/add course'>Create Course</a></li>
                     <li> <a href='/add section'>Add Teacher in Section</a></li>
+                    <li> <a href='/detail student'>Detail Student</a></li>
                 </ul>
                 <ul id='navbar'>
                     <li> <a href=''>{admin_id}</a> </li>

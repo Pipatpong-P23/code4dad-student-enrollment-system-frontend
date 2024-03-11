@@ -162,7 +162,6 @@ function EnrollPage() {
   return (
     <div className='bgstd'>
       <NavbarStudent student_id={student_id}/>
-      <Dropdown />
       <div className='stdcontainer'>
         <div className='stdheadtb'>
           <h3>Course</h3>

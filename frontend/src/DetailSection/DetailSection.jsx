@@ -12,18 +12,19 @@ function DetailSection() {
   
   const teacher_id = getUsername();
   const [isEdit, setIsEdit] = useState(false);
-
+  const GradeTypeOptions = ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F'];
+  const GradePass_FailOptions = ['S', 'U'];
   const [dataStudentList, setDataStudentList] = useState([]);
   const [score, setScore] = useState({ score_1: 0, score_2: 0, score_3: 0, score_4: 0 });
   const [grade, setGrade] = useState('');
-
   const [columns, setColumns] = useState([]); 
 
   const CourseID = new URLSearchParams(window.location.search).get('courseId');
   const SectionNumber = new URLSearchParams(window.location.search).get('sectionNumber');
   const Semester = new URLSearchParams(window.location.search).get('semester');
   const Year = new URLSearchParams(window.location.search).get('year');
-
+  const GradeType = new URLSearchParams(window.location.search).get('gradeType');
+  
   const calculateTotalScore = (row) => {
     const { score_1, score_2, score_3, score_4 } = row.score;
     const totalScore = Number(score_1) + Number(score_2) + Number(score_3) + Number(score_4);
@@ -45,8 +46,6 @@ function DetailSection() {
             acc[student.student_id] = student.grade;
             return acc;
           }, {}));
-          console.log('score', score);
-          console.log('grade', grade);
         }
       } catch (error) {
         console.error(error);
@@ -83,6 +82,24 @@ function DetailSection() {
       },
     ];
 
+    const renderGradeDropdown = (row, grade, handleGradeChange, GradeType) => {
+      const options = GradeType === "grade" ? GradeTypeOptions : GradePass_FailOptions;
+      return (
+        <select
+          className='inputgrade'
+          defaultValue={row.grade}
+          // value={grade[row.student_id]}
+          onChange={(e) => handleGradeChange(row.student_id, e.target.value)}
+        >
+          {options.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      );
+    };
+
     if (isEdit) {
       updatedColumns.push(
         {
@@ -107,7 +124,8 @@ function DetailSection() {
         },
         {
           name: 'Grade',
-          cell: row => <input type='text' className='inputgrade' defaultValue={row.grade} onChange={(e) => handleGradeChange(row.student_id, e.target.value)} />,
+          cell: row => renderGradeDropdown(row, grade, handleGradeChange, GradeType),
+          width: '100px',
         }
       );
     } else {
@@ -135,6 +153,7 @@ function DetailSection() {
         {
           name: 'Grade',
           selector: row => row.grade,
+          width: '100px',
         }
       );
     }

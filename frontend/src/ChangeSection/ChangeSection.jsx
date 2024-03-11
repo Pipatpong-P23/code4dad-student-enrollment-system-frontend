@@ -5,6 +5,7 @@ import './ChangeSection.css';
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
 import { getUsername, getRole, Logout } from '../Authentication';
+import { CURRENT_SEMESTER, CURRENT_YEAR } from '../DateTime';
 
 function ChangeSection() {
   if (getRole() != 'student') {
@@ -12,8 +13,8 @@ function ChangeSection() {
   }
   
   const student_id = getUsername();
-  const current_semester = 1;
-  const current_year = 2023;
+  const current_semester = CURRENT_SEMESTER;
+  const current_year = CURRENT_YEAR;
   const [course_id, setCourse_id] = useState('');
   const [old_section, setOld_section] = useState(0);
   const [new_section, setNew_section] = useState(0);

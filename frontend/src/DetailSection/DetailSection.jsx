@@ -6,6 +6,10 @@ import DataTable from 'react-data-table-component';
 import axios from 'axios';
 
 function DetailSection() {
+  if (getRole() != 'teacher') {
+    Logout();
+  }
+  
   const teacher_id = getUsername();
   const [isAssignGrade, setIsAssignGrade] = useState(false);
   const [isAssignScore, setIsAssignScore] = useState(false);

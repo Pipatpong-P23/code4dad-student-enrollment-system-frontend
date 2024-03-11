@@ -7,6 +7,7 @@ import axios from 'axios';
 import Footer from '../Component/Footer/Footer';
 import { getUsername, getRole, Logout } from '../Authentication';
 import './EnrollPage.css';
+import { CURRENT_SEMESTER, CURRENT_YEAR } from '../DateTime';
 
 function EnrollPage() {
   if (getRole() != 'student') {
@@ -16,8 +17,8 @@ function EnrollPage() {
   const student_id = getUsername();
   const [course_id, setCourse_id] = useState('');
   const [section_number, setSection_number] = useState();
-  const current_semester = 1;
-  const current_year = 2023;
+  const current_semester = CURRENT_SEMESTER;
+  const current_year = CURRENT_SEMESTER;
   const [selected, setSelected] = useState({});
   const [value, setValue] = useState({ courseId: '', sectionId: '' });
   const TOKEN = document.cookie.split('=')[1];

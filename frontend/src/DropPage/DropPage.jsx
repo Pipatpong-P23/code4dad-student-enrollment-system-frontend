@@ -4,7 +4,7 @@ import NavbarStudent from '../Component/NavbarStudent/NavbarStudent';
 import { getUsername, getRole, Logout } from '../Authentication';
 import axios from 'axios';
 import DataTable from 'react-data-table-component';
-
+import { CURRENT_SEMESTER, CURRENT_YEAR } from '../DateTime';
 function DropPage() {
   if (getRole() != 'student') {
     Logout();
@@ -12,8 +12,8 @@ function DropPage() {
   
   const student_id = getUsername();
   const [data_table, setData_table] = useState([]);
-  const current_semester = 1;
-  const current_year = 2023;
+  const current_semester = CURRENT_SEMESTER;
+  const current_year = CURRENT_YEAR;
   const [section_number, setSection_number] = useState(0);
   const [course_id, setCourse_id] = useState('');
   const [selectedRows, setSelectedRows] = useState([]);

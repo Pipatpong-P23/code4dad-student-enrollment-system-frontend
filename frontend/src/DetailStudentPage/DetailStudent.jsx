@@ -41,15 +41,31 @@ function DetailStudent() {
             }
         }
         get_all_faculty_and_major();
-        console.log('xxxxxxxx' ,FacultyOption);
-        console.log('yyyyyyyy' ,MajorOption);
         
     }, []);
     
 
+    const confirmDelete = (student_id) => {
+        if (window.confirm('Are you sure you want to delete ' + student_id + ' ?')) {
+            handleDelete(student_id);
+        }
+    }
+
     const handleDelete = (student_id) => {
-        // delete student
-        console.log("delete student id: ", student_id)
+        async function delete_student() {
+            try {
+                const response = await axios.delete(`http://oop.okusann.online:8088/delete_user_by_username/${student_id}`);
+                if (response.status === 200) {
+                    console.log(response.data);
+                    alert('Delete Success');
+                    getStudentList();
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Delete Failed');
+            }
+        }
+        delete_student();
     }
 
     const columns = [
@@ -83,7 +99,7 @@ function DetailStudent() {
         },
         {
             name : 'Delete',
-            cell : row => <button className='btn-delete' onClick={ () => handleDelete(row.student_id) }>Delete</button>
+            cell : row => <button className='btn-delete' onClick={ () => confirmDelete(row.student_id) }>Delete</button>
         }
     ]
 

@@ -7,6 +7,7 @@ function HomePageAdmin() {
   if (getRole() != 'admin') {
     Logout();
   }
+  
   const AdminId = getUsername();
   return (
     <div className='bgAd'>

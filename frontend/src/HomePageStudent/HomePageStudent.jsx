@@ -5,13 +5,14 @@ import NavbarStudent from '../Component/NavbarStudent/NavbarStudent';
 import { getUsername, getRole, Logout } from '../Authentication';
 import DropdownDate from '../Component/DropdownDateOption/DropdownDate';
 import './HomePageStudent.css';
+import { CURRENT_SEMESTER , CURRENT_YEAR } from '../DateTime';
 
 function HomePageStudent() {
   if (getRole() != 'student') {
     Logout();
   }
-  
-  const [selectedDate, setSelectedDate] = useState({ 'semester' : '1' , 'year' : '2023' });
+
+  const [selectedDate, setSelectedDate] = useState({ 'semester' :  CURRENT_SEMESTER, 'year' : CURRENT_YEAR });
   const [data_table, setData_table] = useState([]);
   const student_id = getUsername();
   const [click_view, setClick_view] = useState(false);
@@ -74,15 +75,14 @@ function HomePageStudent() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data_api = await axios.get(`http://oop.okusann.online:8088/get_student_enrolled_courses/${student_id}/${selectedDate.semester}/${selectedDate.year}`);
+        const data_api = await axios.get(`http://oop.okusann.online:8088/get_student_transcript_by_semester_and_year/${student_id}/${selectedDate.semester}/${selectedDate.year}`);
         if (data_api.status === 200) {
-          setData_table(data_api.data);
-        } else {
-          alert(error.response.data.detail);
+          console.log(data_api.data.enrollments)
+          setData_table(data_api.data.enrollments);
         }
       } catch (error) {
         console.error('Error fetching data:', error);
-        alert(error.response.data.detail);
+        alert('Data Not Found');
       }
     }
     fetchData();

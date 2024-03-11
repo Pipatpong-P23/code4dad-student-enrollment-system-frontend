@@ -115,12 +115,12 @@ function ChangeSection() {
   
   
   useEffect(() => {
-    const URL = `http://oop.okusann.online:8088/get_student_enrolled_courses/${student_id}/${current_semester}/${current_year}`;
+    const URL = `http://oop.okusann.online:8088/get_student_transcript_by_semester_and_year/${student_id}/${current_semester}/${current_year}`;
     async function getEnrollCourse() {
       try {
         const response = await axios.get(URL);
         if (response.status === 200) {
-          setEnrolledCourses(response.data); 
+          setEnrolledCourses(response.data.enrollments); 
         }
       } catch (error) {
         alert('Cannot get enrolled courses');
@@ -130,7 +130,6 @@ function ChangeSection() {
   }, []);
 
   const handleInputChangeTable = (rows) => {
-    console.log("hello kuy")
     if (rows.selectedCount == 1) {
       const selected = rows.selectedRows[0];
       setOld_section(selected.section_number);
@@ -162,6 +161,7 @@ function ChangeSection() {
       "old_section_number": old_section,
       "new_section_number": new_section
     }
+    console.log(body);
     try {
       const response = await axios.post(URL, body, {headers: headers});
       if (response.status === 200) {

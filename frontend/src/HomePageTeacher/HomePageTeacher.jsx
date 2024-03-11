@@ -6,6 +6,7 @@ import axios from 'axios'
 import DataTable from 'react-data-table-component'
 import DropdownDate from '../Component/DropdownDateOption/DropdownDate'
 import './HomePageTeacher.css'
+import { CURRENT_SEMESTER, CURRENT_YEAR } from '../DateTime';
 
 function HomePageTeacher() {
     if (getRole() != 'teacher') {
@@ -13,7 +14,7 @@ function HomePageTeacher() {
     }
 
     const teacher_name = getUsername();
-    const [selectedDate, setSelectedDate] = useState({ semester: '1', year: '2023' });
+    const [selectedDate, setSelectedDate] = useState({ semester: CURRENT_SEMESTER, year: CURRENT_YEAR });
     const [isview, setIsview] = useState(false);
     const [dataSection , setDataSection] = useState([]);
     

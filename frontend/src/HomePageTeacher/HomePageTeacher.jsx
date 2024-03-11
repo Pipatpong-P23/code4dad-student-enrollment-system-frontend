@@ -13,7 +13,7 @@ function HomePageTeacher() {
     }
 
     const teacher_name = getUsername();
-    const [selectedDate, setSelectedDate] = useState({ semester: '1', year: '2024' });
+    const [selectedDate, setSelectedDate] = useState({ semester: '1', year: '2023' });
     const [isview, setIsview] = useState(false);
     const [dataSection , setDataSection] = useState([]);
     

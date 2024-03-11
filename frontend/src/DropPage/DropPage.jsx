@@ -13,7 +13,7 @@ function DropPage() {
   const student_id = getUsername();
   const [data_table, setData_table] = useState([]);
   const current_semester = 1;
-  const current_year = 2024;
+  const current_year = 2023;
   const [section_number, setSection_number] = useState(0);
   const [course_id, setCourse_id] = useState('');
   const [selectedRows, setSelectedRows] = useState([]);

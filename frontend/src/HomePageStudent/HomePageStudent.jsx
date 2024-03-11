@@ -10,14 +10,15 @@ function HomePageStudent() {
   if (getRole() != 'student') {
     Logout();
   }
-  const [selectedDate, setSelectedDate] = useState({ semester: '1', year: '2024' });
+  
+  const [selectedDate, setSelectedDate] = useState({ 'semester' : '1' , 'year' : '2023' });
   const [data_table, setData_table] = useState([]);
   const student_id = getUsername();
   const [click_view, setClick_view] = useState(false);
   const TOKEN = document.cookie.split('=')[1];
 
-  const handleDateChange = (semester, year) => {
-    setSelectedDate({ semester, year });
+  const handleDateChange = (new_semester, new_year) => {
+    setSelectedDate({ 'semester' : new_semester , 'year' : new_year });
   };
   
   const columns = [

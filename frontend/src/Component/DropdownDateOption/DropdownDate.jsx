@@ -3,11 +3,13 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import './DropdownDate.css';
 
 function DropdownDate({ onDateChange }) {
-  const [semester, setSemester] = useState("1"); 
-  const [year, setYear] = useState("2024"); 
+  const [semester, setSemester] = useState('1'); 
+  const [year, setYear] = useState('2023'); 
   const [semesterDropdownOpen, setSemesterDropdownOpen] = useState(false);
   const [yearDropdownOpen, setYearDropdownOpen] = useState(false);
-
+  const current_year = '2023';
+  const current_semester = '1';
+  
   const toggleSemesterDropdown = () => setSemesterDropdownOpen(!semesterDropdownOpen);
   const toggleYearDropdown = () => setYearDropdownOpen(!yearDropdownOpen);
 
@@ -38,9 +40,9 @@ function DropdownDate({ onDateChange }) {
             <button className='drop-year' onClick={toggleYearDropdown}><IoMdArrowDropdown/>Year {year}</button>
             {yearDropdownOpen && (
               <div className='year-content'>
-                  <a href="#" onClick={(e) => {e.preventDefault(); selectYear('2024');}}>2024</a>
-                  <a href="#" onClick={(e) => {e.preventDefault(); selectYear('2023');}}>2023</a>
-                  <a href="#" onClick={(e) => {e.preventDefault(); selectYear('2022');}}>2022</a>
+                  <a href="#" onClick={(e) => {e.preventDefault(); selectYear(current_year);}}>{current_year}</a>
+                  <a href="#" onClick={(e) => {e.preventDefault(); selectYear(current_year -1 );}}>{current_year - 1 }</a>
+                  <a href="#" onClick={(e) => {e.preventDefault(); selectYear(current_year -2);}}>{current_year - 2}</a>
               </div>
             )}
         </div>

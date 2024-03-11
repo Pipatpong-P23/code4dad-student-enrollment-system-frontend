@@ -13,7 +13,7 @@ function ChangeSection() {
   
   const student_id = getUsername();
   const current_semester = 1;
-  const current_year = 2024;
+  const current_year = 2023;
   const [course_id, setCourse_id] = useState('');
   const [old_section, setOld_section] = useState(0);
   const [new_section, setNew_section] = useState(0);

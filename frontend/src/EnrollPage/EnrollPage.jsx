@@ -17,7 +17,7 @@ function EnrollPage() {
   const [course_id, setCourse_id] = useState('');
   const [section_number, setSection_number] = useState();
   const current_semester = 1;
-  const current_year = 2024;
+  const current_year = 2023;
   const [selected, setSelected] = useState({});
   const [value, setValue] = useState({ courseId: '', sectionId: '' });
   const TOKEN = document.cookie.split('=')[1];

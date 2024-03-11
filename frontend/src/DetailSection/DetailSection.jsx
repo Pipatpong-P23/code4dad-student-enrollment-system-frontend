@@ -1,31 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import './DetailSection.css';
 import NavbarTeacher from '../Component/NavbarTeacher/NavbarTeacher';
-import { getUsername, getRole, Logout} from '../Authentication';
+import { getUsername, getRole, Logout } from '../Authentication';
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
 
 function DetailSection() {
   const teacher_id = getUsername();
-  const [isAssignGrade, setIsAssignGrade] = useState(false);
-  const [isAssignScore, setIsAssignScore] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+
   const [dataStudentList, setDataStudentList] = useState([]);
-  const [score, setScore] = useState({ part1: 0, part2: 0, part3: 0, part4: 0 });
+  const [score, setScore] = useState({ score_1: 0, score_2: 0, score_3: 0, score_4: 0 });
   const [grade, setGrade] = useState('');
+
+  const [columns, setColumns] = useState([]); 
 
   const CourseID = new URLSearchParams(window.location.search).get('courseId');
   const SectionNumber = new URLSearchParams(window.location.search).get('sectionNumber');
   const Semester = new URLSearchParams(window.location.search).get('semester');
   const Year = new URLSearchParams(window.location.search).get('year');
 
+  const calculateTotalScore = (row) => {
+    const { score_1, score_2, score_3, score_4 } = row.score;
+    const totalScore = Number(score_1) + Number(score_2) + Number(score_3) + Number(score_4);
+    return totalScore;
+};
+
+
   useEffect(() => {
-    console.log(CourseID, SectionNumber);
     async function getDataStudentList() {
       try {
         const response = await axios.get(`http://oop.okusann.online:8088/get_detail_student_in_section/${CourseID}/${SectionNumber}/${Semester}/${Year}`);
         if (response.status === 200) {
-          console.log(response.data);
           setDataStudentList(response.data);
+          setScore(response.data.reduce((acc, student) => {
+            acc[student.student_id] = student.score;
+            return acc;
+          }, {}));
+          setGrade(response.data.reduce((acc, student) => {
+            acc[student.student_id] = student.grade;
+            return acc;
+          }, {}));
+          console.log('score', score);
+          console.log('grade', grade);
         }
       } catch (error) {
         console.error(error);
@@ -34,105 +51,95 @@ function DetailSection() {
     getDataStudentList();
   }, []);
 
-  let columns = [
-    {
-      name: 'Student ID',
-      selector: row => row.student_id,
-      sortable: true,
-      width : '110px',
-    },
-    {
-      name: 'Student Name',
-      selector: row => row.name,
-      sortable: true,
-      width : '200px',
-    },
-    {
-      name: 'Faculty',
-      selector: row => row.faculty,
-      sortable: true,
-      width : '200px',
-    },
-    {
-      name: 'Major',
-      selector: row => row.major,
-      sortable: true,
-      width : '200px',
-    },
-  ];
+  useEffect(() => {
+    const updatedColumns = [
+      {
+        name: 'Student ID',
+        selector: row => row.student_id,
+        sortable: true,
+        width: '110px',
+      },
+      {
+        name: 'Student Name',
+        selector: row => row.name,
+        sortable: true,
+        width: '200px',
+      },
+      {
+        name: 'Faculty',
+        selector: row => row.faculty,
+        sortable: true,
+        width: '200px',
+      },
+      {
+        name: 'Major',
+        selector: row => row.major,
+        sortable: true,
+        width: '200px',
+      },
+    ];
 
-  if (isAssignScore) {
-    columns.push(
-      {
-      name: 'Score Part 1',
-      cell: row => < input type='text' className='inputscore' onChange={(e) => handleScoreChange(row.student_id, 'part1', e.target.value)} />, 
-      width : '100px',
-      },
-      {
-      name: 'Score Part 2',
-      cell: row => <input type='text' className='inputscore' onChange={(e) => handleScoreChange(row.student_id, 'part2', e.target.value)}  />,
-      width : '100px',
-      },
-      {
-      name: 'Score Part 3',
-      cell: row => <input type='text' className='inputscore' onChange={(e) => handleScoreChange(row.student_id, 'part3', e.target.value)}  />,
-      width : '100px',
-      },
-      {
-      name: 'Score Part 4',
-      cell: row => <input type='text' className='inputscore' onChange={(e) => handleScoreChange(row.student_id, 'part4', e.target.value)}  />,
-      width : '100px',
-      }
-    );
-  }
-
-  if (isAssignGrade) {
-    columns.push(
-      {
-        name : 'Score Part 1',
-        selector: row => row.score_1,
-      },
-      {
-        name : 'Score Part 2',
-        selector: row => row.score_2,
-      },
-      {
-        name : 'Score Part 3',
-        selector: row => row.score_3,
-      },
-      {
-        name : 'Score Part 4',
-        selector: row => row.score_4,
-      },
-      {
-      name: 'Grade',
-      cell: row => <input type='text' className='inputgrade' onChange={(e) => handleGradeChange(row.student_id, e.target.value) }/>,
-      }
-    );
-  }
-
-  const clickAssignGrade = () => {
-    setIsAssignGrade(!isAssignGrade);
-    setIsAssignScore(false);
-
-  }
-
-  const clickAssignScore = () => {
-    setIsAssignScore(!isAssignScore);
-    setIsAssignGrade(false);
-  }
-
- const clickDone = () => {
-    if (isAssignGrade) {
-      window.confirm('Are you sure to assign grade?');
-      PostGrade();
+    if (isEdit) {
+      updatedColumns.push(
+        {
+          name: 'Score Part 1',
+          cell: row => <input type='text' className='inputscore' defaultValue={row.score.score_1} onChange={(e) => handleScoreChange(row.student_id, 'score_1', e.target.value)} />,
+        },
+        {
+          name: 'Score Part 2',
+          cell: row => <input type='text' className='inputscore' defaultValue={row.score.score_2} onChange={(e) => handleScoreChange(row.student_id, 'score_2', e.target.value)} />,
+        },
+        {
+          name: 'Score Part 3',
+          cell: row => <input type='text' className='inputscore' defaultValue={row.score.score_3} onChange={(e) => handleScoreChange(row.student_id, 'score_3', e.target.value)} />,
+        },
+        {
+          name: 'Score Part 4',
+          cell: row => <input type='text' className='inputscore' defaultValue={row.score.score_4} onChange={(e) => handleScoreChange(row.student_id, 'score_4', e.target.value)} />,
+        },
+        {
+          name: 'Total Score',
+          selector: row => calculateTotalScore(row),
+        },
+        {
+          name: 'Grade',
+          cell: row => <input type='text' className='inputgrade' defaultValue={row.grade} onChange={(e) => handleGradeChange(row.student_id, e.target.value)} />,
+        }
+      );
+    } else {
+      updatedColumns.push(
+        {
+          name: 'Score Part 1',
+          selector: row => row.score.score_1,
+        },
+        {
+          name: 'Score Part 2',
+          selector: row => row.score.score_2,
+        },
+        {
+          name: 'Score Part 3',
+          selector: row => row.score.score_3,
+        },
+        {
+          name: 'Score Part 4',
+          selector: row => row.score.score_4,
+        },
+        {
+          name: 'Total Score',
+          selector: row => calculateTotalScore(row),
+        },
+        {
+          name: 'Grade',
+          selector: row => row.grade,
+        }
+      );
     }
-    else if (isAssignScore) {
-      window.confirm('Are you sure to assign score?');
-      PostScore();
-    }
-    setIsAssignGrade(false);
-    setIsAssignScore(false);
+
+    setColumns(updatedColumns);
+  }, [isEdit]);
+
+  const click_edit = () => {
+    setIsEdit(!isEdit);
   }
 
   const handleScoreChange = (studentId, part, value) => {
@@ -143,24 +150,63 @@ function DetailSection() {
         [part]: value,
       },
     }));
-    console.log(score)
-  };
-  
+  }
+
   const handleGradeChange = (studentId, value) => {
     setGrade(prevGrade => ({
       ...prevGrade,
       [studentId]: value,
     }));
-    console.log(grade)
   }
 
-  const PostScore = () => {
-    console.log("Score" , score)
-  };
+  const Score_and_Grade_to_dict = () => {
+    const dict_score_and_grade = {
+        'course_id': CourseID,
+        'section_number': SectionNumber,
+        'semester': Semester,
+        'year': Year,
+        'grade_and_score_dict': {}
+    };
 
-  const PostGrade = () => {
-    console.log("Grade" , grade)
-  };
+    dataStudentList.forEach(student => {
+        dict_score_and_grade.grade_and_score_dict[student.student_id] = {
+            'grade': grade[student.student_id],
+            'score': {
+                'score_1': score[student.student_id].score_1,
+                'score_2': score[student.student_id].score_2,
+                'score_3': score[student.student_id].score_3,
+                'score_4': score[student.student_id].score_4
+            }
+        };
+    });
+
+    return dict_score_and_grade;
+};
+
+  const clickDone = () => {
+    setIsEdit(false);
+    async function updateScoreAndGrade() {
+      const URL = 'http://oop.okusann.online:8088/assign_grade_and_score_to_multiple_student';
+      const headers = {
+        'TOKEN': teacher_id,
+      };
+      const body = Score_and_Grade_to_dict();
+      console.log('body' , body);
+
+      try {
+        const response = await axios.post(URL, body, { headers: headers });
+        if (response.status === 200) {
+          alert('Update Success');
+          window.location.reload();
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Update Failed');
+        window.location.reload();
+      }
+    }
+    updateScoreAndGrade();
+  }
 
   return (
     <div className='bgtc'>
@@ -176,11 +222,10 @@ function DetailSection() {
         </div>
         <div className="tcbtn">
           <div>
-            <button className='tcbtn-1' onClick={() => clickAssignGrade() }>Assign Grade</button>
-            <button className='tcbtn-1' onClick={() => clickAssignScore() }>Assign Score</button>
+            <button className='tcbtn-1' onClick={() => click_edit()}>Edit</button>
           </div>
           <div className='tcbtn-done'>
-            { (isAssignGrade || isAssignScore) && <button className='tcbtn-2' onClick={clickDone}>Done</button>}
+            {isEdit && <button className='tcbtn-2' onClick={clickDone}>Done</button>}
           </div>
         </div>
 

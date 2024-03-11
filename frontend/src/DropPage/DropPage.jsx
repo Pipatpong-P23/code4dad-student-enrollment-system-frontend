@@ -74,10 +74,11 @@ function DropPage() {
   }
 
   useEffect(() => {
-    axios.get(`http://oop.okusann.online:8088/get_student_enrolled_courses/${student_id}/${current_semester}/${current_year}`)
+    axios.get(`http://oop.okusann.online:8088/get_student_transcript_by_semester_and_year/${student_id}/2/2023`)
       .then((res) => {
         if (res.status === 200) {
-          setData_table(res.data);
+          console.log(res.data)
+          setData_table(res.data.enrollments);
         }
       })
       .catch((error) => {

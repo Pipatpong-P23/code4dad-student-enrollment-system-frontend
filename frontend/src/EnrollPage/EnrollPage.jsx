@@ -18,7 +18,7 @@ function EnrollPage() {
   const [course_id, setCourse_id] = useState('');
   const [section_number, setSection_number] = useState();
   const current_semester = CURRENT_SEMESTER;
-  const current_year = CURRENT_SEMESTER;
+  const current_year = CURRENT_YEAR;
   const [selected, setSelected] = useState({});
   const [value, setValue] = useState({ courseId: '', sectionId: '' });
   const TOKEN = document.cookie.split('=')[1];
@@ -92,6 +92,7 @@ function EnrollPage() {
       try {
         const data_api = await axios.get(`http://oop.okusann.online:8088/get_all_section_by_semester_and_year/${current_semester}/${current_year}`);
         if (data_api.status === 200) {
+          console.log(data_api.data, 'data')
           setData_table(data_api.data);
           setRealData(data_api.data);
         } 

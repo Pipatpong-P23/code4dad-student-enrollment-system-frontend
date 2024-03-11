@@ -1,12 +1,84 @@
-import React from 'react'
+import React , {useState, useEffect} from 'react'
 import './ScorePage.css'
 import NavbarStudent from '../Component/NavbarStudent/NavbarStudent'
 import DropdownDate from '../Component/DropdownDateOption/DropdownDate'
+import axios from 'axios'
+import { getRole, getUsername } from '../Authentication'
+import { CURRENT_SEMESTER, CURRENT_YEAR } from '../DateTime'
+import DataTable from 'react-data-table-component'
 
 function ScorePage() {
+  if (getRole() !== 'student') {
+    window.location.href = '/';
+  }
+
+  const stundet_id = getUsername()
+  const [dataTable , setDataTable] = useState([])
+  const [selectedDate, setSelectedDate] = useState({ semester: CURRENT_SEMESTER, year: CURRENT_YEAR });
+  const [isview, setIsview] = useState(false);
+  const columns = [
+  {
+    name : 'Course ID',
+    selector : row => row.course_id,
+  },
+  {
+    name : 'Course Name',
+    selector : row => row.course_name,
+  },
+  {
+    name : 'Section',
+    selector : row => row.section_number,
+  },
+  {
+    name : 'Credit',
+    selector : row => row.credit,
+  },
+  {
+    name : 'Score Part 1',
+    selector : row => row.score.score_1,
+  },
+  {
+    name : 'Score Part 2',
+    selector : row => row.score.score_2,
+  },
+  {
+    name : 'Score Part 3',
+    selector : row => row.score.score_3,
+  },
+  {
+    name : 'Score Part 4',
+    selector : row => row.score.score_4,
+  },
+  ]
+
+  useEffect(() => {
+    async function getScore() {
+      try {
+        const response = await axios.get(`http://oop.okusann.online:8088/get_student_transcript_by_semester_and_year/${stundet_id}/${selectedDate.semester}/${selectedDate.year}`);
+        if (response.status === 200) {
+          console.log("DATA" , response.data.enrollments);
+          setDataTable(response.data.enrollments);
+        }
+        else {
+          alert('Failed to fetch score data:');
+        }
+      } catch (error) {
+        alert('Error fetching score data:');
+      }
+    }
+    getScore();
+  }, [isview]);
+
+  const clickView = () => {
+    setIsview(!isview);
+  }
+
+  const handleDateChange = (semester, year) => {
+    setSelectedDate({ semester, year });
+  }
   return (
     <div className='bgstd'>
-      <NavbarStudent/>
+      <NavbarStudent student_id={stundet_id}/>
       <div className='stdcontainer'>
 
         <div className='stdtopic'>
@@ -14,8 +86,8 @@ function ScorePage() {
         </div>
 
         <div className='stddropdd'>
-            <DropdownDate/> 
-            <button className='stdviewdd'>view</button>
+            <DropdownDate  onDateChange={handleDateChange}  /> 
+            <button className='stdviewdd' onClick={clickView}>view</button>
         </div>
 
         <div className='stdheadtb'>
@@ -23,7 +95,11 @@ function ScorePage() {
         </div>
 
         <div className='stdtable'>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam at iusto facere soluta. Minima facere eius, voluptatem quisquam natus consectetur! Rerum harum consectetur, consequuntur itaque reiciendis, voluptatibus beatae veritatis laudantium natus consequatur totam neque, autem fugit dolore ut. Illo assumenda iste cupiditate quod ab architecto praesentium accusamus rerum harum, quidem ratione, explicabo, adipisci porro? Maiores necessitatibus aut voluptatem, cupiditate dolorem tempora corporis quidem veritatis officiis eum doloribus voluptates qui dolor dicta unde mollitia quod, nostrum et voluptas sunt aliquid rerum sint doloremque! Et omnis cumque aut, mollitia adipisci magnam, molestias, blanditiis delectus consequatur explicabo voluptates dicta ad molestiae ut. Asperiores, ipsum ex cumque odit ea ad possimus voluptatem atque vitae provident placeat itaque quo eveniet consectetur, libero voluptate incidunt repellat sit ipsam! Atque, officia non quis tempore amet facere dolores ipsam fuga itaque eaque vitae temporibus illo blanditiis delectus corporis at magnam suscipit cum quod! Cumque, nemo dicta fugiat ipsum suscipit a quod magni soluta, perferendis repellendus, accusantium repudiandae vel neque. Aliquid odit sapiente architecto sunt veritatis ipsum cupiditate laboriosam et sint optio obcaecati facilis itaque, officia, doloremque sequi aliquam perferendis numquam qui assumenda nemo repellendus? Veniam, ipsam sed, doloribus facilis soluta rem accusamus dolor quo repellat optio dignissimos excepturi quam. Adipisci odio a, iusto deleniti mollitia molestiae deserunt cumque, sapiente, perspiciatis non inventore earum voluptatum repellat magnam veniam sed ex similique repudiandae harum cupiditate ipsa aliquid molestias suscipit numquam! Fugiat vel quasi totam assumenda, aspernatur dolor molestiae iusto id possimus hic ut iste illum omnis quia delectus architecto voluptatibus sunt sint alias officia quidem similique quibusdam! Impedit sunt in animi eligendi excepturi, eius nostrum assumenda inventore totam perferendis aut sint vitae natus iure quidem neque dignissimos quo voluptatem soluta. Autem ducimus quo velit, officiis quis excepturi nihil temporibus, veniam nobis sunt similique natus hic enim possimus ullam suscipit. Recusandae reprehenderit dignissimos dolorum in maxime eligendi accusantium velit praesentium. Quae, totam! Sapiente doloremque earum recusandae accusantium culpa eaque ab, est, odio error aperiam saepe ipsam doloribus voluptatum ducimus velit soluta eos atque cumque impedit autem totam voluptatibus. Provident est cupiditate inventore error eius blanditiis omnis totam voluptatum sint exercitationem, odio amet reiciendis, mollitia quos asperiores nemo voluptas et eos culpa repellat nobis animi itaque. At explicabo facere facilis! Reiciendis nihil sequi vel blanditiis ipsum nesciunt ipsa beatae, exercitationem eligendi repellat atque suscipit, hic officia? Amet, eos odio! A, illo. Animi, ipsum quas quam cupiditate amet reiciendis autem, ullam obcaecati eum laborum vero nam ea? Voluptate iusto reprehenderit excepturi culpa, odio error maxime soluta alias non, laborum placeat provident quae nostrum unde? Aut modi, similique blanditiis molestias at est aperiam rem! Fugit minus, molestiae in officia quibusdam temporibus corporis, delectus velit, et maxime aliquid praesentium voluptatum architecto eos. Sunt impedit minus, odio quam exercitationem et beatae culpa repudiandae veniam doloribus. Perspiciatis repudiandae iusto laudantium maxime architecto voluptatem error fugiat quo ab, porro atque voluptate asperiores aspernatur veniam! Suscipit architecto maiores eos sunt, odit laboriosam quos incidunt vero dolor labore harum id vel neque voluptatum. Unde magni quis ratione labore commodi iure!</p>
+          <DataTable
+          name = 'score'
+          columns={columns}
+          data={dataTable}
+          />
         </div>
          
       </div>

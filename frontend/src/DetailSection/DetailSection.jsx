@@ -60,25 +60,25 @@ function DetailSection() {
         name: 'Student ID',
         selector: row => row.student_id,
         sortable: true,
-        width: '100px',
+        width: '120px',
       },
       {
         name: 'Student Name',
         selector: row => row.name,
         sortable: true,
-        width: '200px',
+        width: '170px',
       },
       {
         name: 'Faculty',
         selector: row => row.faculty,
         sortable: true,
-        width: '140px',
+        width: '125px',
       },
       {
         name: 'Major',
         selector: row => row.major,
         sortable: true,
-        width: '200px',
+        width: '180px',
       },
     ];
 
@@ -250,7 +250,7 @@ function DetailSection() {
   return (
     <div className='bgtc'>
       <NavbarTeacher teacher_id={teacher_id} />
-      <div className="tccontainer">
+      <div className="tccontainer02">
 
         <div className='tctable-stdlist'>
           <DataTable

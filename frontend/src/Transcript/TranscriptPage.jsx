@@ -19,21 +19,25 @@ function TranscriptPage() {
       name: 'Course ID',
       selector: row => row.course_id,
       sortable: true,
+      width: '100px'
     },
     {
       name: 'Course Name',
       selector: row => row.course_name,
       sortable: true,
+      width: '200px'
     },
     {
       name: 'Credit',
       selector: row => row.credit,
       sortable: true,
+      width: '100px'
     },
     {
       name: 'Grade',
       selector: row => row.grade,
       sortable: true,
+      width: '100px'
     }
   ];
 

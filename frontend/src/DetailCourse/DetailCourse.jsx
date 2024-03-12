@@ -6,6 +6,8 @@ import axios from 'axios';
 import DataTable from 'react-data-table-component';
 import { CURRENT_SEMESTER, CURRENT_YEAR } from '../DateTime';
 import { GiColiseum } from 'react-icons/gi';
+import { IoMdSearch } from "react-icons/io";
+
 
 function DetailCourse() {
     const [dataTable, setDataTable] = useState([]);
@@ -76,7 +78,7 @@ function DetailCourse() {
         },
         {
             name : 'Delete',
-            cell: row => <button onClick={() => handleDelete(row.course_id, row.section_number)}>Delete</button>,
+            cell: row => <button className='btn-delete' onClick={() => handleDelete(row.course_id, row.section_number)}>Delete</button>,
         }
     ];
 
@@ -137,79 +139,85 @@ function DetailCourse() {
     console.log('selectedMajor:', selectedMajor);
 
     return (
-        <div>
+        <div className='bgAd'>
             <NavbarAdmin admin_id={AdminId} />
-            <div className="options">
-                <label htmlFor='faculty'>Faculty:</label>
-                <select
-                    className='select'
-                    id='faculty'
-                    name='faculty'
-                    value={selectedFaculty}
-                    onChange={(e) => setSelectedFaculty(e.target.value)}
-                >
-                    <option value="" disabled>Please select faculty</option>
-                    {FacultyOption.map((faculty, index) => (
-                        <option key={index} value={faculty}>{faculty}</option>
-                    ))}
-                </select>
+            
+            <div className="Adcontainer">
 
-                <label htmlFor='major'>Major:</label>
-                <select
-                    className='select'
-                    value={selectedMajor}
-                    onChange={(e) => setSelectedMajor(e.target.value)}
-                    disabled={!selectedFaculty}
-                >
-                    <option className='op-sl' value="">Select Major</option>
-                    {selectedFaculty &&
-                        MajorOption.filter(({ faculty }) => faculty === selectedFaculty)[0]?.major.map((major, index) => (
-                            <option key={index} value={major}>{major}</option>
+                <div className="options">
+                    <label htmlFor='faculty'>Faculty:</label>
+                    <select
+                        className='select'
+                        id='faculty'
+                        name='faculty'
+                        value={selectedFaculty}
+                        onChange={(e) => setSelectedFaculty(e.target.value)}
+                    >
+                        <option value="" disabled>Please select faculty</option>
+                        {FacultyOption.map((faculty, index) => (
+                            <option key={index} value={faculty}>{faculty}</option>
                         ))}
-                </select>
+                    </select>
 
-                <label htmlFor='semester'>Semester:</label>
-                <select
-                    className='select'
-                    id='semester'
-                    name='semester'
-                    value={selectedSemester}
-                    onChange={(e) => setSelectedSemester(e.target.value)}
-                >
-                    {SemesterOptions.map((semester, index) => (
-                        <option key={index} value={semester}>{semester}</option>
-                    ))}
-                </select>
+                    <label htmlFor='major'>Major:</label>
+                    <select
+                        className='select'
+                        value={selectedMajor}
+                        onChange={(e) => setSelectedMajor(e.target.value)}
+                        disabled={!selectedFaculty}
+                    >
+                        <option className='op-sl' value="">Select Major</option>
+                        {selectedFaculty &&
+                            MajorOption.filter(({ faculty }) => faculty === selectedFaculty)[0]?.major.map((major, index) => (
+                                <option key={index} value={major}>{major}</option>
+                            ))}
+                    </select>
 
-                <label htmlFor='year'>Year:</label>
-                <select
-                    className='select'
-                    id='year'
-                    name='year'
-                    value={selectedYear}
-                    onChange={(e) => setSelectedYear(e.target.value)}
-                >
-                    {YearOptions.map((year, index) => (
-                        <option key={index} value={year}>{year}</option>
-                    ))}
-                </select>
+                    <label htmlFor='semester'>Semester:</label>
+                    <select
+                        className='select'
+                        id='semester'
+                        name='semester'
+                        value={selectedSemester}
+                        onChange={(e) => setSelectedSemester(e.target.value)}
+                    >
+                        {SemesterOptions.map((semester, index) => (
+                            <option key={index} value={semester}>{semester}</option>
+                        ))}
+                    </select>
 
-                <button className='btn-search' onClick={() => setIsSearch(true)}>Search</button>
+                    <label htmlFor='year'>Year:</label>
+                    <select
+                        className='select'
+                        id='year'
+                        name='year'
+                        value={selectedYear}
+                        onChange={(e) => setSelectedYear(e.target.value)}
+                    >
+                        {YearOptions.map((year, index) => (
+                            <option key={index} value={year}>{year}</option>
+                        ))}
+                    </select>
+
+                    <button className='btnfilter' onClick={() => setIsSearch(true)}><IoMdSearch/></button>
+                </div>
+                
+                <div className='Adtable'>
+                    {  dataTable.length === 0 ?
+                        <div className='no-data'>
+                            <GiColiseum />
+                            <h3 className='Nodata'>No data</h3>
+                        </div>
+                        :
+                        <DataTable
+                            columns={columns}
+                            data={dataTable}
+                        />
+                    }
+                </div>
+
             </div>
-
-            <div className='table'>
-                {  dataTable.length === 0 ?
-                    <div className='no-data'>
-                        <GiColiseum />
-                        <h3>No data</h3>
-                    </div>
-                    :
-                    <DataTable
-                        columns={columns}
-                        data={dataTable}
-                    />
-                }
-            </div>
+            
         </div>
     );
 }

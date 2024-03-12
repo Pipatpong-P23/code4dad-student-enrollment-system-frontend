@@ -31,7 +31,9 @@ function HomePageAdmin() {
             <div>
               <button className='Adbtninteract-DS' onClick={() => { window.location.href = '/detail student'}}>Detail Student</button>
             </div>
-            
+            <div>
+              <button className='Adbtninteract-DC' onClick={() => { window.location.href = '/detail course'}}>Detail Course</button>
+            </div>
           </div>
 
         </div>

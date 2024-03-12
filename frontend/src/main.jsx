@@ -17,6 +17,7 @@ import DetailSection from './DetailSection/DetailSection.jsx'
 import HomePageAdmin from './HomePageAdmin/HomePageAdmin.jsx'
 import AddUser from './AddUserPage/AddUser.jsx'
 import DetailStudent from './DetailStudentPage/DetailStudent.jsx'
+import DetailCourse from './DetailCourse/DetailCourse.jsx'
 
 const router = createBrowserRouter([
   {
@@ -74,7 +75,10 @@ const router = createBrowserRouter([
   {
     path : '/detail student',
     element : <DetailStudent/>
-  
+  },
+  {
+    path : '/detail course',
+    element : <DetailCourse/> 
   }
 ])
 

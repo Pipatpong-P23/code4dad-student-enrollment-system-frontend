@@ -18,6 +18,7 @@ function DetailCourse() {
     const [isSearch , setIsSearch] = useState(false);
     const [selectedSemester, setSelectedSemester] = useState(CURRENT_SEMESTER);
     const [selectedYear, setSelectedYear] = useState(CURRENT_YEAR);
+    const [searchText, setSearchText] = useState('');
 
     const handleDelete = (course_id, section_number) => {
         async function deleteCourse() {
@@ -131,6 +132,20 @@ function DetailCourse() {
         setIsSearch(false);
     }
 
+    const handleSearch = (e) => {
+        setSearchText(e.target.value);
+        if (e.target.value === '') {
+            getCourseList();
+        } else {
+            const filteredData = dataTable.filter((row) => {
+                return Object.keys(row).some((key) => {
+                    return row[key].toString().toLowerCase().includes(e.target.value.toLowerCase());
+                });
+            });
+            setDataTable(filteredData);
+        }
+    };
+    
     const AdminId = getUsername();
     const SemesterOptions = ['1', '2'];
     const YearOptions = [CURRENT_YEAR, CURRENT_YEAR - 1, CURRENT_YEAR - 2];
@@ -201,6 +216,8 @@ function DetailCourse() {
 
                     <button className='btnfilter' onClick={() => setIsSearch(true)}><IoMdSearch/></button>
                 </div>
+
+                <input className='searchbar' type="text" placeholder='Search by anything...' value={searchText} onChange={handleSearch}/>
                 
                 <div className='Adtable'>
                     {  dataTable.length === 0 ?

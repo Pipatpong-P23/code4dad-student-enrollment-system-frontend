@@ -18,11 +18,12 @@ function HomePageStudent() {
   const student_id = getUsername();
   const [click_view, setClick_view] = useState(false);
   const TOKEN = document.cookie.split('=')[1];
+  const [total_credit, setTotal_credit] = useState(0);
 
   const handleDateChange = (new_semester, new_year) => {
     setSelectedDate({ 'semester' : new_semester , 'year' : new_year });
   };
-  
+
   const columns = [
     {
       name: 'Course ID',
@@ -80,6 +81,12 @@ function HomePageStudent() {
         if (data_api.status === 200) {
           console.log(data_api.data.enrollments)
           setData_table(data_api.data.enrollments);
+          setTotal_credit(0);
+          for (let i = 0; i < data_api.data.enrollments.length; i++) {
+            setTotal_credit(total_credit => total_credit + data_api.data.enrollments[i].credit);
+          }
+
+          console.log('TOTAL CREDIt' , total_credit);
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -113,7 +120,7 @@ function HomePageStudent() {
         </div>
 
         <div className='stdheadtb'>
-          <h3>Class Schedule</h3>
+          <h3>Class Schedule | Credit : {total_credit} / 27</h3>
         </div>
 
         <div className='stdtable'>

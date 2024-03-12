@@ -10,7 +10,8 @@ function TranscriptPage() {
     Logout();
   }
   const student_id = getUsername();
-  const TOKEN = document.cookie.split('=')[1];
+  const TOKEN = document.cookie.split('=')[1]; // Assuming you are using this TOKEN somewhere for your requests
+  const [gps , setGps] = useState(0);
 
   const [data_table, setData_table] = useState([]);
 
@@ -41,43 +42,54 @@ function TranscriptPage() {
     }
   ];
 
+  function ParseFloat(num, precision) {
+    if (num == 'N/A') return num;
+    return parseFloat(num).toFixed(precision);
+  }
+
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://oop.okusann.online:8088/get_all_student_transcripts/${student_id}`);
+        const response = await axios.get(`http://oop.okusann.online:8088/get_all_student_transcripts/${student_id}`, {
+          headers: { Authorization: `Bearer ${TOKEN}` } // Ensure you are sending the TOKEN correctly
+        });
         if (response.status === 200) {
+          console.log('Data fetched:', response.data);
           setData_table(response.data);
-          console.log(response.data);
+
         } else {
-          console.error('Failed to fetch test_table data:', response.status);
+          console.error('Failed to fetch data:', response.status);
         }
       } catch (error) {
-        console.error('Error fetching test_table data:', error);
+        console.error('Error fetching data:', error);
       }
     }
 
     fetchData();
-  }, []); 
+  }, [student_id]); // Added dependency on student_id for re-fetching if it changes
 
   return (
     <div className='bgstd'>
       <NavbarStudent student_id={student_id}/>
       <div className='transcontainer'>
-        
         <div className='topictrans'>
           {data_table.map((transcript, index) => (
             <div key={index}>
-              <h3 className='headTran'>{` Transcript semester : ${transcript.semester} year : ${transcript.year} `}</h3>
+                <h3 className='headTran'>{`Transcript: Semester ${transcript.semester}, Year ${transcript.year}, GPA: ${ParseFloat(transcript.gps, 2)}`}</h3>
               <div className="std-transtb">
                 <DataTable
                   columns={columns}
                   data={transcript.enrollments}
-                />                
+                  noHeader
+                  defaultSortField="id"
+                  defaultSortAsc={false}
+                  highlightOnHover
+                />
               </div>
             </div>
           ))}
         </div>
-        <div className='transtable'> 
+        <div className='transtable'>
           {/* Additional content or tables can be placed here if needed */}
         </div>
       </div>

@@ -39,11 +39,14 @@ function AddCourse() {
     { Data: 'Credit' },
     { Data: 'Course Type' },
     { Data: 'Grading Type' },
+  ];
+
+  const dataAdd_Course_to_Major = [
+    { Data: 'Course ID' },
     { Data: 'Faculty' },
     { Data: 'Major' },
     { Data: 'Course Group' },
   ];
-
 
   const TOKEN = document.cookie.split('=')[1];
 
@@ -53,9 +56,11 @@ function AddCourse() {
   const [isAddPre, setAddPre] = useState(false);
   const [isCreateCourse, setCreateCourse] = useState(true);
   const [isAddCo, setAddCo] = useState(false);
+  const [isAddCourse_to_Major, setAddCourse_to_Major] = useState(false);
   const [dataTable, setDataTable] = useState(dataCreate_Course);
   const [FacultyOption, setFacultyOption] = useState([]);
   const [MajorOption, setMajorOption] = useState([{faculty: '', major: []}]);
+
 
   useEffect(() => {
     async function get_all_faculty_and_major() {
@@ -276,11 +281,12 @@ function AddCourse() {
         }
       }
       catch (error) {
-        alert(error.response.data.detail, " asfsaf");
+        alert(error.response.data.detail);
       }
     }
     add_course_to_major();
   }
+
 
   const addCo = () => {
     async function addCo() {
@@ -332,7 +338,7 @@ function AddCourse() {
         const response = await axios.post(URL, body, {headers: headers});
 
         if (response.status === 200) {
-          addCourse_to_Major();
+          alert('Add course success');
         } else {
           alert('Add course failed');
         }
@@ -353,6 +359,9 @@ function AddCourse() {
       addPre();
     } else if (isAddCo && window.confirm('Are you sure you want to add this co-requisite course?')) {
       addCo();
+    }
+    else if (isAddCourse_to_Major && window.confirm('Are you sure you want to add this course to major?')) {
+      addCourse_to_Major();
     }
   }
 
@@ -378,6 +387,7 @@ function AddCourse() {
     setCreateCourse(true);
     setAddPre(false);
     setAddCo(false);
+    setAddCourse_to_Major(false);
     setDataTable(dataCreate_Course);
   }
 
@@ -386,6 +396,7 @@ function AddCourse() {
     setCreateCourse(false);
     setAddPre(true);
     setAddCo(false);
+    setAddCourse_to_Major(false);
     setDataTable(dataPre_requisite);
   }
 
@@ -394,9 +405,19 @@ function AddCourse() {
     setCreateCourse(false);
     setAddCo(true);
     setAddPre(false);
+    setAddCourse_to_Major(false);
     setDataTable(dataCo_requisite);
   }
 
+  const click_add_course_to_major = () => {
+    clearInput();
+    setCreateCourse(false);
+    setAddCo(false);
+    setAddPre(false);
+    setAddCourse_to_Major(true);
+    setDataTable(dataAdd_Course_to_Major);
+  }
+  
   return (
     <div className='bgAd'>
       <NavbarAdmin admin_id={admin_id} />
@@ -404,6 +425,7 @@ function AddCourse() {
       <div className='Adcontainer'> 
         <div className="btn-add-user">
           <button className='btn-Add02' onClick={() => click_create_course() }>Create Course</button>
+          <button className='btn-Add02'onClick={() => click_add_course_to_major() } >Add Course to Major</button>
           <button className='btn-Add02'onClick={() => click_add_pre() } >Add Pre-requisite Course</button>
           <button className='btn-Add02'onClick={() => click_Co() } >Add Co-requisite Course</button>
         </div>

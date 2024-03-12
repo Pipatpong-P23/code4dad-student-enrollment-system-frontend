@@ -61,7 +61,7 @@ function DetailCourse() {
         },
         {
             name : 'Teacher',
-            selector: row => row.teacher_id,
+            selector: row => row.teacher,
         },
         {
             name : 'Number of Student',

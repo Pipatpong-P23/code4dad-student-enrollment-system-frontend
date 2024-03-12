@@ -72,7 +72,7 @@ function DetailSection() {
         name: 'Faculty',
         selector: row => row.faculty,
         sortable: true,
-        width: '200px',
+        width: '140px',
       },
       {
         name: 'Major',

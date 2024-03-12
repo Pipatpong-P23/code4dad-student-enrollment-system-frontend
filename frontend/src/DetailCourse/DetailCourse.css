@@ -2,3 +2,12 @@
     margin: 100px 20px;
     padding: 10px 0;
 }
+
+.no-data {
+    color: azure;
+    font-size: 1.5em;
+}
+
+.Nodata {
+    color: azure;
+}

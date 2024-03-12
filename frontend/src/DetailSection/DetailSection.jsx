@@ -6,31 +6,31 @@ import DataTable from 'react-data-table-component';
 import axios from 'axios';
 
 function DetailSection() {
-  if (getRole() != 'teacher') {
+  if (getRole() !== 'teacher') {
     Logout();
   }
-  
+
   const teacher_id = getUsername();
   const [isEdit, setIsEdit] = useState(false);
   const GradeTypeOptions = ['N/A', 'A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F'];
   const GradePass_FailOptions = ['S', 'U'];
   const [dataStudentList, setDataStudentList] = useState([]);
-  const [score, setScore] = useState({ score_1: 0, score_2: 0, score_3: 0, score_4: 0 });
-  const [grade, setGrade] = useState('');
-  const [columns, setColumns] = useState([]); 
+  const [score, setScore] = useState({});
+  const [grade, setGrade] = useState({});
+  const [columns, setColumns] = useState([]);
+  const [totalScore, setTotalScore] = useState(0); // State for total score
 
   const CourseID = new URLSearchParams(window.location.search).get('courseId');
   const SectionNumber = new URLSearchParams(window.location.search).get('sectionNumber');
   const Semester = new URLSearchParams(window.location.search).get('semester');
   const Year = new URLSearchParams(window.location.search).get('year');
   const GradeType = new URLSearchParams(window.location.search).get('gradeType');
-  
+
   const calculateTotalScore = (row) => {
     const { score_1, score_2, score_3, score_4 } = row.score;
     const totalScore = Number(score_1) + Number(score_2) + Number(score_3) + Number(score_4);
     return totalScore;
-};
-
+  };
 
   useEffect(() => {
     async function getDataStudentList() {
@@ -88,7 +88,6 @@ function DetailSection() {
         <select
           className='inputgrade'
           defaultValue={row.grade}
-          // value={grade[row.student_id]}
           onChange={(e) => handleGradeChange(row.student_id, e.target.value)}
         >
           {options.map((option) => (
@@ -117,10 +116,6 @@ function DetailSection() {
         {
           name: 'Score Part 4',
           cell: row => <input type='text' className='enterscore' defaultValue={row.score.score_4} onChange={(e) => handleScoreChange(row.student_id, 'score_4', e.target.value)} />,
-        },
-        {
-          name: 'Total Score',
-          selector: row => calculateTotalScore(row),
         },
         {
           name: 'Grade',
@@ -173,23 +168,17 @@ function DetailSection() {
         [part]: value,
       },
     }));
-  
-    const updatedTotalScore = calculateTotalScore({
-      ...dataStudentList.find(student => student.student_id === studentId),
-      score: { ...score[studentId], [part]: value }
-    });
-  
-    setDataStudentList(prevData => prevData.map(student => {
-      if (student.student_id === studentId) {
-        return { ...student, totalScore: updatedTotalScore };
-      }
-      return student;
-    }));
-  }
-  
-  
-  
 
+    const updatedTotalScore = dataStudentList.reduce((total, student) => {
+      if (student.student_id === studentId) {
+        total += Number(value);
+      } else {
+        total += calculateTotalScore(student);
+      }
+      return total;
+    }, 0);
+    setTotalScore(updatedTotalScore);
+  }
 
   const handleGradeChange = (studentId, value) => {
     setGrade(prevGrade => ({
@@ -200,27 +189,27 @@ function DetailSection() {
 
   const Score_and_Grade_to_dict = () => {
     const dict_score_and_grade = {
-        'course_id': CourseID,
-        'section_number': SectionNumber,
-        'semester': Semester,
-        'year': Year,
-        'grade_and_score_dict': {}
+      'course_id': CourseID,
+      'section_number': SectionNumber,
+      'semester': Semester,
+      'year': Year,
+      'grade_and_score_dict': {}
     };
 
     dataStudentList.forEach(student => {
-        dict_score_and_grade.grade_and_score_dict[student.student_id] = {
-            'grade': grade[student.student_id],
-            'score': {
-                'score_1': Number(score[student.student_id].score_1),
-                'score_2': Number(score[student.student_id].score_2),
-                'score_3': Number(score[student.student_id].score_3),
-                'score_4': Number(score[student.student_id].score_4)
-            }
-        };
+      dict_score_and_grade.grade_and_score_dict[student.student_id] = {
+        'grade': grade[student.student_id],
+        'score': {
+          'score_1': Number(score[student.student_id].score_1),
+          'score_2': Number(score[student.student_id].score_2),
+          'score_3': Number(score[student.student_id].score_3),
+          'score_4': Number(score[student.student_id].score_4)
+        }
+      };
     });
 
     return dict_score_and_grade;
-};
+  };
 
   const clickDone = () => {
     setIsEdit(false);
@@ -230,7 +219,7 @@ function DetailSection() {
         'TOKEN': teacher_id,
       };
       const body = Score_and_Grade_to_dict();
-      console.log('body' , body);
+      console.log('body', body);
 
       try {
         const response = await axios.post(URL, body, { headers: headers });

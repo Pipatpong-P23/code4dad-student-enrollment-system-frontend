@@ -11,6 +11,7 @@ function AddCourse() {
   }
   const [dataInput, setDataInput] = useState({
     'Course ID': '',
+    'Section Number': '',
     'Course Name': '',
     'Credit': '',
     'Course Type': '',
@@ -18,7 +19,19 @@ function AddCourse() {
     'Faculty': '',
     'Major': '',
     'Course Group': '',
+    'Pre-requisite Course ID': '',
+    'Co-requisite Course ID': '',
+    'Co-requisite Section Number': '',
+
   });
+
+  const dataCo_requisite = [
+    { Data: 'Course ID' },
+    { Data: 'Section Number' },
+    { Data: 'Co-requisite Course ID' },
+    { Data: 'Co-requisite Section Number' },
+  ];
+
 
   const dataCreate_Course = [
     { Data: 'Course ID' },
@@ -58,10 +71,10 @@ function AddCourse() {
                 setFacultyOption(faculties);
                 setMajorOption(majors);
             } else {
-                console.error('Failed to fetch faculty and major data:', response.status);
+                console.error('Failed to fetch faculty and major data');
             }
         } catch (error) {
-            console.error('Error fetching faculty and major data:', error);
+            console.error('Error fetching faculty and major data');
         }
     }
     get_all_faculty_and_major();
@@ -228,11 +241,11 @@ function AddCourse() {
           alert('Add pre-requisite course success');
           window.location.reload();
         } else {
-          alert(response.data.detail);
+          alert('Add pre-requisite course failed');
         }
       }
       catch (error) {
-        alert(error.response.data.detail);
+        alert('Add pre-requisite course failed');
       }
     }
     addPre();
@@ -259,16 +272,45 @@ function AddCourse() {
           alert('Add course to major success');
           window.location.reload();
         } else {
-          console.log("NONONONO p")
-          alert(response.data.detail, " asfasfafsaEEE");
+          alert('Add course to major failed');
         }
       }
       catch (error) {
-        console.log("NONONON")
         alert(error.response.data.detail, " asfsaf");
       }
     }
     add_course_to_major();
+  }
+
+  const addCo = () => {
+    async function addCo() {
+      try {
+        const URL = `http://oop.okusann.online:8088/add_co_requisite_to_course_section`;
+        const headers = {
+          "TOEKN": TOKEN,
+        }
+        const body = {
+          "course_id": dataInput['Course ID'],
+          "section_number" : Number(dataInput['Section Number']),
+          "co_requisite_course_id": dataInput['Co-requisite Course ID'],
+          "co_requisite_section_number": Number(dataInput['Co-requisite Section Number']),
+        };
+
+        console.log("BODY " ,body);
+
+        const response = await axios.post(URL, body, {headers: headers});
+        if (response.status === 200) {
+          alert('Add co-requisite course success');
+          window.location.reload();
+        } else {
+          alert('Add co-requisite course failed');
+        }
+      }
+      catch (error) {
+        alert('Add co-requisite course failed');
+      }
+    }
+    addCo();
   }
 
   const addCourse = () => {
@@ -290,15 +332,14 @@ function AddCourse() {
         const response = await axios.post(URL, body, {headers: headers});
 
         if (response.status === 200) {
-          console.log("PASS STEP 1")
           addCourse_to_Major();
         } else {
-          alert(response.data.detail);
+          alert('Add course failed');
         }
       }
       catch (error) {
-        console.error('Error fetching data:', error);
-        alert(error.response.data.detail);
+        console.error('Error fetching data');
+        alert('Add course failed');
       }
     }
     CreateCourse();
@@ -310,12 +351,15 @@ function AddCourse() {
       addCourse();
     } else if (isAddPre && window.confirm('Are you sure you want to add this pre-requisite course?')) {
       addPre();
+    } else if (isAddCo && window.confirm('Are you sure you want to add this co-requisite course?')) {
+      addCo();
     }
   }
 
   const clearInput = () => {
     setDataInput({
       'Course ID': '',
+      'Section Number': '',
       'Course Name': '',
       'Credit': '',
       'Course Type': '',
@@ -324,6 +368,8 @@ function AddCourse() {
       'Major': '',
       'Course Group': '',
       'Pre-requisite Course ID': '',
+      'Co-requisite Course ID': '',
+      'Co-requisite Section Number': '',
     });
   }
   
@@ -331,6 +377,7 @@ function AddCourse() {
     clearInput();
     setCreateCourse(true);
     setAddPre(false);
+    setAddCo(false);
     setDataTable(dataCreate_Course);
   }
 
@@ -338,6 +385,7 @@ function AddCourse() {
     clearInput();
     setCreateCourse(false);
     setAddPre(true);
+    setAddCo(false);
     setDataTable(dataPre_requisite);
   }
 
@@ -346,7 +394,7 @@ function AddCourse() {
     setCreateCourse(false);
     setAddCo(true);
     setAddPre(false);
-    setDataTable(dataPre_requisite);
+    setDataTable(dataCo_requisite);
   }
 
   return (

@@ -16,17 +16,17 @@
 
 .stdcontainer .stddropdd {
     margin-top: 15px;
-    display: flex-end;
+    display: flex-start;
     justify-content: center;
     z-index: 3;
 }
 
 .stdviewdd {
     position: relative;
-    right: -725px;
+    /* right: -725px; */
     padding: 10px 15px;
     border-radius: 100px;
-    margin-left: 20px;
+    margin-left: 50px;
 }
 
 .stdviewdd:hover {

@@ -118,6 +118,10 @@ function AddSection() {
         <div className='bgAd'>
             <NavbarAdmin admin_id={admin_id} />
             <div className="Adcontainer">
+
+                <div className='stdheadtb'>
+                    <h3>Add Teacher</h3>
+                </div>
                 
                 <div className="Adtable">
                     <DataTable
@@ -127,8 +131,8 @@ function AddSection() {
                     />
                 </div>
 
-                <div className="Adbtn">
-                    <button className='Adbtn-done' onClick={ () => handleDone() }>Done</button>
+                <div className="btn-done">
+                    <button className='btn-admin' onClick={ () => handleDone() }>Done</button>
                 </div>
             </div>
 

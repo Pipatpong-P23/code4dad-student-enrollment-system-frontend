@@ -30,7 +30,7 @@ function NavbarAdmin({admin_id}) {
 
             <div className='navbar'>
                 <ul id='drop' className={clicked ? "active" : ""}>
-                    <li><a href="/homepagestudent">Homepage</a></li>
+                    <li><a href="/homepageadmin">Homepage</a></li>
                     <li> <a href='/add user'>Add User</a></li>
                     <li> <a href='/add course'>Create Course</a></li>
                     <li> <a href='/add section'>Add Teacher in Section</a></li>

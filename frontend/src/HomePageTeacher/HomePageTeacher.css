@@ -21,14 +21,12 @@
 }
 
 .tcviewbutton:hover {
-    background-color: rgb(247, 247, 247);
+    background-color: rgb(200, 200, 200);
     color: black;
     transform: translateY(-2px);
     box-shadow: 0 0 10px black;
-    /* font-size: medium; */
-    /* font-size: 1em; */
-    font-weight: 600;
     transition: 0.1s ease-in-out;
+    font-weight: 600;
 }
 
 .tctopic {

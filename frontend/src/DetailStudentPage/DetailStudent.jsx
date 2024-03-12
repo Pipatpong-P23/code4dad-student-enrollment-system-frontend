@@ -145,6 +145,10 @@ function DetailStudent() {
 
             </div>
 
+            <div className='stdheadtb'>
+                <h3>Detail Student</h3>
+            </div>
+
             <div className="Adtable">
                 <DataTable
                 name = "Student Data"

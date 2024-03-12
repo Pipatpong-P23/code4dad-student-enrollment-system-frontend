@@ -18,11 +18,11 @@
 
 .tcbtn-done{
     position: relative;
-    top: -10px;
+    top: 0px;
     margin: 30px 25px;
 }
 
-.inputscore{
+.enterscore{
     width: 35px;
     height: 20px;
     margin-left: 10px;
@@ -55,4 +55,10 @@
     font-size: 1em;
     font-weight: 600;
     transition: 0.1s ease-in-out;
+}
+
+.tcbtn {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }

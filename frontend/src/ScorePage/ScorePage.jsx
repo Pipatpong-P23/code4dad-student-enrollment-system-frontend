@@ -6,6 +6,8 @@ import axios from 'axios'
 import { getRole, getUsername } from '../Authentication'
 import { CURRENT_SEMESTER, CURRENT_YEAR } from '../DateTime'
 import DataTable from 'react-data-table-component'
+import { IoMdSearch } from "react-icons/io";
+
 
 function ScorePage() {
   if (getRole() !== 'student') {
@@ -87,7 +89,7 @@ function ScorePage() {
 
         <div className='stddropdd'>
             <DropdownDate  onDateChange={handleDateChange}  /> 
-            <button className='stdviewdd' onClick={clickView}>view</button>
+            <button className='stdviewdd' onClick={clickView}><IoMdSearch/></button>
         </div>
 
         <div className='stdheadtb'>

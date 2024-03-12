@@ -18,6 +18,15 @@
     margin-left: 30px;
 }
 
+.btnfilter:hover {
+    background-color: rgb(200, 200, 200);
+    color: black;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px black;
+    transition: 0.1s ease-in-out;
+    font-weight: 600;
+}
+
 .btn-delete {
     border-radius: 100px;
     padding: 5px 8px;

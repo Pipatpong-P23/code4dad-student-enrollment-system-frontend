@@ -12,7 +12,7 @@ function DetailSection() {
   
   const teacher_id = getUsername();
   const [isEdit, setIsEdit] = useState(false);
-  const GradeTypeOptions = ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F'];
+  const GradeTypeOptions = ['N/A', 'A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F'];
   const GradePass_FailOptions = ['S', 'U'];
   const [dataStudentList, setDataStudentList] = useState([]);
   const [score, setScore] = useState({ score_1: 0, score_2: 0, score_3: 0, score_4: 0 });
@@ -60,7 +60,7 @@ function DetailSection() {
         name: 'Student ID',
         selector: row => row.student_id,
         sortable: true,
-        width: '110px',
+        width: '100px',
       },
       {
         name: 'Student Name',
@@ -72,7 +72,7 @@ function DetailSection() {
         name: 'Faculty',
         selector: row => row.faculty,
         sortable: true,
-        width: '200px',
+        width: '140px',
       },
       {
         name: 'Major',
@@ -104,19 +104,19 @@ function DetailSection() {
       updatedColumns.push(
         {
           name: 'Score Part 1',
-          cell: row => <input type='text' className='inputscore' defaultValue={row.score.score_1} onChange={(e) => handleScoreChange(row.student_id, 'score_1', e.target.value)} />,
+          cell: row => <input type='text' className='enterscore' defaultValue={row.score.score_1} onChange={(e) => handleScoreChange(row.student_id, 'score_1', e.target.value)} />,
         },
         {
           name: 'Score Part 2',
-          cell: row => <input type='text' className='inputscore' defaultValue={row.score.score_2} onChange={(e) => handleScoreChange(row.student_id, 'score_2', e.target.value)} />,
+          cell: row => <input type='text' className='enterscore' defaultValue={row.score.score_2} onChange={(e) => handleScoreChange(row.student_id, 'score_2', e.target.value)} />,
         },
         {
           name: 'Score Part 3',
-          cell: row => <input type='text' className='inputscore' defaultValue={row.score.score_3} onChange={(e) => handleScoreChange(row.student_id, 'score_3', e.target.value)} />,
+          cell: row => <input type='text' className='enterscore' defaultValue={row.score.score_3} onChange={(e) => handleScoreChange(row.student_id, 'score_3', e.target.value)} />,
         },
         {
           name: 'Score Part 4',
-          cell: row => <input type='text' className='inputscore' defaultValue={row.score.score_4} onChange={(e) => handleScoreChange(row.student_id, 'score_4', e.target.value)} />,
+          cell: row => <input type='text' className='enterscore' defaultValue={row.score.score_4} onChange={(e) => handleScoreChange(row.student_id, 'score_4', e.target.value)} />,
         },
         {
           name: 'Total Score',
@@ -173,7 +173,23 @@ function DetailSection() {
         [part]: value,
       },
     }));
+  
+    const updatedTotalScore = calculateTotalScore({
+      ...dataStudentList.find(student => student.student_id === studentId),
+      score: { ...score[studentId], [part]: value }
+    });
+  
+    setDataStudentList(prevData => prevData.map(student => {
+      if (student.student_id === studentId) {
+        return { ...student, totalScore: updatedTotalScore };
+      }
+      return student;
+    }));
   }
+  
+  
+  
+
 
   const handleGradeChange = (studentId, value) => {
     setGrade(prevGrade => ({
@@ -195,10 +211,10 @@ function DetailSection() {
         dict_score_and_grade.grade_and_score_dict[student.student_id] = {
             'grade': grade[student.student_id],
             'score': {
-                'score_1': score[student.student_id].score_1,
-                'score_2': score[student.student_id].score_2,
-                'score_3': score[student.student_id].score_3,
-                'score_4': score[student.student_id].score_4
+                'score_1': Number(score[student.student_id].score_1),
+                'score_2': Number(score[student.student_id].score_2),
+                'score_3': Number(score[student.student_id].score_3),
+                'score_4': Number(score[student.student_id].score_4)
             }
         };
     });

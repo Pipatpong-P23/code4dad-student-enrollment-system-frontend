@@ -6,6 +6,7 @@ import { getUsername, getRole, Logout } from '../Authentication';
 import DropdownDate from '../Component/DropdownDateOption/DropdownDate';
 import './HomePageStudent.css';
 import { CURRENT_SEMESTER , CURRENT_YEAR } from '../DateTime';
+import { IoMdSearch } from "react-icons/io";
 
 function HomePageStudent() {
   if (getRole() != 'student') {
@@ -108,7 +109,7 @@ function HomePageStudent() {
 
         <div className='stddropdd'>
           <DropdownDate onDateChange={handleDateChange} />
-          <button className='stdviewdd' onClick={() => setClick_view(!click_view)}>view</button>
+          <button className='stdviewdd' onClick={() => setClick_view(!click_view)}> <IoMdSearch/> </button>
         </div>
 
         <div className='stdheadtb'>

@@ -12,6 +12,23 @@
 }
 
 .btnnn{
-    padding: 100px 15px;
+    padding: 10px 15px 50px 15px;
     border-radius: 100px;
+}
+
+.btn-Add02 {
+    font-size: 0.9em;
+    margin: 20px 15px;
+    width: 33%;
+    padding: 10px;
+    border-radius: 100px;
+    background-color: rgb(247, 247, 247);
+}
+
+.btn-Add02:hover {
+    transform: scaleX(1.1);
+    box-shadow: 7px 7px 15px rgb(0, 0, 0);
+    transition: 0.2s ease-in-out;
+    /* font-weight: 600; */
+    font-size: 0.9em;
 }

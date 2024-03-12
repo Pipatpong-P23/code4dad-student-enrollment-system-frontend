@@ -59,11 +59,12 @@ function TranscriptPage() {
     <div className='bgstd'>
       <NavbarStudent student_id={student_id}/>
       <div className='transcontainer'>
+        
         <div className='topictrans'>
           {data_table.map((transcript, index) => (
             <div key={index}>
               <h3 className='headTran'>{` Transcript semester : ${transcript.semester} year : ${transcript.year} `}</h3>
-              <div className="stdtable">
+              <div className="std-transtb">
                 <DataTable
                   columns={columns}
                   data={transcript.enrollments}

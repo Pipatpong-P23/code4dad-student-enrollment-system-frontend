@@ -39,6 +39,7 @@ function AddCourse() {
   const groupTypeOptions = ["Core Course", "Elective Course"];
   const [isAddPre, setAddPre] = useState(false);
   const [isCreateCourse, setCreateCourse] = useState(true);
+  const [isAddCo, setAddCo] = useState(false);
   const [dataTable, setDataTable] = useState(dataCreate_Course);
   const [FacultyOption, setFacultyOption] = useState([]);
   const [MajorOption, setMajorOption] = useState([{faculty: '', major: []}]);
@@ -84,13 +85,35 @@ function AddCourse() {
     setDataInput({ ...dataInput, [field]: value });
   };
 
+  const customStyles = {
+    rows: {
+      style: {
+        minHeight: '62px',
+      }
+    },
+    headCells: {
+      style: {
+        paddingLeft: '8px',
+        paddingRight: '8px',
+      },
+    },
+    cells: {
+      style: {
+        paddingLeft: '8px',
+      },
+    },
+
+  }
+
   const columns = [
     {
       name: 'Title',
       selector: row => row.Data,
+      // width: '35%',
     },
     {
       name: 'Input Data',
+      // width: '65%',
       cell: (row) => {
         if (row.Data === 'Course Type') {
           return (
@@ -318,16 +341,24 @@ function AddCourse() {
     setDataTable(dataPre_requisite);
   }
 
+  const click_Co = () => {
+    clearInput();
+    setCreateCourse(false);
+    setAddCo(true);
+    setAddPre(false);
+    setDataTable(dataPre_requisite);
+  }
+
   return (
     <div className='bgAd'>
       <NavbarAdmin admin_id={admin_id} />
-      <div> 
-        <div className="btnnn">
-          <button className='btn-crec' onClick={() => click_create_course() }>Create Course</button>
-          <button className='btn-adpre'onClick={() => click_add_pre() } >Add Pre-requisite Course</button>
+
+      <div className='Adcontainer'> 
+        <div className="btn-add-user">
+          <button className='btn-Add02' onClick={() => click_create_course() }>Create Course</button>
+          <button className='btn-Add02'onClick={() => click_add_pre() } >Add Pre-requisite Course</button>
+          <button className='btn-Add02'onClick={() => click_Co() } >Add Co-requisite Course</button>
         </div>
-      </div>
-      <div className='Adcontainer'>
 
         <div className="Adtable">
           <DataTable
@@ -336,10 +367,11 @@ function AddCourse() {
             data={dataTable}
             noHeader
             persistTableHead
+            customStyles={customStyles}
           />
         </div>
-        <div className='Adbtn'>
-          <button className='Adbtn-done' onClick={() => clickDone()}>Done</button>
+        <div className='btn-done'>
+          <button className='btn-admin' onClick={() => clickDone()}>Done</button>
         </div>
       </div>
     </div>

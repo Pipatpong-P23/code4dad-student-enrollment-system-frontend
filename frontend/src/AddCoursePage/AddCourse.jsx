@@ -48,7 +48,7 @@ function AddCourse() {
   const TOKEN = document.cookie.split('=')[1];
 
   const courseTypeOptions = ["Gen-Ed", "Faculty", "Curriculum"];
-  const gradingTypeOptions = ["Grade", "Pass/Fail"];
+  const gradingTypeOptions = ["Grade ", "Pass/Fail"];
   const groupTypeOptions = ["Core Course", "Elective Course"];
   const [isAddPre, setAddPre] = useState(false);
   const [isCreateCourse, setCreateCourse] = useState(true);
@@ -86,7 +86,7 @@ function AddCourse() {
     "Gen-Ed": 0 ,
     "Faculty": 1,
     "Curriculum": 2,
-    "Grade": 0,
+    "Grade ": 0,
     "Pass/Fail": 1
   }
 

@@ -1,3 +1,7 @@
+.tccontainer02 {
+    margin: 100px 140px 0 140px;
+}
+
 .ButtonAssign{
     position: relative;
     margin-top : 100px;
@@ -8,9 +12,8 @@
     justify-content: center;
     align-items: center;
     /* margin-top : 100px; */
-    width: 80%;
+    width: 100%;
     position: relative;
-    left: 100px;
     margin-top: 5px ;
     border: 2px solid black;
     border-radius: 15px;

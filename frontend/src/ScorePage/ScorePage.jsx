@@ -51,6 +51,10 @@ function ScorePage() {
     name : 'Score Part 4',
     selector : row => row.score.score_4,
   },
+  {
+    name : 'Grade',
+    selector : row => row.grade,
+  }
   ]
 
   useEffect(() => {

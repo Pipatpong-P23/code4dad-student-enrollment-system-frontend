@@ -4,7 +4,7 @@ import { getUsername, getRole, Logout } from '../Authentication'
 import axios from 'axios'
 import './AddSection.css'
 import DataTable from 'react-data-table-component'
-import { CURRENT_YEAR } from '../DateTime'
+import { CURRENT_SEMESTER, CURRENT_YEAR } from '../DateTime'
 
 function AddSection() {
     if (getRole() != 'admin') {
@@ -56,7 +56,8 @@ function AddSection() {
                 }
                 else if ( row.Data == 'Semester') {
                     return (
-                        <select className='inputdata' onChange={ (e) => handleInputChange(row.Data, e.target.value) }>
+                        <select className='inputdata' onChange={(e) => handleInputChange(row.Data, e.target.value)} defaultValue="">
+                            <option value="" disabled>Please select semester</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                         </select>
@@ -64,8 +65,13 @@ function AddSection() {
                 }
                 else if ( row.Data == 'Year') {
                     return (
-                        <input type="text" defaultValue={CURRENT_YEAR} className="inputdata" onChange={ (e) => handleInputChange(row.Data, e.target.value) } />
-                    )
+                        <select className='inputdata' onChange={(e) => handleInputChange(row.Data, e.target.value)} defaultValue="">
+                            <option value="" disabled>Please select year</option>
+                            <option value={CURRENT_YEAR}>{CURRENT_YEAR}</option>
+                            <option value={CURRENT_YEAR - 1}>{CURRENT_YEAR - 1}</option>
+                            <option value={CURRENT_YEAR - 2}>{CURRENT_YEAR - 2}</option>
+                        </select>
+                        )
                 }
                 else {
                     return (

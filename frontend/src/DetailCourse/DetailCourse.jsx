@@ -47,10 +47,12 @@ function DetailCourse() {
         {
             name: 'Course ID',
             selector: row => row.course_id,
+            width: '10%',
         },
         {
             name: 'Course Name',
             selector: row => row.course_name,
+            width: '40%',
         },
         {
             name: 'Credit',
@@ -290,10 +292,10 @@ function DetailCourse() {
                     </select>
 
                     <button className='btnfilter' onClick={() => setIsSearch(true)}><IoMdSearch/></button>
-                    <button onClick={() => setClickViewAllCourse(true)} >View All Course</button>
                 </div>
 
                 <input className='searchbar' type="text" placeholder='Search by anything...' value={searchText} onChange={handleSearch}/>
+                <button className='btn-view-all' onClick={() => setClickViewAllCourse(true)} >View All Course</button>
                 
                 <div className='Adtable'>
                     {

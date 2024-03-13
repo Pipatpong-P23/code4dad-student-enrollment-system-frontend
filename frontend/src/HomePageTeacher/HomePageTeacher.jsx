@@ -96,12 +96,13 @@ function HomePageTeacher() {
             <NavbarTeacher teacher_id={teacher_name} />
             <div className='tccontainer'>
                 <div className='tcdropdd'>
-                    <DropdownDate  onDateChange={handleDateChange}/>
-                    <button className ='tcviewbutton' onClick={view_section}><IoMdSearch/></button>
-                </div>
-             
-                <div className='tctopic'>
-                    <h3>Class Schedule</h3>
+                    <div className='tctopic'>
+                        <h3>Class Schedule</h3>
+                    </div>
+                    <div>
+                        <DropdownDate  onDateChange={handleDateChange}/>
+                        <button className ='tcviewbutton' onClick={view_section}><IoMdSearch/></button>
+                    </div>
                 </div> 
 
                 <div className="tctable">

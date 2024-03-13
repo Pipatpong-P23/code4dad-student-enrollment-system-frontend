@@ -25,26 +25,31 @@ function DropPage() {
       name: 'Course ID',
       selector: row => row.course_id,
       sortable: true,
+      width: '10%',
     },
     {
       name: 'Course Name',
       selector: row => row.course_name,
       sortable: true,
+      width: '45%',
     },
     {
       name: 'Credit',
       selector: row => row.credit,
       sortable: true,
+      width: '10%',
     },
     {
       name: 'Section Number',
       selector: row => row.section_number,
       sortable: true,
+      width: '15%',
     },
     {
       name: 'Schedule',
       selector: row => row.schedule,
       sortable: true,
+      width: '15%',
     },
   ];
 

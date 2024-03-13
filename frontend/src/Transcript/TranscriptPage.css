@@ -1,15 +1,22 @@
 
 
 .transcontainer {
-    margin: 100px 200px 100px 200px;
+    margin: 100px 250px 100px 250px;
 }
 
 .transcontainer .topictrans {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    width: auto;
+    /* width: auto; */
 
+}
+
+.trans-box {
+    display: inline-block;
+    width: 50%;
+    /* display: flex; */
+    flex-wrap: wrap;
 }
 
 .headTran {
@@ -27,7 +34,6 @@
 
 .std-transtb {
     border-radius: 15px;
-    margin: 50px;
+    margin: 30px;
     display: flex;
-    flex-wrap: wrap;
 }

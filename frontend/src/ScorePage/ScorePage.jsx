@@ -22,38 +22,47 @@ function ScorePage() {
   {
     name : 'Course ID',
     selector : row => row.course_id,
+    width: '10%',
   },
   {
     name : 'Course Name',
     selector : row => row.course_name,
+    width: '20%',
   },
   {
     name : 'Section',
     selector : row => row.section_number,
+    width: '10%',
   },
   {
     name : 'Credit',
     selector : row => row.credit,
+    width: '10%',
   },
   {
     name : 'Score Part 1',
     selector : row => row.score.score_1,
+    width: '10%',
   },
   {
     name : 'Score Part 2',
     selector : row => row.score.score_2,
+    width: '10%',
   },
   {
     name : 'Score Part 3',
     selector : row => row.score.score_3,
+    width: '10%',
   },
   {
     name : 'Score Part 4',
     selector : row => row.score.score_4,
+    width: '10%',
   },
   {
     name : 'Grade',
     selector : row => row.grade,
+    width: '10%',
   }
   ]
 
@@ -92,12 +101,13 @@ function ScorePage() {
         </div>
 
         <div className='stddropdd'>
+          <div className='stdheadtb01'>
+            <h3>Your Score</h3>
+          </div>
+          <div>
             <DropdownDate  onDateChange={handleDateChange}  /> 
             <button className='stdviewdd' onClick={clickView}><IoMdSearch/></button>
-        </div>
-
-        <div className='stdheadtb'>
-          <h3>Your Score</h3>
+          </div>
         </div>
 
         <div className='stdtable'>

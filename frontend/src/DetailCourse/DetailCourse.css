@@ -13,3 +13,18 @@ label {
     margin-left: 10px;
 }
 
+.btn-view-all {
+    padding: 8px 10px;
+    border-radius: 100px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+
+.btn-view-all:hover {
+    background-color: rgb(200, 200, 200);
+    color: black;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px black;
+    transition: 0.1s ease-in-out;
+    cursor: pointer;
+}

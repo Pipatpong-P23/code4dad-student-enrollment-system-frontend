@@ -30,36 +30,43 @@ function EnrollPage() {
       name: 'Course ID',
       selector: row => row.course_id,
       sortable: true,
+      width: '10%',
     },
     {
       name: 'Course',
       selector: row => row.course_name,
       sortable: true,
+      width: '20%',
     },
     {
       name: 'Section Number',
       selector: row => row.section_number,
       sortable: true,
+      width: '10%',
     },
     {
       name: 'Teacher',
       selector: row => row.teacher,
       sortable: true,
+      width: '20%',
     },
     {
       name: 'Number of Students',
       selector: row => row.number_of_student,
       sortable: true,
+      width: '10%',
     },
     {
       name: 'Location',
       selector: row => row.location,
       sortable: true,
+      width: '11%',
     },
     {
       name: 'Schedule',
       selector: row => row.schedule,
       sortable: true,
+      width: '14%',
     },
   ];
 
@@ -163,12 +170,17 @@ function EnrollPage() {
     <div className='bgstd'>
       <NavbarStudent student_id={student_id}/>
       <div className='stdcontainer'>
-        <div className='stdheadtb'>
-          <h3>Course</h3>
+
+        <div className='stddropdd01'>
+          <div className='stdheadtb02'>
+            <h3>Course</h3>
+          </div>
+          <div>
+            <input className='searchbar' type="text" placeholder='Search by anything...' value={searchText} onChange={handleSearch}/>
+          </div>
         </div>
 
         <div className='stdtable'>
-          <input className='searchbar' type="text" placeholder='Search by anything...' value={searchText} onChange={handleSearch}/>
           <DataTable
             className='DataTable'
             columns={columns} 

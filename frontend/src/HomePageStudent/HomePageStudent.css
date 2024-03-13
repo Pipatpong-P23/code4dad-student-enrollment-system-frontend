@@ -15,10 +15,15 @@
 }
 
 .stdcontainer .stddropdd {
-    margin-top: 15px;
-    display: flex-start;
-    justify-content: center;
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
     z-index: 3;
+}
+
+.stdheadtb01 {
+    color: azure;
+    margin-top: 15px; 
 }
 
 .stdviewdd {

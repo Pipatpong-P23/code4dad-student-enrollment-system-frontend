@@ -20,25 +20,25 @@ function TranscriptPage() {
       name: 'Course ID',
       selector: row => row.course_id,
       sortable: true,
-      width: '100px'
+      width: '15%',
     },
     {
       name: 'Course Name',
       selector: row => row.course_name,
       sortable: true,
-      width: '200px'
+      width: '45%',
     },
     {
       name: 'Credit',
       selector: row => row.credit,
       sortable: true,
-      width: '100px'
+      width: '20%',
     },
     {
       name: 'Grade',
       selector: row => row.grade,
       sortable: true,
-      width: '100px'
+      width: '20%',
     }
   ];
 
@@ -71,11 +71,12 @@ function TranscriptPage() {
   return (
     <div className='bgstd'>
       <NavbarStudent student_id={student_id}/>
+
       <div className='transcontainer'>
-        <div className='topictrans'>
+        <div>
           {data_table.map((transcript, index) => (
             <div key={index}>
-                <h3 className='headTran'>{`Transcript: Semester ${transcript.semester}, Year ${transcript.year}, GPA: ${ParseFloat(transcript.gps, 2)}`}</h3>
+              <h3 className='headTran'>{`Transcript: Semester ${transcript.semester}, Year ${transcript.year}, GPA: ${ParseFloat(transcript.gps, 2)}`}</h3>
               <div className="std-transtb">
                 <DataTable
                   columns={columns}
@@ -88,9 +89,6 @@ function TranscriptPage() {
               </div>
             </div>
           ))}
-        </div>
-        <div className='transtable'>
-          {/* Additional content or tables can be placed here if needed */}
         </div>
       </div>
     </div>

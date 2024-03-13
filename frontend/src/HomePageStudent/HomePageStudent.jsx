@@ -29,30 +29,36 @@ function HomePageStudent() {
       name: 'Course ID',
       selector: row => row.course_id,
       sortable: true,
+      width: '10%',
     },
     {
       name: 'Course Name',
       selector: row => row.course_name,
       sortable: true,
+      width: '30%',
     },
     {
       name: 'Credit',
       selector: row => row.credit,
       sortable: true,
+      width: '10%',
     },
     {
       name: 'Section Number',
       selector: row => row.section_number,
       sortable: true,
+      width: '15%',
     },
     {
       name : 'Location',
       selector: row => row.location,
+      width: '15%',
     },
     {
       name: 'Schedule',
       selector: row => row.schedule,
       sortable: true,
+      width: '20%',
     },
   ];
 
@@ -115,12 +121,13 @@ function HomePageStudent() {
         </div>
 
         <div className='stddropdd'>
-          <DropdownDate onDateChange={handleDateChange} />
-          <button className='stdviewdd' onClick={() => setClick_view(!click_view)}> <IoMdSearch/> </button>
-        </div>
-
-        <div className='stdheadtb'>
-          <h3>Class Schedule | Credit : {total_credit} / 27</h3>
+          <div>
+            <h3 className='stdheadtb01'>Class Schedule | Credit : {total_credit} / 27</h3>
+          </div>
+          <div>
+            <DropdownDate onDateChange={handleDateChange} />
+            <button className='stdviewdd' onClick={() => setClick_view(!click_view)}> <IoMdSearch/> </button>
+          </div>
         </div>
 
         <div className='stdtable'>

@@ -50,7 +50,7 @@
     transition: 0.3s ease;
     font-size: 1.2em;
     font-weight: 600;
-
+    cursor: pointer;
 }
 
 .Adbtninteract-CC {
@@ -67,6 +67,8 @@
     transition: 0.3s ease;
     font-size: 1.2em;
     font-weight: 600;
+    cursor: pointer;
+
 }
 
 .Adbtninteract-ATS {
@@ -83,6 +85,8 @@
     transition: 0.3s ease;
     font-size: 1.2em;
     font-weight: 600;
+    cursor: pointer;
+
 }
 
 .Adbtninteract-DS {
@@ -99,6 +103,8 @@
     transition: 0.3s ease-in-out;
     font-size: 1.2em;
     font-weight: 600;
+    cursor: pointer;
+
 }
 
 .Adbtninteract-DC {
@@ -115,4 +121,6 @@
     transition: 0.3s ease-in-out;
     font-size: 1.2em;
     font-weight: 600;
+    cursor: pointer;
+
 }

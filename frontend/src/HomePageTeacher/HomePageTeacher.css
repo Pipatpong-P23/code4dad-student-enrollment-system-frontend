@@ -9,8 +9,9 @@
 }
 
 .tcdropdd {
-    display: flex-end;
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    /* margin-bottom: 10px; */
     margin-top: 15px;
 }
 
@@ -33,7 +34,7 @@
     color: azure;
     display: flex;
     justify-content: flex-start;
-    margin: 15px;
+    margin: 15px 0;
 }
 
 .tctable {

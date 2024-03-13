@@ -31,40 +31,48 @@ function ChangeSection() {
       name: 'Course ID',
       selector: row => row.course_id,
       sortable: true,
+      width: '10%',
     },
     {
       name: 'Course Name',
       selector: row => row.course_name,
       sortable: true,
+      width: '20%',
     },
     {
       name: 'Section Number',
       selector: row => row.section_number,
       sortable: true,
+      width: '10%',
     },
     {
       name: 'Teacher',
       selector: row => row.teacher,
       sortable: true,
+      width: '15%',
     },
     {
       name: 'Number of Students',
       selector: row => row.number_of_student,
       sortable: true,
+      width: '10%',
     },
     {
       name: 'Location',
       selector: row => row.location,
       sortable: true,
+      width: '10%',
     },
     {
       name: 'Datetime',
       selector: row => row.schedule,
       sortable: true,
+      width: '15%',
     },
     {
       name: 'Change Section',
       cell: row => <button className = "btnc" onClick={() => changeSection(row.section_number)}>Change</button>,
+      width: '10%',
     }
   ]
 
@@ -73,26 +81,32 @@ function ChangeSection() {
       name: 'Course ID',
       selector: row => row.course_id,
       sortable: true,
+      width: '10%',
     },
     {
       name: 'Course Name',
       selector: row => row.course_name,
       sortable: true,
+      width: '40%',
     },
     {
       name: 'Credit',
       selector: row => row.credit,
       sortable: true,
+      width: '15%',
     },
     {
       name: 'Section Number',
       selector: row => row.section_number,
       sortable: true,
+      width: '15%',
+
     },
     {
       name: 'Datetime',
       selector: row => row.schedule,
       sortable: true,
+      width: '15%',
     },
   ];
 

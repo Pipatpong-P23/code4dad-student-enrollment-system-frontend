@@ -13,6 +13,9 @@ function AddUser() {
   const [isTableStudent, setIsTableStudent] = useState(true);
   const [isTableTeacher, setIsTableTeacher] = useState(false);
   const [TableUSer, setTableUser] = useState('Add Student');
+  const [FacultyOption, setFacultyOption] = useState([]); 
+  const [MajorOption, setMajorOption] = useState([{faculty: '', major: []}]);
+
   const admin_id = getUsername();
   const TOKEN = document.cookie.split('=')[1];
 
@@ -33,6 +36,31 @@ function AddUser() {
     'Citizen ID': '',
     'Password': ''
   });
+
+  useEffect(() => {
+    async function get_all_faculty_and_major() {
+        try {
+            const response = await axios.get('http://oop.okusann.online:8088/get_all_faculties');
+            if (response.status === 200) {
+                const faculties = response.data.map(fac => fac.faculty_name);
+                const majors = response.data.map(fac => ({
+                    faculty: fac.faculty_name,
+                    major: fac.major_list,
+                }));
+
+                setFacultyOption(faculties);
+                setMajorOption(majors);
+            } else {
+                console.error('Failed to fetch faculty and major data');
+            }
+        } catch (error) {
+            console.error('Error fetching faculty and major data');
+        }
+    }
+    get_all_faculty_and_major();
+    console.log(FacultyOption);
+    console.log(MajorOption);
+}, []);
 
 
   const handleInputChangeStudent = (title, value) => {
@@ -70,6 +98,31 @@ function AddUser() {
           return (
             <input type='password' className='inputdata' onChange={ (e) => handleInputChangeStudent(row.Data, e.target.value )} />
           )
+        }
+        else if(row.Data === 'Faculty') {
+          return (
+            <select className='inputdata' onChange={ (e) => handleInputChangeStudent(row.Data, e.target.value )}>
+              <option value=''>Select Faculty</option>
+              {FacultyOption.map((fac) => (
+                <option key={fac} value={fac}>{fac}</option>
+              ))}
+            </select>
+          )
+        }
+        else if(row.Data === 'Major') {
+          return (
+            <select className='inputdata' onChange={(e) => handleInputChangeStudent(row.Data, e.target.value)}>
+              <option value=''>Select Major</option>
+              {MajorOption.map((fac) => {
+                if (fac.faculty === dataInputStudent.Faculty) {
+                  return fac.major.map((major) => (
+                    <option key={major} value={major}>{major}</option>
+                  ));
+                }
+                return null;
+              })}
+            </select>
+          )          
         }
         else {
           return (

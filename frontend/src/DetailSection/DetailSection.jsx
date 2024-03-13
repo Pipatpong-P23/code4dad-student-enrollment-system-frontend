@@ -270,24 +270,6 @@ function DetailSection() {
   };
 
   const clickDone = () => {
-    if ( validateScore(score) === false ) {
-      for (let student_id in score) {
-        if (isNaN(score[student_id].score_1) || isNaN(score[student_id].score_2) || isNaN(score[student_id].score_3) || isNaN(score[student_id].score_4)) {
-          student_id_score_worng.push(student_id);
-        }
-        if (score[student_id].score_1 < 0 || score[student_id].score_2 < 0 || score[student_id].score_3 < 0 || score[student_id].score_4 < 0) {
-          student_id_score_worng.push(student_id);
-        }
-      }
-      console.log('student_id_score_worng', student_id_score_worng);
-      alert('Score of student ID ' + student_id_score_worng + ' is worng. Please enter the correct score.');
-      setStudent_id_score_worng([]);
-      return;
-    }
-
-
-    setIsEdit(false);
-    setText_edit('Edit');
     
     async function updateScoreAndGrade() {
       const URL = 'http://oop.okusann.online:8088/assign_grade_and_score_to_multiple_student';
@@ -301,14 +283,37 @@ function DetailSection() {
         const response = await axios.post(URL, body, { headers: headers });
         if (response.status === 200) {
           alert('Update Score and Grade Success');
+          setIsEdit(false);
+          setText_edit('Edit');
           window.location.reload();
         }
       } catch (error) {
         alert(error.response.data.detail); 
         window.location.reload();
       }
+      return;
     }
-    updateScoreAndGrade();
+
+    if ( validateScore(score) === false ) {
+      for (let student_id in score) {
+        if (isNaN(score[student_id].score_1) || isNaN(score[student_id].score_2) || isNaN(score[student_id].score_3) || isNaN(score[student_id].score_4)) {
+          student_id_score_worng.push(student_id);
+        }
+        if (score[student_id].score_1 < 0 || score[student_id].score_2 < 0 || score[student_id].score_3 < 0 || score[student_id].score_4 < 0) {
+          student_id_score_worng.push(student_id);
+        }
+      }
+      console.log('student_id_score_worng', student_id_score_worng);
+      if (student_id_score_worng.length === 0) {
+        console.log("OKOKOKOKOK")
+        updateScoreAndGrade();
+      }
+      else{
+        alert('Score of student ID ' + student_id_score_worng + ' is worng. Please enter the correct score.');
+        setStudent_id_score_worng([]);
+        return;
+      }
+    }
   }
 
   return (

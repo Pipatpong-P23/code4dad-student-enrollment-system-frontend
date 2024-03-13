@@ -122,6 +122,10 @@ function DetailSection() {
           width : '10%',
         },
         {
+          name: 'Total Score',
+          cell: row => calculateTotalScore(row),
+        },
+        {
           name: 'Grade',
           cell: row => renderGradeDropdown(row, grade, handleGradeChange, GradeType),
           width: '10%',
@@ -170,24 +174,31 @@ function DetailSection() {
   }
 
   const handleScoreChange = (studentId, part, value) => {
-    setScore(prevScore => ({
-      ...prevScore,
-      [studentId]: {
-        ...prevScore[studentId],
-        [part]: value,
-      },
-    }));
 
-    const updatedTotalScore = dataStudentList.reduce((total, student) => {
-      if (student.student_id === studentId) {
-        total += Number(value);
-      } else {
-        total += calculateTotalScore(student);
-      }
-      return total;
-    }, 0);
-    setTotalScore(updatedTotalScore);
-  }
+    setDataStudentList(currentData =>
+        currentData.map(student => {
+            if (student.student_id === studentId) {
+                return {
+                    ...student,
+                    score: {
+                        ...student.score,
+                        [part]: value,
+                    },
+                };
+            }
+            return student;
+          }));
+        setScore(prevScore => ({
+            ...prevScore,
+            [studentId]: {
+                ...prevScore[studentId],
+                [part]: value,
+            },
+        }));
+        console.log('score', score);
+        console.log('dataStudentList', dataStudentList);
+    };
+
 
   const handleGradeChange = (studentId, value) => {
     setGrade(prevGrade => ({
@@ -237,8 +248,7 @@ function DetailSection() {
           window.location.reload();
         }
       } catch (error) {
-        console.error('Error:', error);
-        alert('Update Failed');
+        alert(error.response.data.detail); 
         window.location.reload();
       }
     }

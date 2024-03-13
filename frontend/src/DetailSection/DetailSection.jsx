@@ -60,25 +60,25 @@ function DetailSection() {
         name: 'Student ID',
         selector: row => row.student_id,
         sortable: true,
-        width: '120px',
+        width: '12.5%',
       },
       {
         name: 'Student Name',
         selector: row => row.name,
         sortable: true,
-        width: '170px',
+        width: '12.5%',
       },
       {
         name: 'Faculty',
         selector: row => row.faculty,
         sortable: true,
-        width: '125px',
+        width: '12.5%',
       },
       {
         name: 'Major',
         selector: row => row.major,
         sortable: true,
-        width: '180px',
+        width: '12.5%',
       },
     ];
 
@@ -104,27 +104,27 @@ function DetailSection() {
         {
           name: 'Score Part 1',
           cell: row => <input type='text' className='enterscore' defaultValue={row.score.score_1} onChange={(e) => handleScoreChange(row.student_id, 'score_1', e.target.value)} />,
-          width : '120px',
+          width : '10%',
         },
         {
           name: 'Score Part 2',
           cell: row => <input type='text' className='enterscore' defaultValue={row.score.score_2} onChange={(e) => handleScoreChange(row.student_id, 'score_2', e.target.value)} />,
-          width : '120px',
+          width : '10%',
         },
         {
           name: 'Score Part 3',
           cell: row => <input type='text' className='enterscore' defaultValue={row.score.score_3} onChange={(e) => handleScoreChange(row.student_id, 'score_3', e.target.value)} />,
-          width : '120px',
+          width : '10%',
         },
         {
           name: 'Score Part 4',
           cell: row => <input type='text' className='enterscore' defaultValue={row.score.score_4} onChange={(e) => handleScoreChange(row.student_id, 'score_4', e.target.value)} />,
-          width : '120px',
+          width : '10%',
         },
         {
           name: 'Grade',
           cell: row => renderGradeDropdown(row, grade, handleGradeChange, GradeType),
-          width: '120px',
+          width: '10%',
         }
       );
     } else {
@@ -132,32 +132,32 @@ function DetailSection() {
         {
           name: 'Score Part 1',
           selector: row => row.score.score_1,
-          width: '100px',
+          width: '8.3%',
         },
         {
           name: 'Score Part 2',
           selector: row => row.score.score_2,
-          width: '100px',
+          width: '8.3%',
         },
         {
           name: 'Score Part 3',
           selector: row => row.score.score_3,
-          width: '100px',
+          width: '8.3%',
         },
         {
           name: 'Score Part 4',
           selector: row => row.score.score_4,
-          width: '100px',
+          width: '8.3%',
         },
         {
           name: 'Total Score',
           selector: row => calculateTotalScore(row),
-          width: '100px',
+          width: '8.3%',
         },
         {
           name: 'Grade',
           selector: row => row.grade,
-          width: '100px',
+          width: '8.3%',
         }
       );
     }

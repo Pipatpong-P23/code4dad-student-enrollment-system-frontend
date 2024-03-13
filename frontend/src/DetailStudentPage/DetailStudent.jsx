@@ -72,40 +72,42 @@ function DetailStudent() {
         {
             name : 'Student ID',
             selector: row => row.student_id,
-            width : '90px',
+            width : '10%',
         },
         {
             name : 'Student Name',
             selector: row => row.name,
-            width : '160px',
+            width : '15%',
         },
         {
             name : 'Email',
             selector: row => row.email,
-            width : '170px',
+            width : '15%',
         },
         {
             name : 'Citizen ID',
             selector: row => row.citizen_id,
+            width : '12.5%',
         },
         {
             name : 'Faculty',
             selector: row => row.faculty,
+            width : '12.5%',
         },
         {
             name : 'Major',
             selector: row => row.major,
-            width : '180px',
+            width : '15%',
         },
         {
             name : 'Year entered',
             selector: row => row.year_entered,
-            width : '100px',
+            width : '10%',
         },
         {
             name : 'Delete',
             cell : row => <button className='btn-delete' onClick={ () => confirmDelete(row.student_id) }>Delete</button>,
-            width : '100px',
+            width : '10%',
         }
     ]
 

@@ -45,48 +45,50 @@ function DetailCourse() {
             name: 'Course ID',
             selector: row => row.course_id,
             sortable: true,
-            width: '110px',
+            width: '10%',
         },
         {
             name: 'Course Name',
             selector: row => row.course_name,
             sortable: true,
-            width: '200px',
+            width: '12.5%',
         },
         {
             name: 'Section Number',
             selector: row => row.section_number,
             sortable: true,
-            width: '100px',
+            width: '10%',
         },
         {
             name : 'Grading Type',
             selector: row => row.grading_type,
-            width : '120px',
+            width : '10%',
         },
         {
             name : 'Teacher',
             selector: row => row.teacher,
-            width : '200px',
+            width : '15%',
         },
         {
             name : 'Number of Student',
             selector: row => row.number_of_student,
             sortable: true,
+            width : '10%',
         },
         {
             name : 'Location',
             selector: row => row.location,
-            width : '100px',
+            width : '10%',
         },
         {
             name : 'Schedule',
             selector: row => row.schedule,
+            width : '12.5%',
         },
         {
             name : 'Delete',
             cell: row => <button className='btn-delete' onClick={() => handleDelete(row.course_id, row.section_number)}>Delete</button>,
-            width : '100px',
+            width : '10%',
         }
     ];
 

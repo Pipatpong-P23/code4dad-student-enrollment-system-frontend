@@ -104,23 +104,27 @@ function DetailSection() {
         {
           name: 'Score Part 1',
           cell: row => <input type='text' className='enterscore' defaultValue={row.score.score_1} onChange={(e) => handleScoreChange(row.student_id, 'score_1', e.target.value)} />,
+          width : '120px',
         },
         {
           name: 'Score Part 2',
           cell: row => <input type='text' className='enterscore' defaultValue={row.score.score_2} onChange={(e) => handleScoreChange(row.student_id, 'score_2', e.target.value)} />,
+          width : '120px',
         },
         {
           name: 'Score Part 3',
           cell: row => <input type='text' className='enterscore' defaultValue={row.score.score_3} onChange={(e) => handleScoreChange(row.student_id, 'score_3', e.target.value)} />,
+          width : '120px',
         },
         {
           name: 'Score Part 4',
           cell: row => <input type='text' className='enterscore' defaultValue={row.score.score_4} onChange={(e) => handleScoreChange(row.student_id, 'score_4', e.target.value)} />,
+          width : '120px',
         },
         {
           name: 'Grade',
           cell: row => renderGradeDropdown(row, grade, handleGradeChange, GradeType),
-          width: '100px',
+          width: '120px',
         }
       );
     } else {
@@ -128,22 +132,27 @@ function DetailSection() {
         {
           name: 'Score Part 1',
           selector: row => row.score.score_1,
+          width: '100px',
         },
         {
           name: 'Score Part 2',
           selector: row => row.score.score_2,
+          width: '100px',
         },
         {
           name: 'Score Part 3',
           selector: row => row.score.score_3,
+          width: '100px',
         },
         {
           name: 'Score Part 4',
           selector: row => row.score.score_4,
+          width: '100px',
         },
         {
           name: 'Total Score',
           selector: row => calculateTotalScore(row),
+          width: '100px',
         },
         {
           name: 'Grade',

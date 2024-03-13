@@ -1,6 +1,5 @@
-.options{
-    margin: 100px 20px;
-    padding: 10px 0;
+.Adcontainer02 {
+    margin: 100px 130px 50px 130px;
 }
 
 .no-data {
@@ -8,6 +7,8 @@
     font-size: 1.5em;
 }
 
-.Nodata {
+label {
     color: azure;
+    margin-right: 10px;
+    margin-left: 10px;
 }

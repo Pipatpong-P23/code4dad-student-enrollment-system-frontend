@@ -45,24 +45,29 @@ function DetailCourse() {
             name: 'Course ID',
             selector: row => row.course_id,
             sortable: true,
+            width: '110px',
         },
         {
             name: 'Course Name',
             selector: row => row.course_name,
             sortable: true,
+            width: '200px',
         },
         {
             name: 'Section Number',
             selector: row => row.section_number,
             sortable: true,
+            width: '100px',
         },
         {
             name : 'Grading Type',
             selector: row => row.grading_type,
+            width : '120px',
         },
         {
             name : 'Teacher',
             selector: row => row.teacher,
+            width : '200px',
         },
         {
             name : 'Number of Student',
@@ -72,6 +77,7 @@ function DetailCourse() {
         {
             name : 'Location',
             selector: row => row.location,
+            width : '100px',
         },
         {
             name : 'Schedule',
@@ -80,6 +86,7 @@ function DetailCourse() {
         {
             name : 'Delete',
             cell: row => <button className='btn-delete' onClick={() => handleDelete(row.course_id, row.section_number)}>Delete</button>,
+            width : '100px',
         }
     ];
 
@@ -157,10 +164,10 @@ function DetailCourse() {
         <div className='bgAd'>
             <NavbarAdmin admin_id={AdminId} />
             
-            <div className="Adcontainer">
+            <div className="Adcontainer02">
 
                 <div className="options">
-                    <label htmlFor='faculty'>Faculty:</label>
+                    {/* <label htmlFor='faculty'>Faculty :</label> */}
                     <select
                         className='select'
                         id='faculty'
@@ -168,13 +175,13 @@ function DetailCourse() {
                         value={selectedFaculty}
                         onChange={(e) => setSelectedFaculty(e.target.value)}
                     >
-                        <option value="" disabled>Please select faculty</option>
+                        <option className='op-sl' value="" disabled>Please select faculty</option>
                         {FacultyOption.map((faculty, index) => (
                             <option key={index} value={faculty}>{faculty}</option>
                         ))}
                     </select>
 
-                    <label htmlFor='major'>Major:</label>
+                    {/* <label htmlFor='major'>Major :</label> */}
                     <select
                         className='select'
                         value={selectedMajor}
@@ -188,7 +195,7 @@ function DetailCourse() {
                             ))}
                     </select>
 
-                    <label htmlFor='semester'>Semester:</label>
+                    <label htmlFor='semester'>Semester :</label>
                     <select
                         className='select'
                         id='semester'
@@ -201,7 +208,7 @@ function DetailCourse() {
                         ))}
                     </select>
 
-                    <label htmlFor='year'>Year:</label>
+                    <label htmlFor='year'>Year :</label>
                     <select
                         className='select'
                         id='year'

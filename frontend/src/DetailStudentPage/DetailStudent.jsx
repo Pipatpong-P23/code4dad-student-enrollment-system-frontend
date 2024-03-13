@@ -72,14 +72,17 @@ function DetailStudent() {
         {
             name : 'Student ID',
             selector: row => row.student_id,
+            width : '90px',
         },
         {
             name : 'Student Name',
             selector: row => row.name,
+            width : '160px',
         },
         {
             name : 'Email',
             selector: row => row.email,
+            width : '170px',
         },
         {
             name : 'Citizen ID',
@@ -92,14 +95,17 @@ function DetailStudent() {
         {
             name : 'Major',
             selector: row => row.major,
+            width : '180px',
         },
         {
             name : 'Year entered',
             selector: row => row.year_entered,
+            width : '100px',
         },
         {
             name : 'Delete',
-            cell : row => <button className='btn-delete' onClick={ () => confirmDelete(row.student_id) }>Delete</button>
+            cell : row => <button className='btn-delete' onClick={ () => confirmDelete(row.student_id) }>Delete</button>,
+            width : '100px',
         }
     ]
 

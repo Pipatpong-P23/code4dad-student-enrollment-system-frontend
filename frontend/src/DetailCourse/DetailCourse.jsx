@@ -19,6 +19,9 @@ function DetailCourse() {
     const [selectedSemester, setSelectedSemester] = useState(CURRENT_SEMESTER);
     const [selectedYear, setSelectedYear] = useState(CURRENT_YEAR);
     const [searchText, setSearchText] = useState('');
+    const [isviewAllCourse, setIsviewAllCourse] = useState(true);
+    const [clickViewAllCourse , setClickViewAllCourse] = useState(false);
+    const [isViewCourseOfMajor, setIsViewCourseOfMajor] = useState(false);
 
     const handleDelete = (course_id, section_number) => {
         async function deleteCourse() {
@@ -39,6 +42,29 @@ function DetailCourse() {
             deleteCourse();
         }
     }
+
+    const columns_all_course = [
+        {
+            name: 'Course ID',
+            selector: row => row.course_id,
+        },
+        {
+            name: 'Course Name',
+            selector: row => row.course_name,
+        },
+        {
+            name: 'Credit',
+            selector: row => row.credit,
+        },
+        {
+            name: 'Course Type',
+            selector: row => row.course_type,
+        },
+        {
+            name : 'Grading Type',
+            selector: row => row.grading_type,
+        },
+    ];
 
     const columns = [
         {
@@ -139,12 +165,19 @@ function DetailCourse() {
     if (isSearch) {
         getCourseList();
         setIsSearch(false);
+        setIsviewAllCourse(false);
+        setIsViewCourseOfMajor(true);
     }
 
+    
     const handleSearch = (e) => {
         setSearchText(e.target.value);
         if (e.target.value === '') {
-            getCourseList();
+            if (isViewCourseOfMajor) {
+                getCourseList();
+            } else {
+                view_all_course();
+            }
         } else {
             const filteredData = dataTable.filter((row) => {
                 return Object.keys(row).some((key) => {
@@ -155,12 +188,45 @@ function DetailCourse() {
         }
     };
     
+    useEffect(() => {
+        view_all_course();
+    }, []);
+    
+    
+    const view_all_course = () => {
+        setSelectedFaculty('');
+        setSelectedMajor('');
+
+        async function get_all_course() {
+            try {
+                const response = await axios.get(`http://oop.okusann.online:8088/get_all_course`);
+                if (response.status === 200) {
+                    console.log("Course ", response.data);  
+                    setDataTable(response.data);
+                } else {
+                    console.log('Failed to fetch course data');
+                }
+            } catch (error) {
+                console.log('Error fetching course data')
+            }
+        }
+        get_all_course();
+    };
+    
+    if (clickViewAllCourse) {
+        view_all_course();
+        setClickViewAllCourse(false);
+        setIsviewAllCourse(true);
+        setIsViewCourseOfMajor(false);
+    }
+
     const AdminId = getUsername();
     const SemesterOptions = ['1', '2'];
     const YearOptions = [CURRENT_YEAR, CURRENT_YEAR - 1, CURRENT_YEAR - 2];
-
+    
     console.log('selectedFaculty:', selectedFaculty);
     console.log('selectedMajor:', selectedMajor);
+
 
     return (
         <div className='bgAd'>
@@ -224,20 +290,32 @@ function DetailCourse() {
                     </select>
 
                     <button className='btnfilter' onClick={() => setIsSearch(true)}><IoMdSearch/></button>
+                    <button onClick={() => setClickViewAllCourse(true)} >View All Course</button>
                 </div>
 
                 <input className='searchbar' type="text" placeholder='Search by anything...' value={searchText} onChange={handleSearch}/>
                 
                 <div className='Adtable'>
-                    {  dataTable.length === 0 ?
-                        <div className='no-data'>
-                            <GiColiseum />
-                            <h3 className='Nodata'>No data</h3>
-                        </div>
+                    {
+                        isviewAllCourse ?
+                        <DataTable
+                            title='All Course'
+                            columns={columns_all_course}
+                            data={dataTable}
+                            highlightOnHover
+                            pointerOnHover
+                            striped
+                            noHeader
+                        />
                         :
                         <DataTable
+                            title='Course List'
                             columns={columns}
                             data={dataTable}
+                            highlightOnHover
+                            pointerOnHover
+                            striped
+                            noHeader
                         />
                     }
                 </div>

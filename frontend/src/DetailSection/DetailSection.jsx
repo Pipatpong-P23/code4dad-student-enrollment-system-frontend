@@ -16,10 +16,21 @@ function DetailSection() {
   const GradePass_FailOptions = ['S', 'U'];
   const [dataStudentList, setDataStudentList] = useState([]);
   const [score, setScore] = useState({});
+  const [realscore , setRealscore] = useState({});
   const [grade, setGrade] = useState({});
   const [columns, setColumns] = useState([]);
-  const [totalScore, setTotalScore] = useState(0); // State for total score
+  const [student_id_score_worng, setStudent_id_score_worng] = useState([]);
 
+  const [text_edit, setText_edit] = useState('Edit');
+  const [totalScore, setTotalScore] = useState(0); // State for total score
+  const [dataCourse , setDataCourse] = useState({
+    'course_id': '',
+    'course_name': '',
+    'credit': '',
+    'section_number': '',
+    'semester': '',
+    'year': '',
+  });
   const CourseID = new URLSearchParams(window.location.search).get('courseId');
   const SectionNumber = new URLSearchParams(window.location.search).get('sectionNumber');
   const Semester = new URLSearchParams(window.location.search).get('semester');
@@ -46,6 +57,11 @@ function DetailSection() {
             acc[student.student_id] = student.grade;
             return acc;
           }, {}));
+          setRealscore(response.data.reduce((acc, student) => {
+            acc[student.student_id] = student.score;
+            return acc;
+          }
+          , {}));
         }
       } catch (error) {
         console.error(error);
@@ -170,8 +186,31 @@ function DetailSection() {
   }, [isEdit]);
 
   const click_edit = () => {
-    setIsEdit(!isEdit);
+    if (isEdit) {
+      setIsEdit(!isEdit);
+      setText_edit('Edit');
+      setDataStudentList(dataStudentList.map((student, index) => {
+        return {
+          ...student,
+          score: realscore[student.student_id],
+        };
+      }));
+    }
+    else {
+      setIsEdit(!isEdit);
+      setText_edit('Cancel');
+    }
   }
+
+  const validateScore = (score) => {
+    if (isNaN(score.score_1) || isNaN(score.score_2) || isNaN(score.score_3) || isNaN(score.score_4)) {
+      return false;
+    }
+    if (score.score_1 < 0 || score.score_2 < 0 || score.score_3 < 0 || score.score_4 < 0) {
+      return false;
+    }
+    return true;
+  };  
 
   const handleScoreChange = (studentId, part, value) => {
 
@@ -195,8 +234,7 @@ function DetailSection() {
                 [part]: value,
             },
         }));
-        console.log('score', score);
-        console.log('dataStudentList', dataStudentList);
+     
     };
 
 
@@ -232,7 +270,25 @@ function DetailSection() {
   };
 
   const clickDone = () => {
+    if ( validateScore(score) === false ) {
+      for (let student_id in score) {
+        if (isNaN(score[student_id].score_1) || isNaN(score[student_id].score_2) || isNaN(score[student_id].score_3) || isNaN(score[student_id].score_4)) {
+          student_id_score_worng.push(student_id);
+        }
+        if (score[student_id].score_1 < 0 || score[student_id].score_2 < 0 || score[student_id].score_3 < 0 || score[student_id].score_4 < 0) {
+          student_id_score_worng.push(student_id);
+        }
+      }
+      console.log('student_id_score_worng', student_id_score_worng);
+      alert('Score of student ID ' + student_id_score_worng + ' is worng. Please enter the correct score.');
+      setStudent_id_score_worng([]);
+      return;
+    }
+
+
     setIsEdit(false);
+    setText_edit('Edit');
+    
     async function updateScoreAndGrade() {
       const URL = 'http://oop.okusann.online:8088/assign_grade_and_score_to_multiple_student';
       const headers = {
@@ -244,7 +300,7 @@ function DetailSection() {
       try {
         const response = await axios.post(URL, body, { headers: headers });
         if (response.status === 200) {
-          alert('Update Success');
+          alert('Update Score and Grade Success');
           window.location.reload();
         }
       } catch (error) {
@@ -269,7 +325,7 @@ function DetailSection() {
         </div>
         <div className="tcbtn">
           <div>
-            <button className='tcbtn-1' onClick={() => click_edit()}>Edit</button>
+            <button className='tcbtn-1' onClick={() => click_edit()}>{text_edit}</button>
           </div>
           <div className='tcbtn-done'>
             {isEdit && <button className='tcbtn-2' onClick={clickDone}>Done</button>}

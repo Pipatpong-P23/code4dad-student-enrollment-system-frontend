@@ -13,9 +13,8 @@ function HomePageAdmin() {
     <div className='bgAd'>
       <NavbarAdmin admin_id= {AdminId}/>
         <div className="Adcontainer">
-
           <div className='Adtopic'>
-            <h1 className='Adtext'>Admin</h1>
+            <h1 className='Adtext'> Admin </h1>
           </div>
         
           <div className='Adbtn'>

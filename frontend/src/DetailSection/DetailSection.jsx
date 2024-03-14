@@ -287,6 +287,14 @@ function DetailSection() {
     return dict_score_and_grade;
   };
 
+  const confirmAssignScore = () => {
+    if (window.confirm('Are you sure to assign score?')) {
+      clickDone();
+      return true;
+    }
+    return false;
+  };
+
   const clickDone = () => {
     
     async function updateScoreAndGrade() {
@@ -358,7 +366,7 @@ function DetailSection() {
             <button className='tcbtn-1' onClick={() => click_edit()}>{text_edit}</button>
           </div>
           <div className='tcbtn-done'>
-            {isEdit && <button className='tcbtn-2' onClick={clickDone}>Done</button>}
+            {isEdit && <button className='tcbtn-2' onClick={confirmAssignScore}>Done</button>}
           </div>
         </div>
 

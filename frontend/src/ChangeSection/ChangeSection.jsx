@@ -219,13 +219,13 @@ function ChangeSection() {
       </div>
 
 {/* -----------------ไม่ใช้---------------- */}
-      <div className='enrollfoot'>
+      {/* <div className='enrollfoot'>
         <footer className='FooterChangePage'> 
           <input type="text" placeholder='course id' className='inputnoused' 
                   value={course_id} onChange={handleCourseIdChange} 
                   />
         </footer>
-      </div>
+      </div> */}
     </div>
   );
 }

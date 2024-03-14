@@ -56,14 +56,17 @@ function DetailCourse() {
         {
             name: 'Credit',
             selector: row => row.credit,
+            width: '15%',
         },
         {
             name: 'Course Type',
             selector: row => row.course_type,
+            width: '20%',
         },
         {
             name : 'Grading Type',
             selector: row => row.grading_type,
+            width : '15%',
         },
     ];
 

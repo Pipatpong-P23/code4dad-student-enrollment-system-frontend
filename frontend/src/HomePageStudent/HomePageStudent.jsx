@@ -143,13 +143,15 @@ function HomePageStudent() {
           <h1 className='stdtext'>EnrollmentSystem</h1>
         </div>
 
-          <div className='stdinfo'>
-            <p> 
-              <b>Student ID : </b> {student_data.student_id}   <b>Name :</b> {student_data.name} <b>Email :</b> {student_data.email}
-              <br/> 
-               <b>Faculty :</b> {student_data.faculty}   <b>Major :</b> {student_data.major}
-            </p>
-          </div>
+        <div className='stdinfo'>
+          <b>Student ID : </b> {student_data.student_id}   
+          <b>Name :</b> {student_data.name} 
+          <b>Email :</b> {student_data.email}
+        </div>
+        <div className='stdinfo'>
+          <b>Faculty :</b> {student_data.faculty}   
+          <b>Major :</b> {student_data.major}
+        </div>
 
         <div className='stddropdd'>
           <div>

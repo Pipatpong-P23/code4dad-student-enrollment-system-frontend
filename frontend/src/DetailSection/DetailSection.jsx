@@ -94,7 +94,7 @@ function DetailSection() {
         name: 'Student ID',
         selector: row => row.student_id,
         sortable: true,
-        width: '12.5%',
+        width: '10%',
       },
       {
         name: 'Student Name',
@@ -106,7 +106,7 @@ function DetailSection() {
         name: 'Faculty',
         selector: row => row.faculty,
         sortable: true,
-        width: '12.5%',
+        width: '10%',
       },
       {
         name: 'Major',
@@ -138,26 +138,27 @@ function DetailSection() {
         {
           name: 'Score Part 1',
           cell: row => <input type='text' className='enterscore' defaultValue={row.score.score_1} onChange={(e) => handleScoreChange(row.student_id, 'score_1', e.target.value)} />,
-          width : '10%',
+          width : '8.75%',
         },
         {
           name: 'Score Part 2',
           cell: row => <input type='text' className='enterscore' defaultValue={row.score.score_2} onChange={(e) => handleScoreChange(row.student_id, 'score_2', e.target.value)} />,
-          width : '10%',
+          width : '8.75%',
         },
         {
           name: 'Score Part 3',
           cell: row => <input type='text' className='enterscore' defaultValue={row.score.score_3} onChange={(e) => handleScoreChange(row.student_id, 'score_3', e.target.value)} />,
-          width : '10%',
+          width : '8.75%',
         },
         {
           name: 'Score Part 4',
           cell: row => <input type='text' className='enterscore' defaultValue={row.score.score_4} onChange={(e) => handleScoreChange(row.student_id, 'score_4', e.target.value)} />,
-          width : '10%',
+          width : '8.75%',
         },
         {
           name: 'Total Score',
           cell: row => calculateTotalScore(row),
+          width: '10%',
         },
         {
           name: 'Grade',
@@ -170,32 +171,32 @@ function DetailSection() {
         {
           name: 'Score Part 1',
           selector: row => row.score.score_1,
-          width: '8.3%',
+          width: '8.75%',
         },
         {
           name: 'Score Part 2',
           selector: row => row.score.score_2,
-          width: '8.3%',
+          width: '8.75%',
         },
         {
           name: 'Score Part 3',
           selector: row => row.score.score_3,
-          width: '8.3%',
+          width: '8.75%',
         },
         {
           name: 'Score Part 4',
           selector: row => row.score.score_4,
-          width: '8.3%',
+          width: '8.75%',
         },
         {
           name: 'Total Score',
           selector: row => calculateTotalScore(row),
-          width: '8.3%',
+          width: '10%',
         },
         {
           name: 'Grade',
           selector: row => row.grade,
-          width: '8.3%',
+          width: '10%',
         }
       );
     }
@@ -347,11 +348,14 @@ function DetailSection() {
       <NavbarTeacher teacher_id={teacher_id} />
       <div className="tccontainer02">
 
-        <div>
-          <p className='course_data'>
-            <b>Course ID:</b> {dataCourse.course_id} <b>Course Name:</b>{dataCourse.course_name} <b>Section:</b> {dataCourse.section} <b>Credit:</b>{dataCourse.credit} <br/>
-            <b>Semester:</b>{dataCourse.semester} <b>Year:</b>{dataCourse.year} 
-          </p>
+        <div className='course_data'>
+            <b>Course ID :</b> {dataCourse.course_id} 
+            <b>Course Name :</b>{dataCourse.course_name} 
+            <b>Section :</b> {dataCourse.section} 
+            <b>Credit :</b>{dataCourse.credit} 
+        </div>
+        <div className='course_data'>
+            <b>Semester :</b>{dataCourse.semester} <b>Year :</b>{dataCourse.year}
         </div>
 
         <div className='tctable-stdlist'>

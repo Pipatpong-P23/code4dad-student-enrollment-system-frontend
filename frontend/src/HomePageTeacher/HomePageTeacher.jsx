@@ -29,36 +29,46 @@ function HomePageTeacher() {
         {
             name : 'Course ID',
             selector : row => row.course_id,
-            sortable : true
+            sortable : true,
+            width: '10%',
         },
         {
             name : 'Course Name',
             selector : row => row.course_name,
-            sortable : true
+            sortable : true,
+            width: '20%',
         },
         {
             name : 'Section Number',
             selector : row => row.section_number,
-            sortable : true
+            sortable : true,
+            width: '15%',
         },
         {
             name : 'Number of Students',
             selector : row => row.number_of_student,
-            sortable : true
+            sortable : true,
+            width: '15%',
+
         },
         {
             name : 'Location',
             selector : row => row.location,
-            sortable : true
+            sortable : true,
+            width: '15%',
+
         },
         {
             name : 'Datetime',
             selector : row => row.schedule,
-            sortable : true
+            sortable : true,
+            width: '15%',
+
         },
         {
             name : 'Detail',
-            cell : row => <button className='detailbtn' onClick={() => ClickDetail(row.course_id, row.section_number, row.grading_type)}>detail</button>
+            cell : row => <button className='detailbtn' onClick={() => ClickDetail(row.course_id, row.section_number, row.grading_type)}>detail</button>,
+            width: '10%',
         }
     ]
 

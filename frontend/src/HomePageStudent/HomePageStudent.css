@@ -35,11 +35,15 @@
 }
 
 .stdinfo{
-    font-size: 10px;
-    margin-top: 20px;
     color: azure;
-    font-size: xx-large;
+    display: flex;
+    justify-content: center;
+    margin: 15px;
 
+}
+
+.stdinfo > b {
+    margin: 0 5px;
 }
 
 .stdviewdd:hover {

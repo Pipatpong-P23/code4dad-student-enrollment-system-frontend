@@ -22,6 +22,7 @@ function DetailCourse() {
     const [isviewAllCourse, setIsviewAllCourse] = useState(true);
     const [clickViewAllCourse , setClickViewAllCourse] = useState(false);
     const [isViewCourseOfMajor, setIsViewCourseOfMajor] = useState(false);
+
     const handleDelete = (course_id, section_number) => {
         async function deleteCourse() {
             try {
@@ -38,6 +39,26 @@ function DetailCourse() {
             }
         }
         if (window.confirm(`Are you sure you want to delete ${course_id} section ${section_number} ?`)) {
+            deleteCourse();
+        }
+    }
+
+    const deleteCourse = (course_id) => {
+        async function deleteCourse() {
+            try {
+                const response = await axios.delete(`http://oop.okusann.online:8088/delete_course_by_course_id/${course_id}`);
+                if (response.status === 200) {
+                    console.log(response.data);
+                    alert('Delete Success');
+                    window.location.reload();
+                } else {
+                    alert('Delete Failed');
+                }
+            } catch (error) {
+                alert('Error deleting course');
+            }
+        }
+        if (window.confirm(`Are you sure you want to delete ${course_id} ?`)) {
             deleteCourse();
         }
     }
@@ -65,6 +86,10 @@ function DetailCourse() {
             name : 'Grading Type',
             selector: row => row.grading_type,
         },
+        {
+            name : 'Delete',
+            cell: row => <button className='btn-delete' onClick={() => deleteCourse(row.course_id)}>Delete</button>,
+        }
     ];
 
     const columns = [

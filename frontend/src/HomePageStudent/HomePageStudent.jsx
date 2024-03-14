@@ -19,10 +19,33 @@ function HomePageStudent() {
   const [click_view, setClick_view] = useState(false);
   const TOKEN = document.cookie.split('=')[1];
   const [total_credit, setTotal_credit] = useState(0);
+  const [student_data , setStudent_data] = useState({});
 
   const handleDateChange = (new_semester, new_year) => {
     setSelectedDate({ 'semester' : new_semester , 'year' : new_year });
   };
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data_api = await axios.get(`http://oop.okusann.online:8088/get_student_by_student_id/${student_id}`);
+        if (data_api.status === 200) {
+          setStudent_data({
+            'student_id' : data_api.data.student_id,
+            'name' : data_api.data.name,
+            'email' : data_api.data.email,
+            'faculty' : data_api.data.faculty,
+            'major' : data_api.data.major,
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        alert('Data Not Found');
+      }
+    }
+    fetchData();
+  }
+  , []);
 
   const columns = [
     {
@@ -119,6 +142,14 @@ function HomePageStudent() {
         <div className='stdtopic'>
           <h1 className='stdtext'>EnrollmentSystem</h1>
         </div>
+
+          <div className='stdinfo'>
+            <p> 
+              <b>Student ID : </b> {student_data.student_id}   <b>Name :</b> {student_data.name} <b>Email :</b> {student_data.email}
+              <br/> 
+               <b>Faculty :</b> {student_data.faculty}   <b>Major :</b> {student_data.major}
+            </p>
+          </div>
 
         <div className='stddropdd'>
           <div>

@@ -22,20 +22,14 @@ function DetailSection() {
   const [student_id_score_worng, setStudent_id_score_worng] = useState([]);
 
   const [text_edit, setText_edit] = useState('Edit');
-  const [totalScore, setTotalScore] = useState(0); // State for total score
-  const [dataCourse , setDataCourse] = useState({
-    'course_id': '',
-    'course_name': '',
-    'credit': '',
-    'section_number': '',
-    'semester': '',
-    'year': '',
-  });
+  
   const CourseID = new URLSearchParams(window.location.search).get('courseId');
   const SectionNumber = new URLSearchParams(window.location.search).get('sectionNumber');
   const Semester = new URLSearchParams(window.location.search).get('semester');
   const Year = new URLSearchParams(window.location.search).get('year');
   const GradeType = new URLSearchParams(window.location.search).get('gradeType');
+
+  const [dataCourse , setDataCourse] = useState({});
 
   const calculateTotalScore = (row) => {
     const { score_1, score_2, score_3, score_4 } = row.score;
@@ -43,7 +37,30 @@ function DetailSection() {
     return totalScore;
   };
 
+
+
   useEffect(() => {
+
+    async function getDataCourse() {
+      try {
+        const response = await axios.get(`http://oop.okusann.online:8088/get_course_by_course_id/${CourseID}`);
+        if (response.status === 200) {
+          console.log('Courssse data', response.data)
+          setDataCourse({
+            'course_id': response.data.course_id,
+            'course_name': response.data.course_name,
+            'credit': response.data.credit,
+            'semester': Semester,
+            'year': Year,
+            'section': SectionNumber,
+          });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getDataCourse();
+
     async function getDataStudentList() {
       try {
         const response = await axios.get(`http://oop.okusann.online:8088/get_detail_student_in_section/${CourseID}/${SectionNumber}/${Semester}/${Year}`);
@@ -68,6 +85,7 @@ function DetailSection() {
       }
     }
     getDataStudentList();
+    console.log('Courppppse data', dataCourse);
   }, []);
 
   useEffect(() => {
@@ -320,6 +338,13 @@ function DetailSection() {
     <div className='bgtc'>
       <NavbarTeacher teacher_id={teacher_id} />
       <div className="tccontainer02">
+
+        <div>
+          <p className='course_data'>
+            <b>Course ID:</b> {dataCourse.course_id} <b>Course Name:</b>{dataCourse.course_name} <b>Section:</b> {dataCourse.section} <b>Credit:</b>{dataCourse.credit} <br/>
+            <b>Semester:</b>{dataCourse.semester} <b>Year:</b>{dataCourse.year} 
+          </p>
+        </div>
 
         <div className='tctable-stdlist'>
           <DataTable

@@ -22,7 +22,6 @@ function DetailCourse() {
     const [isviewAllCourse, setIsviewAllCourse] = useState(true);
     const [clickViewAllCourse , setClickViewAllCourse] = useState(false);
     const [isViewCourseOfMajor, setIsViewCourseOfMajor] = useState(false);
-
     const handleDelete = (course_id, section_number) => {
         async function deleteCourse() {
             try {

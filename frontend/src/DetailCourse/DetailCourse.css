@@ -7,6 +7,20 @@
     font-size: 1.5em;
 }
 
+.Adsearchbox {
+    color: azure;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Adsearchbox > h3 {
+    margin: 20px 0 0 15px;
+}
+
+.Adsearchbox > div {
+    margin: 0 15px 0 0;
+}
+
 label {
     color: azure;
     margin-right: 10px;

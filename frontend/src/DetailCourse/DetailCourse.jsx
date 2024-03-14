@@ -72,26 +72,27 @@ function DetailCourse() {
         {
             name: 'Course Name',
             selector: row => row.course_name,
-            width: '40%',
+            width: '45%',
         },
         {
             name: 'Credit',
             selector: row => row.credit,
-            width: '15%',
+            width: '10%',
         },
         {
             name: 'Course Type',
             selector: row => row.course_type,
-            width: '20%',
+            width: '15%',
         },
         {
             name : 'Grading Type',
             selector: row => row.grading_type,
-            width : '15%',
+            width : '10%',
         },
         {
             name : 'Delete',
             cell: row => <button className='btn-delete' onClick={() => deleteCourse(row.course_id)}>Delete</button>,
+            width : '10%',
         }
     ];
 
@@ -321,8 +322,13 @@ function DetailCourse() {
                     <button className='btnfilter' onClick={() => setIsSearch(true)}><IoMdSearch/></button>
                 </div>
 
-                <input className='searchbar' type="text" placeholder='Search by anything...' value={searchText} onChange={handleSearch}/>
-                <button className='btn-view-all' onClick={() => setClickViewAllCourse(true)} >View All Course</button>
+                <div className='Adsearchbox'>
+                    <h3>View Section</h3>
+                    <div>
+                        <input className='searchbar' type="text" placeholder='Search by anything...' value={searchText} onChange={handleSearch}/>
+                        <button className='btn-view-all' onClick={() => setClickViewAllCourse(true)} >View All Course</button>
+                    </div>
+                </div>
                 
                 <div className='Adtable'>
                     {

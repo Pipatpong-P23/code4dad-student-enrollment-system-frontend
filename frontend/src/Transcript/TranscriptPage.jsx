@@ -76,7 +76,7 @@ function TranscriptPage() {
         <div>
           {data_table.map((transcript, index) => (
             <div key={index}>
-              <h3 className='headTran'>{`Transcript: Semester ${transcript.semester}, Year ${transcript.year}, GPA: ${ParseFloat(transcript.gps, 2)}`}</h3>
+              <h3 className='headTran'>{`Transcript: Semester ${transcript.semester}, Year ${transcript.year}, GPS: ${ParseFloat(transcript.gps, 2)}`}</h3>
               <div className="std-transtb">
                 <DataTable
                   columns={columns}

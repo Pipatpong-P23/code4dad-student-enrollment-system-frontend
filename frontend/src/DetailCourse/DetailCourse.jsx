@@ -266,6 +266,7 @@ function DetailCourse() {
 
                 <div className="options">
                     {/* <label htmlFor='faculty'>Faculty :</label> */}
+                    <h4>View Section</h4>
                     <select
                         className='select'
                         id='faculty'
@@ -323,7 +324,6 @@ function DetailCourse() {
                 </div>
 
                 <div className='Adsearchbox'>
-                    <h3>View Section</h3>
                     <div>
                         <input className='searchbar' type="text" placeholder='Search by anything...' value={searchText} onChange={handleSearch}/>
                         <button className='btn-view-all' onClick={() => setClickViewAllCourse(true)} >View All Course</button>

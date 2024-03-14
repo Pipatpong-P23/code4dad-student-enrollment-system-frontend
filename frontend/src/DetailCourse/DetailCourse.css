@@ -10,7 +10,7 @@
 .Adsearchbox {
     color: azure;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .Adsearchbox > h3 {
@@ -41,4 +41,9 @@ label {
     box-shadow: 0 0 10px black;
     transition: 0.1s ease-in-out;
     cursor: pointer;
+}
+
+.options > h4 {
+    color: azure;
+    margin-right: 10px;
 }

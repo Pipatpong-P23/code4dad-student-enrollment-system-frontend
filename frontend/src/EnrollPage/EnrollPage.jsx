@@ -8,6 +8,7 @@ import Footer from '../Component/Footer/Footer';
 import { getUsername, getRole, Logout } from '../Authentication';
 import './EnrollPage.css';
 import { CURRENT_SEMESTER, CURRENT_YEAR } from '../DateTime';
+import { url } from '../URL';
 
 function EnrollPage() {
   if (getRole() != 'student') {
@@ -97,7 +98,8 @@ function EnrollPage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data_api = await axios.get(`http://oop.okusann.online:8088/get_all_section_by_semester_and_year/${current_semester}/${current_year}`);
+        const URL = url + `/get_all_section_by_semester_and_year/${current_semester}/${current_year}`;
+        const data_api = await axios.get(URL);
         if (data_api.status === 200) {
           console.log(data_api.data, 'data')
           setData_table(data_api.data);

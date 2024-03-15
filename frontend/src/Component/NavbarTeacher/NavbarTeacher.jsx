@@ -3,6 +3,7 @@ import "./NavbarTeacher.css";
 import { FiMenu } from "react-icons/fi";
 import { GiSpellBook } from "react-icons/gi";
 import axios from 'axios';
+import { url } from '../../URL';
 
 function NavbarTeacher({teacher_id}) {
     const [clicked, setClicked] = useState(false);
@@ -11,7 +12,7 @@ function NavbarTeacher({teacher_id}) {
     useEffect(() => {
         async function get_teacher_data() {
             try{
-                const response = await axios.get(`http://oop.okusann.online:8088/get_teacher_by_teacher_id/${teacher_id}`);
+                const response = await axios.get(url + `/get_teacher_by_teacher_id/${teacher_id}`);
         
                 if (response.status == 200) {
                     console.log("OK", response.data.name);

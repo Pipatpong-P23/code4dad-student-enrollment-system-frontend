@@ -5,6 +5,7 @@ import axios from 'axios'
 import './AddSection.css'
 import DataTable from 'react-data-table-component'
 import { CURRENT_SEMESTER, CURRENT_YEAR } from '../DateTime'
+import { url } from '../URL'
 
 function AddSection() {
     if (getRole() != 'admin') {
@@ -85,7 +86,7 @@ function AddSection() {
 
     const handleDone = () => {
         console.log(dataInput)
-        const URL = 'http://oop.okusann.online:8088/add_section';
+        const URL = url + '/add_section';
         
         const headers = {
             "TOKEN": TOKEN,

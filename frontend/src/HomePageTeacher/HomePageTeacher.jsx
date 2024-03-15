@@ -7,6 +7,7 @@ import DataTable from 'react-data-table-component'
 import DropdownDate from '../Component/DropdownDateOption/DropdownDate'
 import './HomePageTeacher.css'
 import { CURRENT_SEMESTER, CURRENT_YEAR } from '../DateTime';
+import { url } from '../URL';
 
 function HomePageTeacher() {
     if (getRole() != 'teacher') {
@@ -79,7 +80,8 @@ function HomePageTeacher() {
     useEffect(() => {
         async function get_all_section() {
             try{
-                const response = await axios.get(`http://oop.okusann.online:8088/get_all_sections_taught_by_teacher_id/${teacher_name}/${selectedDate.semester}/${selectedDate.year}`);
+                const URL = url + `/get_all_sections_taught_by_teacher_id/${teacher_name}/${selectedDate.semester}/${selectedDate.year}`;
+                const response = await axios.get(URL);
                 if (response.status == 200) {
                     console.log("OoK", response.data);
                     if (response.data.length > 0) {

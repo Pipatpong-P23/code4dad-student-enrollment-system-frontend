@@ -4,6 +4,7 @@ import NavbarStudent from '../Component/NavbarStudent/NavbarStudent';
 import { getUsername, Logout, getRole} from '../Authentication';
 import axios from 'axios';
 import './TranscriptPage.css';
+import { url } from '../URL';
 
 function TranscriptPage() {
   if (getRole() != 'student') {
@@ -50,9 +51,8 @@ function TranscriptPage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://oop.okusann.online:8088/get_all_student_transcripts/${student_id}`, {
-          headers: { Authorization: `Bearer ${TOKEN}` } // Ensure you are sending the TOKEN correctly
-        });
+        const URL = url + `/get_all_student_transcripts/${student_id}`;
+        const response = await axios.get(URL);
         if (response.status === 200) {
           console.log('Data fetched:', response.data);
           setData_table(response.data);

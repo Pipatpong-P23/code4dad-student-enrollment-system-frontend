@@ -6,6 +6,7 @@ import DataTable from 'react-data-table-component';
 import axios from 'axios';
 import { getUsername, getRole, Logout } from '../Authentication';
 import { CURRENT_SEMESTER, CURRENT_YEAR } from '../DateTime';
+import { url } from '../URL';
 
 function ChangeSection() {
   if (getRole() != 'student') {
@@ -25,7 +26,6 @@ function ChangeSection() {
   const [isTableSectionActive, setIsTableSectionActive] = useState(false);
 
   const TOKEN = document.cookie.split('=')[1];
-
   const columns_section =[
     {
       name: 'Course ID',
@@ -112,7 +112,9 @@ function ChangeSection() {
 
   const getsectiondata = async (courseID) => {
   
-    const URL = `http://oop.okusann.online:8088/get_all_sections_by_course_id/${courseID}`;
+    // const URL = `http://oop.okusann.online:8088/get_all_sections_by_course_id/${courseID}`;
+
+    const URL = url + `/get_all_sections_by_course_id/${courseID}`;
     try {
       const response = await axios.get(URL);
       if (response.status === 200) {
@@ -130,7 +132,8 @@ function ChangeSection() {
   
   
   useEffect(() => {
-    const URL = `http://oop.okusann.online:8088/get_student_transcript_by_semester_and_year/${student_id}/${current_semester}/${current_year}`;
+    // const URL = `http://oop.okusann.online:8088/get_student_transcript_by_semester_and_year/${student_id}/${current_semester}/${current_year}`;
+    const URL = url + `/get_student_transcript_by_semester_and_year/${student_id}/${current_semester}/${current_year}`;
     async function getEnrollCourse() {
       try {
         const response = await axios.get(URL);
@@ -164,7 +167,8 @@ function ChangeSection() {
   };
 
   async function changeSection(new_section){
-    const URL = `http://oop.okusann.online:8088/change_section`;
+    // const URL = 'url + /change_section';
+    const URL = url + `/change_section`;
     const headers = {
       "TOKEN" : TOKEN
     }

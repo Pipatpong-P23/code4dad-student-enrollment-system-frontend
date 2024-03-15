@@ -4,6 +4,7 @@ import NavbarTeacher from '../Component/NavbarTeacher/NavbarTeacher';
 import { getUsername, getRole, Logout } from '../Authentication';
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
+import { url } from '../URL';
 
 function DetailSection() {
   if (getRole() !== 'teacher') {
@@ -43,7 +44,8 @@ function DetailSection() {
 
     async function getDataCourse() {
       try {
-        const response = await axios.get(`http://oop.okusann.online:8088/get_course_by_course_id/${CourseID}`);
+        const URL = url + `/get_course_by_course_id/${CourseID}`;
+        const response = await axios.get(URL);
         if (response.status === 200) {
           console.log('Courssse data', response.data)
           setDataCourse({
@@ -63,7 +65,8 @@ function DetailSection() {
 
     async function getDataStudentList() {
       try {
-        const response = await axios.get(`http://oop.okusann.online:8088/get_detail_student_in_section/${CourseID}/${SectionNumber}/${Semester}/${Year}`);
+        const URL = url + `/get_detail_student_in_section/${CourseID}/${SectionNumber}/${Semester}/${Year}`;
+        const response = await axios.get(URL);
         if (response.status === 200) {
           setDataStudentList(response.data);
           setScore(response.data.reduce((acc, student) => {
@@ -299,7 +302,7 @@ function DetailSection() {
   const clickDone = () => {
     
     async function updateScoreAndGrade() {
-      const URL = 'http://oop.okusann.online:8088/assign_grade_and_score_to_multiple_student';
+      const URL = `${url}/assign_grade_and_score_to_multiple_student`;
       const headers = {
         'TOKEN': teacher_id,
       };

@@ -7,7 +7,7 @@ import { getRole, getUsername } from '../Authentication'
 import { CURRENT_SEMESTER, CURRENT_YEAR } from '../DateTime'
 import DataTable from 'react-data-table-component'
 import { IoMdSearch } from "react-icons/io";
-
+import { url } from '../URL'
 
 function ScorePage() {
   if (getRole() !== 'student') {
@@ -69,7 +69,8 @@ function ScorePage() {
   useEffect(() => {
     async function getScore() {
       try {
-        const response = await axios.get(`http://oop.okusann.online:8088/get_student_transcript_by_semester_and_year/${stundet_id}/${selectedDate.semester}/${selectedDate.year}`);
+        const URL = url + `/get_student_transcript_by_semester_and_year/${stundet_id}/${selectedDate.semester}/${selectedDate.year}`;
+        const response = await axios.get(URL);
         if (response.status === 200) {
           console.log("DATA" , response.data.enrollments);
           setDataTable(response.data.enrollments);

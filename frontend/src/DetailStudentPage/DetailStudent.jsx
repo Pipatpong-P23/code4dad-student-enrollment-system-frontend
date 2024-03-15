@@ -5,6 +5,7 @@ import axios from 'axios'
 import { getUsername, getRole, Logout } from '../Authentication'
 import DataTable from 'react-data-table-component'
 import { IoMdSearch } from "react-icons/io";
+import { url } from '../URL'
 
 function DetailStudent() {
     if (getRole() != 'admin') {
@@ -23,7 +24,8 @@ function DetailStudent() {
     useEffect(() => {
         async function get_all_faculty_and_major() {
             try {
-                const response = await axios.get('http://oop.okusann.online:8088/get_all_faculties');
+                const URL = url + '/get_all_faculties';
+                const response = await axios.get(URL);
                 if (response.status === 200) {
                     const faculties = response.data.map(fac => fac.faculty_name);
                     const majors = response.data.map(fac => ({
@@ -54,7 +56,8 @@ function DetailStudent() {
     const handleDelete = (student_id) => {
         async function delete_student() {
             try {
-                const response = await axios.delete(`http://oop.okusann.online:8088/delete_user_by_username/${student_id}`);
+                const URL = url + `/delete_user_by_username/${student_id}`;
+                const response = await axios.delete(URL);
                 if (response.status === 200) {
                     console.log(response.data);
                     alert('Delete Success');
@@ -114,7 +117,8 @@ function DetailStudent() {
     const getStudentList = () => {
         async function get_student_list() {
             try {
-                const response = await axios.get(`http://oop.okusann.online:8088/get_all_student_in_major/${selectedFaculty}/${selectedMajor}`);
+                const URL = url + `/get_all_student_in_major/${selectedFaculty}/${selectedMajor}`;
+                const response = await axios.get(URL);
                 if (response.status === 200) {
                     console.log(response.data);
                     setData_student(response.data);

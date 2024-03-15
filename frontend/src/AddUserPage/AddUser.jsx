@@ -4,6 +4,7 @@ import DataTable from 'react-data-table-component';
 import './AddUser.css';
 import axios from 'axios';
 import { getUsername, getRole, Logout } from '../Authentication';
+import { url } from '../URL';
 
 function AddUser() {
   if (getRole() != 'admin') {
@@ -40,7 +41,8 @@ function AddUser() {
   useEffect(() => {
     async function get_all_faculty_and_major() {
         try {
-            const response = await axios.get('http://oop.okusann.online:8088/get_all_faculties');
+
+            const response = await axios.get(url + '/get_all_faculties');
             if (response.status === 200) {
                 const faculties = response.data.map(fac => fac.faculty_name);
                 const majors = response.data.map(fac => ({
@@ -208,7 +210,7 @@ function AddUser() {
           "faculty": detail["Faculty"] 
         };
         console.log('xxxxx' , body)
-        const response = await axios.post('http://oop.okusann.online:8088/add_student', body, {headers: headers});
+        const response = await axios.post(url + '/add_student', body, {headers: headers});
         if (response.status == 200) {
           alert('Add Student Success');
           return ;
@@ -235,7 +237,7 @@ function AddUser() {
           "citizen_id": detail["Citizen ID"] 
         };
 
-        const response = await axios.post('http://oop.okusann.online:8088/add_teacher', body, {headers: headers});
+        const response = await axios.post(url + '/add_teacher', body, {headers: headers});
         if (response.status == 200) {
           alert('Add Teacher Success');
           return ;

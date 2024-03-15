@@ -6,6 +6,7 @@ import { LuLogIn } from "react-icons/lu";
 import { GiBookmarklet } from "react-icons/gi";
 import axios from 'axios';
 import { getRole } from '../Authentication';
+import {url} from '../URL';
 
 function Login() {
 
@@ -23,7 +24,8 @@ function Login() {
   }
 
   const submit = (e) => {
-    URL = 'http://oop.okusann.online:8088/login';
+
+    const URL = url + '/login';
     e.preventDefault();
 
     const headers = {};

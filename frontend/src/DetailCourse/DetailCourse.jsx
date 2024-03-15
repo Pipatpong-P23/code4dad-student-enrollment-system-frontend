@@ -7,6 +7,7 @@ import DataTable from 'react-data-table-component';
 import { CURRENT_SEMESTER, CURRENT_YEAR } from '../DateTime';
 import { GiColiseum } from 'react-icons/gi';
 import { IoMdSearch } from "react-icons/io";
+import { url } from '../URL';
 
 
 function DetailCourse() {
@@ -26,7 +27,8 @@ function DetailCourse() {
     const handleDelete = (course_id, section_number) => {
         async function deleteCourse() {
             try {
-                const response = await axios.delete(`http://oop.okusann.online:8088/delete_section_from_course/${course_id}/${section_number}/${selectedSemester}/${selectedYear}`);
+                const URL = url + `/delete_section_from_course/${course_id}/${section_number}/${selectedSemester}/${selectedYear}`;
+                const response = await axios.delete(URL);
                 if (response.status === 200) {
                     console.log(response.data);
                     alert('Delete Success');
@@ -46,7 +48,8 @@ function DetailCourse() {
     const deleteCourse = (course_id) => {
         async function deleteCourse() {
             try {
-                const response = await axios.delete(`http://oop.okusann.online:8088/delete_course_by_course_id/${course_id}`);
+                const URL = url + `/delete_course_by_course_id/${course_id}`;
+                const response = await axios.delete(URL);
                 if (response.status === 200) {
                     console.log(response.data);
                     alert('Delete Success');
@@ -151,7 +154,8 @@ function DetailCourse() {
     useEffect(() => {
         async function get_all_faculty_and_major() {
             try {
-                const response = await axios.get('http://oop.okusann.online:8088/get_all_faculties');
+                const URL = url + '/get_all_faculties';
+                const response = await axios.get(URL);
                 if (response.status === 200) {
                     const faculties = response.data.map(fac => fac.faculty_name);
                     const majors = response.data.map(fac => ({
@@ -174,7 +178,8 @@ function DetailCourse() {
     const getCourseList = () => {
         async function getCourseList() {
             try {
-                const response = await axios.get(`http://oop.okusann.online:8088/get_all_section_in_major_by_semester_and_year/${selectedFaculty}/${selectedMajor}/${selectedSemester}/${selectedYear}`);
+                const URL = url + `/get_all_section_in_major_by_semester_and_year/${selectedFaculty}/${selectedMajor}/${selectedSemester}/${selectedYear}`;
+                const response = await axios.get(URL);
                 if (response.status === 200) {
                     console.log("Course ", response.data);
                     setDataTable(response.data);
@@ -229,7 +234,8 @@ function DetailCourse() {
 
         async function get_all_course() {
             try {
-                const response = await axios.get(`http://oop.okusann.online:8088/get_all_course`);
+                const URL = url + '/get_all_course';
+                const response = await axios.get(URL);
                 if (response.status === 200) {
                     console.log("Course ", response.data);  
                     setDataTable(response.data);

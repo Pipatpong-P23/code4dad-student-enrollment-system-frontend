@@ -7,6 +7,7 @@ import DropdownDate from '../Component/DropdownDateOption/DropdownDate';
 import './HomePageStudent.css';
 import { CURRENT_SEMESTER , CURRENT_YEAR } from '../DateTime';
 import { IoMdSearch } from "react-icons/io";
+import { url } from '../URL';
 
 function HomePageStudent() {
   if (getRole() != 'student') {
@@ -106,7 +107,8 @@ function HomePageStudent() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data_api = await axios.get(`http://oop.okusann.online:8088/get_student_transcript_by_semester_and_year/${student_id}/${selectedDate.semester}/${selectedDate.year}`);
+        const URL = url + `/get_student_transcript_by_semester_and_year/${student_id}/${selectedDate.semester}/${selectedDate.year}`;
+        const data_api = await axios.get(URL);
         if (data_api.status === 200) {
           console.log(data_api.data.enrollments)
           setData_table(data_api.data.enrollments);

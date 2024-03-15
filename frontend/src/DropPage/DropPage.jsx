@@ -5,6 +5,8 @@ import { getUsername, getRole, Logout } from '../Authentication';
 import axios from 'axios';
 import DataTable from 'react-data-table-component';
 import { CURRENT_SEMESTER, CURRENT_YEAR } from '../DateTime';
+import { url } from '../URL';
+
 function DropPage() {
   if (getRole() != 'student') {
     Logout();
@@ -79,7 +81,8 @@ function DropPage() {
   }
 
   useEffect(() => {
-    axios.get(`http://oop.okusann.online:8088/get_student_transcript_by_semester_and_year/${student_id}/2/2023`)
+    const URL = url + '/get_student_transcript_by_semester_and_year/' + student_id + '/2/2023';
+    axios.get(URL)
       .then((res) => {
         if (res.status === 200) {
           console.log(res.data)
@@ -94,7 +97,8 @@ function DropPage() {
 
   const drop = () => {
     
-    const URL = 'http://oop.okusann.online:8088/drop';
+    const URL = url + '/drop';
+    // const URL = 'http://oop.okusann.online:8088/drop';
 
     const headers = {
       'TOKEN': TOKEN,

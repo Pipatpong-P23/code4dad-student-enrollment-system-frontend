@@ -4,6 +4,7 @@ import { getUsername, getRole, Logout } from '../Authentication';
 import axios from 'axios';
 import './AddCourse.css';
 import DataTable from 'react-data-table-component';
+import { url } from '../URL';
 
 function AddCourse() {
   if (getRole() != 'admin') {
@@ -65,7 +66,7 @@ function AddCourse() {
   useEffect(() => {
     async function get_all_faculty_and_major() {
         try {
-            const response = await axios.get('http://oop.okusann.online:8088/get_all_faculties');
+            const response = await axios.get(url + '/get_all_faculties');
             if (response.status === 200) {
                 const faculties = response.data.map(fac => fac.faculty_name);
                 const majors = response.data.map(fac => ({
@@ -232,7 +233,7 @@ function AddCourse() {
   const addPre = () => {
     async function addPre() {
       try {
-        const URL = `http://oop.okusann.online:8088/add_pre_requisite_to_course`;
+        const URL = url + '/add_pre_requisite_to_course';
         const headers = {
           "TOEKN": TOKEN,
         }
@@ -259,7 +260,7 @@ function AddCourse() {
   const addCourse_to_Major = () => {
     async function add_course_to_major() {
       try {
-        const URL = `http://oop.okusann.online:8088/add_course_to_major`;
+        const URL = url + '/add_course_to_major';
         const headers = {
           "TOEKN": TOKEN,
         }
@@ -291,7 +292,7 @@ function AddCourse() {
   const addCo = () => {
     async function addCo() {
       try {
-        const URL = `http://oop.okusann.online:8088/add_co_requisite_to_course_section`;
+        const URL = url + '/add_co_requisite_to_course_section';
         const headers = {
           "TOEKN": TOKEN,
         }
@@ -322,8 +323,8 @@ function AddCourse() {
   const addCourse = () => {
     async function CreateCourse() {
       try {
-        const URL = `http://oop.okusann.online:8088/add_course`;
-
+        const URL = url + '/add_course';
+        
         const headers = {
           "TOKEN" : TOKEN
         }

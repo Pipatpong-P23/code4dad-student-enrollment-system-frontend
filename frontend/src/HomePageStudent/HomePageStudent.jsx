@@ -29,7 +29,7 @@ function HomePageStudent() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data_api = await axios.get(`http://oop.okusann.online:8088/get_student_by_student_id/${student_id}`);
+        const data_api = await axios.get(url + `/get_student_by_student_id/${student_id}`);
         if (data_api.status === 200) {
           setStudent_data({
             'student_id' : data_api.data.student_id,

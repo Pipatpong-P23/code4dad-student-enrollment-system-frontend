@@ -125,7 +125,8 @@ function EnrollPage() {
     }
     async function PostData() {
       try {
-        const data_api = await axios.post('http://oop.okusann.online:8088/enroll', body, {headers: headers});
+        const URL = url + '/enroll';
+        const data_api = await axios.post(URL, body, {headers: headers});
         if (data_api.status === 200) {
           alert('Enroll Success');
         }
